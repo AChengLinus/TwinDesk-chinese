@@ -416,13 +416,13 @@
       }
       const [head, text] = TEXT[id];
       const h = document.createElement('h2');
-      h.textContent = head;
+      h.textContent = T(head);
       const p = document.createElement('p');
-      p.textContent = text;
+      p.textContent = T(text);
       const ok = document.createElement('button');
       ok.className = 'btn';
-      ok.textContent = 'Dismiss';
-      ok.title = 'Show the settings';
+      ok.textContent = T('Dismiss');
+      ok.title = T('Show the settings');
       ok.onclick = () => {
         gone = true;
         if (keep) dismiss(id);

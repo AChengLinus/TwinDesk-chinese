@@ -10,7 +10,7 @@
     ok.className = 'btn primary';
     const later = document.createElement('button');
     later.className = 'btn';
-    later.textContent = 'Later';
+    later.textContent = T('Later');
     const actions = document.createElement('div');
     actions.className = 'banner-actions';
     actions.append(later, ok);

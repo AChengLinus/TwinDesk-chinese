@@ -42,15 +42,15 @@ UI.tab({
       const t = s.terminal;
       const v = t.server;
       pair.update(s);
-      srvPill.textContent = v.busy ? 'Setting up…' : SRV[v.service] || v.service;
+      srvPill.textContent = T(v.busy ? 'Setting up…' : SRV[v.service] || v.service);
       srvPill.className = 'pill ' + (v.service === 'running' ? 'good' : v.busy ? 'muted' : 'bad');
       setupBtn.hidden = v.service === 'running' || v.busy || !t.allowMac;
       srvRow.setHint(v.message || (v.service === 'running' ? '' : 'Asks for administrator rights once'));
       macRow.hidden = !t.allowMac;
-      macRow.label.textContent = v.info && v.info.enabled ? 'Ready' : v.macAsked ? 'Not ready yet' : 'Waiting for {name}';
+      macRow.label.textContent = T(v.info && v.info.enabled ? 'Ready' : v.macAsked ? 'Not ready yet' : 'Waiting for {name}');
       macRow.setHint(v.macAsked && !(v.info && v.info.enabled) && v.service !== 'running' ? 'Set up the SSH server first' : '');
 
-      pill.textContent = TEXT[t.status] || t.status;
+      pill.textContent = T(TEXT[t.status] || t.status);
       pill.className = 'pill ' + (t.status === 'ready' ? 'good' : t.status === 'unavailable' || t.status === 'error' ? 'bad' : 'muted');
       openBtn.disabled = t.status !== 'ready';
       status.setHint(t.message || (t.status === 'ready' ? 'As ' + t.user : t.status === 'unavailable' ? (UI.peer(s).os === 'mac' ? 'Turn on Remote Login on {name}' : 'Set up the SSH server on {name}') : ''));

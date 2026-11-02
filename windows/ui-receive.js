@@ -57,7 +57,7 @@ UI.tab({
       const on = st.state === 'on';
       const connected = s.link.state === 'connected';
       openBtn.disabled = !connected;
-      openBtn.textContent = st.watching ? 'Show' : 'Open';
+      openBtn.textContent = T(st.watching ? 'Show' : 'Open');
       const who = UI.peer(s).the;
       const sharing = on || !!(st.remote && st.remote.on); // on over there, maybe paused while nobody watches
       const r = st.remote;

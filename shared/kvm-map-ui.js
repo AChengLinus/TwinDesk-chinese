@@ -40,8 +40,8 @@
     const hint = div('kvm-map-hint');
     const identify = document.createElement('button');
     identify.className = 'btn small kvm-map-identify';
-    identify.textContent = 'Identify';
-    identify.title = 'Show each monitor’s number on it, on both computers';
+    identify.textContent = T('Identify');
+    identify.title = T('Show each monitor’s number on it, on both computers');
     identify.onclick = () => opts.onIdentify();
     foot.append(hint, identify);
     el.append(legend, foot);
@@ -154,15 +154,15 @@
     // d: {mine, theirs, side, along, me, them}. along null: centred.
     function update(d) {
       const side = d.side || 'right';
-      data = { mine: d.mine || [], theirs: d.theirs || [], side, along: 0, me: d.me || 'This computer', them: d.them || 'The other computer' };
+      data = { mine: d.mine || [], theirs: d.theirs || [], side, along: 0, me: d.me || T('This computer'), them: d.them || T('The other computer') };
       const { mine, theirs } = lists();
       data.along = typeof d.along === 'number' ? d.along : G.centred(mine, theirs, side);
-      meKey.textContent = data.me;
-      themKey.textContent = data.them;
+      meKey.textContent = T(data.me);
+      themKey.textContent = T(data.them);
       hint.textContent = data.theirs.length
-        ? `Drag ${data.them} to where it is on your desk. The pointer crosses only where the screens touch (highlighted).`
-        : `Drag ${data.them} to the side it is on. Its screens show here once it’s connected (with an up-to-date TwinDesk).`;
-      box.setAttribute('aria-label', `${data.them} is ${{ left: 'to the left of', right: 'to the right of', top: 'above', bottom: 'below' }[side]} ${data.me}`);
+        ? T(`Drag ${data.them} to where it is on your desk. The pointer crosses only where the screens touch (highlighted).`)
+        : T(`Drag ${data.them} to the side it is on. Its screens show here once it’s connected (with an up-to-date TwinDesk).`);
+      box.setAttribute('aria-label', T(`${data.them} is ${{ left: 'to the left of', right: 'to the right of', top: 'above', bottom: 'below' }[side]} ${data.me}`));
       identify.hidden = !data.mine.length;
       if (!drag) render(side, data.along);
     }

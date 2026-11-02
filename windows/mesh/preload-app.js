@@ -4,7 +4,14 @@ const { contextBridge, ipcRenderer, webUtils } = require('electron');
 
 const call = (name) => (...args) => ipcRenderer.invoke(name, ...args);
 
+// 界面语言（settings.ui.lang）：页面脚本要同步拿到它（必须在 UI 模块之前），所以用 sendSync 取一次。
+const lang = (() => {
+  try { return ipcRenderer.sendSync('uiLang') === 'en' ? 'en' : 'zh'; } catch (_) { return 'zh'; }
+})();
+
 contextBridge.exposeInMainWorld('macshare', {
+  lang, // 'zh' | 'en'（shared/i18n.js 启动时读它）
+  setUiLang: call('setUiLang'), // 换语言：写 settings.ui.lang，主进程的托盘/通知跟着换；页面自己 reload
   getState: call('getState'),
   onState: (fn) => ipcRenderer.on('state', (_e, s) => fn(s)),
   onShowUpdate: (fn) => ipcRenderer.on('show-update', () => fn()),

@@ -35,11 +35,11 @@ UI.tab({
 
     const crumbs = el('div', { class: 'hub-crumbs' });
     const upBtn = UI.button('‹', () => cwd && open(cwd.split('/').slice(0, -1).join('/')), 'small');
-    upBtn.title = 'Up';
+    upBtn.title = T('Up');
     const refreshBtn = UI.button('Refresh', () => open(cwd), 'small');
     const hiddenBtn = UI.button('Hidden', () => { hidden = !hidden; hiddenBtn.classList.toggle('on', hidden); open(cwd); }, 'small');
-    hiddenBtn.title = 'Show files whose names start with a dot';
-    const mkdirBtn = UI.button('New Folder', () => { newRow.hidden = false; newName.value = 'New Folder'; newName.select(); newName.focus(); }, 'small');
+    hiddenBtn.title = T('Show files whose names start with a dot');
+    const mkdirBtn = UI.button('New Folder', () => { newRow.hidden = false; newName.value = T('New Folder'); newName.select(); newName.focus(); }, 'small');
     const uploadBtn = UI.button('Upload…', () => api.hub({ do: 'upload', path: cwd }), 'small primary');
     const bar = el('div', { class: 'hub-media-bar' }, [upBtn, crumbs, el('span', { class: 'hub-grow' }), hiddenBtn, refreshBtn, mkdirBtn, uploadBtn]);
 
@@ -91,11 +91,11 @@ UI.tab({
       if (shareCard.hidden) return;
       const ph = UI.phoneName(s);
       const p = sh.phone;
-      phoneRow.label.textContent = `${ph}’s shared folder`;
+      phoneRow.label.textContent = T(`${ph}’s shared folder`);
       autoSw.set(p.auto);
       openBtn.hidden = !p.offered;
       openBtn.disabled = !!p.busy;
-      openBtn.textContent = p.mounted ? `Show in ${fm === 'the file manager' ? 'Files' : fm}` : 'Open';
+      openBtn.textContent = T(p.mounted ? `Show in ${fm === 'the file manager' ? 'Files' : fm}` : 'Open');
       ejectBtn.hidden = !p.mounted;
       phoneRow.setHint(p.message || (p.busy === 'mounting' ? 'Opening…' : p.busy === 'wifi' ? 'Connecting with Wi-Fi Direct…'
         : p.wifi ? `“${p.name}”: Open connects with Wi-Fi Direct and shows it in ${fm}`
@@ -103,7 +103,7 @@ UI.tab({
           : p.mounted ? `“${p.name}”, in ${fm}${fm === 'Finder' ? ' under Locations' : ''}` : `“${p.name}”: Open shows it in ${fm}`));
       phoneRow.hint.classList.toggle('bad', !!p.message);
       const m = sh.mine;
-      mineRow.label.textContent = `Share a folder with ${ph}`;
+      mineRow.label.textContent = T(`Share a folder with ${ph}`);
       serveSw.set(m.on);
       mineRow.setHint(m.error ? `Couldn’t share: ${m.error}` : `${tilde(m.folder)}${m.on ? `: in ${ph}’s Files app and file pickers${UI.onBle(s) ? ', over Wi-Fi Direct (Open on the phone connects it)' : ''}` : ''}`);
       mineRow.hint.classList.toggle('bad', !!m.error);
@@ -134,7 +134,7 @@ UI.tab({
     function save(names) {
       if (!names.length) return;
       UI.hubAsk({ t: 'fs.save', paths: names.map(join) });
-      status.textContent = `Saving ${names.length === 1 ? names[0] : `${names.length} items`} to ${UI.fill('{me}')}’s ${UI.receivedName(UI.state)}…`;
+      status.textContent = T(`Saving ${names.length === 1 ? names[0] : `${names.length} items`} to ${UI.fill('{me}')}’s ${UI.receivedName(UI.state)}…`);
       chosen.clear();
       paint();
     }
@@ -183,10 +183,10 @@ UI.tab({
       list.replaceChildren(...items.map(row));
       if (!items.length) list.append(el('div', { class: 'hub-empty', text: asking === cwd ? 'Loading…' : 'This folder is empty' }));
       selBar.hidden = !chosen.size;
-      selText.textContent = `${chosen.size} chosen`;
-      saveBtn.textContent = importTo ? `Import to ${importTo.name}` : `Save to ${UI.fill('{me}')}`;
+      selText.textContent = T(`${chosen.size} chosen`);
+      saveBtn.textContent = T(importTo ? `Import to ${importTo.name}` : `Save to ${UI.fill('{me}')}`);
       renameBtn.hidden = chosen.size !== 1;
-      deleteBtn.textContent = confirmDelete ? `Delete ${chosen.size === 1 ? [...chosen][0] : `${chosen.size} items`}?` : 'Delete';
+      deleteBtn.textContent = T(confirmDelete ? `Delete ${chosen.size === 1 ? [...chosen][0] : `${chosen.size} items`}?` : 'Delete');
       deleteBtn.classList.toggle('danger', confirmDelete);
     }
 
@@ -195,18 +195,18 @@ UI.tab({
       asking = '';
       if (m.error) {
         items = [];
-        status.textContent = m.error;
+        status.textContent = T(m.error);
       } else {
         items = (m.items || []).filter((x) => x && typeof x.name === 'string' && x.name)
           .sort((a, b) => (b.dir - a.dir) || a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
         for (const n of [...chosen]) if (!items.some((x) => x.name === n)) chosen.delete(n);
         const gb = (n) => `${(n / 1e9).toFixed(n >= 1e11 ? 0 : 1)} GB`;
-        status.textContent = m.total ? `${gb(m.free || 0)} free of ${gb(m.total)}` : '';
+        status.textContent = m.total ? T(`${gb(m.free || 0)} free of ${gb(m.total)}`) : '';
       }
       paint();
     });
     UI.hubOn('fs.done', (m) => {
-      if (!m.ok) status.textContent = m.error || 'That didn’t work';
+      if (!m.ok) status.textContent = m.error ? T(m.error) : T('That didn’t work');
       if ((m.path || '') === cwd) UI.hubAsk({ t: 'fs.list', path: cwd, hidden });
     });
 
@@ -225,7 +225,7 @@ UI.tab({
       const paths = api.pathsOf ? api.pathsOf([...e.dataTransfer.files]) : [];
       if (paths.length) {
         api.hub({ do: 'upload', path: cwd, paths });
-        status.textContent = `Sending ${paths.length === 1 ? 'a file' : `${paths.length} items`} to ${cwd || 'Storage'}…`;
+        status.textContent = T(`Sending ${paths.length === 1 ? 'a file' : `${paths.length} items`} to ${T(cwd || 'Storage')}…`);
       }
     });
 
@@ -256,7 +256,7 @@ UI.tab({
       const ready = UI.hubReady(s, 'files') && !UI.onBle(s); // over Bluetooth: the Wi-Fi Direct note only
       wrap.hidden = !ready;
       if (!ready) { loaded = false; return; }
-      uploadBtn.textContent = `Upload from ${UI.fill('{me}')}…`;
+      uploadBtn.textContent = T(`Upload from ${UI.fill('{me}')}…`);
       if (!loaded && !page.hidden) { loaded = true; open(cwd); }
     };
   },

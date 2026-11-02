@@ -48,7 +48,7 @@
     card.classList.toggle('wifi-only', ble);
     if (!ble) return false;
     pill.className = 'pill muted';
-    pill.textContent = 'Wi-Fi only';
+    pill.textContent = T('Wi-Fi only');
     row.setHint('Only available over Wi-Fi: you’re connected over Bluetooth. Connect with Wi-Fi Direct, or join the same Wi-Fi network.');
     return true;
   };
@@ -65,19 +65,19 @@
     return asked ? name : 'Temporary ' + name;
   };
 
-  UI.phoneName = (s) => (s && s.hub && s.hub.name) || 'your phone';
+  UI.phoneName = (s) => (s && s.hub && s.hub.name) || T('your phone');
   // How a connected phone's sound gets here (phone-bridge.js _sound), for the Audio page; null: no phone.
   UI.phoneSound = (s) => {
     const b = s && s.phone && s.phone.connected && s.phone.bridge;
     if (!b) return null;
     const ph = s.phone.connected.name;
     const n = b.sound || {};
-    if (n.on) return `Playing. ${ph} captures it, so it plays there too (wireless debugging moves it off the phone)`;
+    if (n.on) return T(`Playing. ${ph} captures it, so it plays there too (wireless debugging moves it off the phone)`);
     if (n.error) return n.error;
-    if (n.waiting) return `Tap Start on ${ph} (its notification, or Sound in TwinDesk there)`;
-    if (n.net) return `Asking ${ph}…`;
-    if (b.state === 'ready') return 'Through wireless debugging';
-    return `Over Wi-Fi: through wireless debugging, or captured by ${ph}`;
+    if (n.waiting) return T(`Tap Start on ${ph} (its notification, or Sound in TwinDesk there)`);
+    if (n.net) return T(`Asking ${ph}…`);
+    if (b.state === 'ready') return T('Through wireless debugging');
+    return T(`Over Wi-Fi: through wireless debugging, or captured by ${ph}`);
   };
 
   // The selected device changed (the sidebar's device list): a page that loaded data of the previous
@@ -90,10 +90,10 @@
   };
 
   const NEEDS = {
-    calls: { state: 'its calls', numbers: 'who is calling and the call history', dial: 'making calls', answer: 'answering and ending calls', contacts: 'contact names' },
-    messages: { read: 'reading texts', send: 'sending texts', contacts: 'contact names' },
+    calls: { state: T('its calls'), numbers: T('who is calling and the call history'), dial: T('making calls'), answer: T('answering and ending calls'), contacts: T('contact names') },
+    messages: { read: T('reading texts'), send: T('sending texts'), contacts: T('contact names') },
   };
-  const LABEL = { calls: 'Calls', messages: 'Messages', media: 'Photos and videos', files: 'Files' };
+  const LABEL = { calls: T('Calls'), messages: T('Messages'), media: T('Photos and videos'), files: T('Files') };
 
   // The top of a page: { el, render(s) }.
   UI.hubTop = (what) => {
@@ -133,11 +133,11 @@
       }
       box.hidden = !msg;
       box.className = `note hub-top ${kind}`;
-      text.textContent = msg;
+      text.textContent = T(msg);
       allow.hidden = !canAllow;
       install.hidden = !canInstall;
       const recently = Number(allow.dataset.at || 0) > Date.now() - 60000;
-      asked.textContent = canAllow && recently ? (h.perm && h.perm.opens ? `Check ${phone}: Android asks there.` : `Tap the notification on ${phone}.`) : '';
+      asked.textContent = T(canAllow && recently ? (h.perm && h.perm.opens ? `Check ${phone}: Android asks there.` : `Tap the notification on ${phone}.`) : '');
       asked.hidden = !asked.textContent;
     };
     return { el: box, render };
@@ -158,12 +158,12 @@
       const n = s.net || {};
       const moving = ['asking', 'hosting', 'joining'].includes(n.state);
       const can = !!api.netWifi;
-      text.textContent = moving ? 'Only available over Wi-Fi Direct. Connecting…'
-        : n.state === 'failed' ? `Only available over Wi-Fi Direct. ${n.error || 'Wi-Fi Direct didn’t come up'}.`
-          : `Only available over Wi-Fi Direct${can ? '' : ' or the same Wi-Fi network'}: you’re connected over Bluetooth.${can ? ' Or join the same Wi-Fi network.' : ''}`;
+      text.textContent = T(moving ? 'Only available over Wi-Fi Direct. Connecting…'
+        : n.state === 'failed' ? `Only available over Wi-Fi Direct. ${n.error || T('Wi-Fi Direct didn’t come up')}.`
+          : `Only available over Wi-Fi Direct${can ? '' : ' or the same Wi-Fi network'}: you’re connected over Bluetooth.${can ? ' Or join the same Wi-Fi network.' : ''}`);
       go.hidden = !can;
       go.disabled = moving;
-      go.textContent = moving ? 'Connecting…' : n.state === 'failed' ? 'Try again' : 'Connect with Wi-Fi Direct';
+      go.textContent = T(moving ? 'Connecting…' : n.state === 'failed' ? 'Try again' : 'Connect with Wi-Fi Direct');
     };
     return { el: box, render };
   };

@@ -41,7 +41,7 @@
 
   function parseMarkdownNotes(raw) {
     if (!raw || typeof raw !== 'string' || !raw.trim()) {
-      return '<p class="updater-empty-notes">No release notes provided for this version.</p>';
+      return '<p class="updater-empty-notes">' + T('No release notes provided for this version.') + '</p>';
     }
 
     const lines = raw.split(/\r?\n/);
@@ -109,7 +109,7 @@
     overlay.hidden = true;
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-label', 'Software Update');
+    overlay.setAttribute('aria-label', T('Software Update'));
 
     const modal = document.createElement('div');
     modal.className = 'updater-pop';
@@ -121,14 +121,14 @@
     const icon = document.createElement('div');
     icon.className = 'updater-icon';
     icon.setAttribute('role', 'img');
-    icon.setAttribute('aria-label', 'TwinDesk icon');
+    icon.setAttribute('aria-label', T('TwinDesk icon'));
 
     const titleBox = document.createElement('div');
     titleBox.className = 'updater-title-box';
 
     const title = document.createElement('h2');
     title.className = 'updater-title';
-    title.textContent = 'A new version of TwinDesk is available!';
+    title.textContent = T('A new version of TwinDesk is available!');
 
     const subtitle = document.createElement('p');
     subtitle.className = 'updater-subtitle';
@@ -163,7 +163,7 @@
     notesWrap.className = 'updater-notes-wrap';
     const notesLabel = document.createElement('div');
     notesLabel.className = 'updater-notes-label';
-    notesLabel.textContent = 'Release Notes';
+    notesLabel.textContent = T('Release Notes');
     const notesBox = document.createElement('div');
     notesBox.className = 'updater-notes selectable';
     notesWrap.append(notesLabel, notesBox);
@@ -177,11 +177,11 @@
 
     const skipBtn = document.createElement('button');
     skipBtn.className = 'btn updater-btn-skip';
-    skipBtn.textContent = 'Skip This Version';
+    skipBtn.textContent = T('Skip This Version');
 
     const linkBtn = document.createElement('button');
     linkBtn.className = 'btn updater-btn-link';
-    linkBtn.textContent = 'View on GitHub ↗';
+    linkBtn.textContent = T('View on GitHub ↗');
 
     leftActions.append(skipBtn, linkBtn);
 
@@ -190,11 +190,11 @@
 
     const laterBtn = document.createElement('button');
     laterBtn.className = 'btn updater-btn-later';
-    laterBtn.textContent = 'Remind Me Later';
+    laterBtn.textContent = T('Remind Me Later');
 
     const updateBtn = document.createElement('button');
     updateBtn.className = 'btn primary updater-btn-update';
-    updateBtn.textContent = 'Update Now';
+    updateBtn.textContent = T('Update Now');
 
     rightActions.append(laterBtn, updateBtn);
     actions.append(leftActions, rightActions);
@@ -267,7 +267,7 @@
     banner.className = 'updater-banner';
     banner.hidden = true;
     banner.setAttribute('role', 'region');
-    banner.setAttribute('aria-label', 'Software update notification');
+    banner.setAttribute('aria-label', T('Software update notification'));
 
     const text = document.createElement('div');
     text.className = 'updater-banner-text';
@@ -289,12 +289,12 @@
 
     const viewBtn = document.createElement('button');
     viewBtn.className = 'btn small';
-    viewBtn.textContent = 'Release notes';
+    viewBtn.textContent = T('Release notes');
     viewBtn.onclick = () => show();
 
     const getBtn = document.createElement('button');
     getBtn.className = 'btn small primary';
-    getBtn.textContent = 'Download';
+    getBtn.textContent = T('Download');
     getBtn.onclick = () => {
       if (window.macshare && window.macshare.openUpdate) {
         window.macshare.openUpdate();
@@ -304,8 +304,8 @@
     const closeBtn = document.createElement('button');
     closeBtn.className = 'updater-banner-close';
     closeBtn.textContent = '✕';
-    closeBtn.title = 'Dismiss banner';
-    closeBtn.setAttribute('aria-label', 'Dismiss banner');
+    closeBtn.title = T('Dismiss banner');
+    closeBtn.setAttribute('aria-label', T('Dismiss banner'));
     closeBtn.onclick = () => {
       banner.hidden = true;
       if (lastUpdates && lastUpdates.latest) {
@@ -332,18 +332,18 @@
       assetBar, assetName, assetSize, notesBox, updateBtn,
     } = overlay._refs;
 
-    const latest = u.latest ? `v${u.latest}` : 'New Version';
+    const latest = u.latest ? `v${u.latest}` : T('New Version');
     const current = u.current ? `v${u.current}` : '';
 
-    title.textContent = `TwinDesk ${u.latest || ''} is available`;
-    subtitle.textContent = `A new version of TwinDesk is ready to download and install${current ? ` (you have ${current})` : ''}.`;
+    title.textContent = T(`TwinDesk ${u.latest || ''} is available`);
+    subtitle.textContent = T(`A new version of TwinDesk is ready to download and install${current ? ` (you have ${current})` : ''}.`);
 
     pillNew.textContent = latest;
-    pillCur.textContent = current ? `Current: ${current}` : '';
+    pillCur.textContent = current ? T(`Current: ${current}`) : '';
     pillCur.hidden = !current;
 
     const dateStr = formatDate(u.publishedAt);
-    pillDate.textContent = dateStr ? `Released: ${dateStr}` : '';
+    pillDate.textContent = dateStr ? T(`Released: ${dateStr}`) : '';
     pillDate.hidden = !dateStr;
 
     // Asset
@@ -351,10 +351,10 @@
       assetBar.hidden = false;
       assetName.innerHTML = `📦 <span>${escapeHtml(u.download.name)}</span>`;
       assetSize.textContent = formatBytes(u.download.size);
-      updateBtn.textContent = 'Download & Install';
+      updateBtn.textContent = T('Download & Install');
     } else {
       assetBar.hidden = true;
-      updateBtn.textContent = 'Update Now';
+      updateBtn.textContent = T('Update Now');
     }
 
     // Release Notes
@@ -380,9 +380,9 @@
       const showBanner = u.available && !u.skipped && bannerDismissedFor !== u.latest;
       banner.hidden = !showBanner;
       if (showBanner) {
-        banner._refs.lead.textContent = `TwinDesk ${u.latest} is available.`;
-        banner._refs.sub.textContent = u.current ? `(current: v${u.current})` : '';
-        banner._refs.getBtn.textContent = u.download ? 'Download' : 'Update';
+        banner._refs.lead.textContent = T(`TwinDesk ${u.latest} is available.`);
+        banner._refs.sub.textContent = u.current ? T(`(current: v${u.current})`) : '';
+        banner._refs.getBtn.textContent = T(u.download ? 'Download' : 'Update');
       }
     }
 

@@ -123,8 +123,8 @@ UI.tab({
     const refresh = UI.button('Refresh', () => { // the list empties and fills again with whoever answers
       api.refreshFound();
       refresh.disabled = true;
-      refresh.textContent = 'Looking…';
-      setTimeout(() => { refresh.disabled = false; refresh.textContent = 'Refresh'; }, 1500);
+      refresh.textContent = T('Looking…');
+      setTimeout(() => { refresh.disabled = false; refresh.textContent = T('Refresh'); }, 1500);
     }, 'small');
 
     // ---- a connected phone's wireless debugging, until it works (the Phone page has it too) ----
@@ -179,35 +179,35 @@ UI.tab({
       const connected = l.state === 'connected';
       pcName.textContent = s.device.name;
       const p = UI.peer(s);
-      macName.textContent = s.peer ? s.peer.name : 'The other computer';
+      macName.textContent = s.peer ? s.peer.name : T('The other computer');
       peerDev.className = 'device ' + UI.osClass(p.os);
       if (UI.phoneWall && p.phone) peerDev.style.setProperty('--phone-wall', UI.phoneWall);
       else peerDev.style.removeProperty('--phone-wall');
       linkLine.className = 'hero-link' + (connected ? ' up' : '');
       const ble = s.net && s.net.transport === 'ble';
-      linkText.textContent = connected ? (l.rtt != null ? l.rtt + ' ms · ' : '') + UI.via(s)
-        : s.pairing ? 'Pairing…' : s.paired ? 'Connecting…' : 'Not connected';
+      linkText.textContent = T(connected ? (l.rtt != null ? l.rtt + ' ms · ' : '') + UI.via(s)
+        : s.pairing ? 'Pairing…' : s.paired ? 'Connecting…' : 'Not connected');
       const bad = l.state === 'identity_changed';
-      status.textContent = bad ? 'This ' + p.kind + ' looks different now. Forget it and pair again.'
+      status.textContent = T(bad ? 'This ' + p.kind + ' looks different now. Forget it and pair again.'
         : connected ? s.kvmState.message || (WHERE[s.input] || 'Connected').replace('{there}', p.the).replace('{There}', p.the.charAt(0).toUpperCase() + p.the.slice(1))
           : s.peer ? 'Open TwinDesk on ' + s.peer.name + '.'
-            : 'Pick a computer below, or connect by address.';
+            : 'Pick a computer below, or connect by address.');
       status.classList.toggle('bad', bad);
       // Disconnected here or by the other side, taken over, or in use by another device.
       const stopped = l.state === 'stopped';
       const busyBy = !connected && !stopped && l.busy;
       if (s.paired && !connected && (stopped || busyBy)) {
-        status.textContent = stopped ? (l.message || 'Disconnected').replace(/\{Name\}/g, s.paired.macName) + '.' : busyBy + '.';
+        status.textContent = T(stopped ? (l.message || 'Disconnected').replace(/\{Name\}/g, s.paired.macName) + '.' : busyBy + '.');
       }
       discBtn.hidden = !connected;
       againBtn.hidden = connected || !s.paired || !(stopped || busyBy);
-      againBtn.textContent = busyBy || (stopped && l.message) ? 'Take over' : 'Connect';
+      againBtn.textContent = T(busyBy || (stopped && l.message) ? 'Take over' : 'Connect');
       sessionBtns.hidden = discBtn.hidden && againBtn.hidden;
       // Moving the session to Wi-Fi (files, screens through Bluetooth: netlink.js)
       const n = s.net || {};
       const moving = { hotspot: 'Switch on {name}’s hotspot, then type its name and password here.', asking: 'Asking {name} for Wi-Fi…', hosting: 'Starting Wi-Fi Direct for {name}…', joining: 'Joining ' + (n.ssid || 'Wi-Fi') + '…', joined: 'On Wi-Fi with {name}' }[n.state];
       if (connected && !bad && (moving || n.state === 'failed')) {
-        status.textContent = n.state === 'failed' ? n.error || 'Wi-Fi didn’t come up' : moving;
+        status.textContent = T(n.state === 'failed' ? (n.error || 'Wi-Fi didn’t come up') : moving);
         status.classList.toggle('bad', n.state === 'failed');
       }
       netCancel.hidden = !(connected && ['asking', 'hosting', 'joining', 'hotspot'].includes(n.state));
@@ -215,13 +215,13 @@ UI.tab({
       if (!hsForm.hidden && !hsShown) { // filled in once, not while typing
         hsSsid.value = n.hotspotSsid || '';
         hsPass.value = '';
-        hsPass.placeholder = n.hotspotSaved ? 'Password (saved)' : 'Password';
+        hsPass.placeholder = T(n.hotspotSaved ? 'Password (saved)' : 'Password');
         setTimeout(() => (n.hotspotSsid ? hsPass : hsSsid).focus(), 0);
       }
       hsShown = !hsForm.hidden;
       netLocation.hidden = !(connected && n.state === 'failed' && n.location);
       wifiOn = (n.why || []).includes('user') || !!n.linked; // made for the screen or files too
-      wifiBtn.textContent = wifiOn ? 'Back to Bluetooth' : 'Connect with Wi-Fi Direct';
+      wifiBtn.textContent = T(wifiOn ? 'Back to Bluetooth' : 'Connect with Wi-Fi Direct');
       wifiBtn.hidden = !connected || !netCancel.hidden || !(wifiOn || ble);
       hotspotBtn.hidden = !connected || !netCancel.hidden || wifiOn || !ble || !UI.isPhone(s);
 
@@ -235,7 +235,7 @@ UI.tab({
       if (!adbCard.hidden) {
         const [cls, label] = ADB[br.state] || ADB.error;
         adbPill.className = `pill ${cls}`;
-        adbPill.textContent = label;
+        adbPill.textContent = T(label);
         adbRow.setHint(br.message || '');
         adbPairRow.hidden = !pairable;
         if (UI.adbBle(s, adbCard, adbRow, adbPill)) adbPairRow.hidden = true;
@@ -262,7 +262,7 @@ UI.tab({
       }
 
       // this PC
-      addrVal.textContent = s.addresses.length ? s.addresses[0] : 'No network'; // The one the other computer can reach
+      addrVal.textContent = s.addresses.length ? s.addresses[0] : T('No network'); // The one the other computer can reach
       copyBtn.hidden = !s.addresses.length;
       const busy = !!s.pairing && s.pairing.phase !== 'failed';
       ipBtn.disabled = busy || !!asking;

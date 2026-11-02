@@ -195,11 +195,11 @@
       let clipKey = '';
       let appsKey = '';
       // A button's words, its icon kept.
-      const label = (b, t) => { const n = [...b.childNodes].find((x) => x.nodeType === 3); if (n) n.nodeValue = t; else b.append(t); };
+      const label = (b, t) => { const n = [...b.childNodes].find((x) => x.nodeType === 3); const s = T(t); if (n) n.nodeValue = s; else b.append(s); };
       function paint() {
         label(ringBtn, ringing ? 'Stop ringing' : 'Ring');
         ringBtn.classList.toggle('danger', ringing);
-        ringNote.textContent = ringing ? 'Rings at full volume, even on silent, until you stop it here or there.' : '';
+        ringNote.textContent = ringing ? T('Rings at full volume, even on silent, until you stop it here or there.') : '';
         ringNote.hidden = !ringing;
       }
 
@@ -225,20 +225,20 @@
         else pic.style.removeProperty('--phone-wall');
         const rtt = phone ? c && c.rttMs : s.link ? s.link.rtt : s.client && s.client.rttMs;
         const via = phone && c && c.usb ? 'USB' : viaOf(s);
-        desc.textContent = phone ? [info.maker && info.model ? `${info.maker} ${info.model}` : info.model, info.release && `Android ${info.release}`].filter(Boolean).join(' · ')
-          : { mac: 'Mac', win: 'Windows PC', linux: 'Linux computer' }[p.os] || '';
-        sub.textContent = ['Connected', via, rtt != null ? rtt + ' ms' : ''].filter(Boolean).join(' · ');
+        desc.textContent = phone ? T([info.maker && info.model ? `${info.maker} ${info.model}` : info.model, info.release && `Android ${info.release}`].filter(Boolean).join(' · '))
+          : T({ mac: 'Mac', win: 'Windows PC', linux: 'Linux computer' }[p.os] || '');
+        sub.textContent = T(['Connected', T(via), rtt != null ? rtt + ' ms' : ''].filter(Boolean).join(' · '));
         const level = phone ? info.battery : s.peerInfo && s.peerInfo.battery;
         battRow.hidden = level == null;
         if (level != null) {
           batt.firstChild.style.width = Math.max(2, Math.min(100, level)) + '%';
           batt.classList.toggle('low', level <= 20);
-          battText.textContent = level + '%' + ((phone ? info.charging : s.peerInfo && s.peerInfo.charging) ? ' · Charging' : '');
+          battText.textContent = T(level + '%' + ((phone ? info.charging : s.peerInfo && s.peerInfo.charging) ? ' · Charging' : ''));
         }
         const ready = !!(ph.bridge && ph.bridge.state === 'ready');
         showBtn.hidden = !phone;
         showBtn.disabled = !ready;
-        showBtn.title = ready ? '' : 'Needs wireless debugging (Connection)';
+        showBtn.title = ready ? '' : T('Needs wireless debugging (Connection)');
         const can = (k) => !!(ctl && ctl.can && ctl.can[k]);
         ringBtn.hidden = !can('ring');
         if (ctl && typeof ctl.ringing === 'boolean' && ctl.ringing !== ringing) ringing = ctl.ringing;
@@ -286,8 +286,8 @@
             t.b.classList.toggle('on', !!qs[id]);
             t.b.setAttribute('aria-pressed', String(!!qs[id]));
             const detail = qs.detail && qs.detail[id];
-            t.state.textContent = qs[id] ? detail || 'On' : 'Off';
-            t.b.title = qs.panel && qs.panel[id] ? 'Opens the setting on the phone' : '';
+            t.state.textContent = T(qs[id] ? detail || 'On' : 'Off');
+            t.b.title = qs.panel && qs.panel[id] ? T('Opens the setting on the phone') : '';
           }
           cols();
           soundRow.hidden = qs.volume == null;
@@ -320,7 +320,7 @@
             const text = [item.subtitle, item.body].filter(Boolean).join(' · ');
             const code = otpOf([item.title, item.body].join(' '));
             const copy = code ? UI.button('Copy ' + code, () => api.copyText(code), 'small') : null;
-            const r = UI.row([item.appName || item.app, item.title].filter(Boolean).join(' · '), (text || 'Notification') + ' · ' + UI.ago(item.at), [copy]);
+            const r = UI.row([item.appName || item.app, item.title].filter(Boolean).join(' · '), (text || T('Notification')) + ' · ' + UI.ago(item.at), [copy]);
             const icon = (nf.historyIcons || {})[item.app];
             if (icon) {
               r.querySelector('.text').prepend(el('img', { class: 'dv-nicon', src: icon, alt: '' }));
@@ -338,7 +338,7 @@
         if (!clipCard.hidden && ck !== clipKey) {
           clipKey = ck;
           clipList.replaceChildren(...(recent.length ? recent.map((h, i) => el('div', { class: 'hist-item' }, [
-            el('span', { class: 'hist-dir ' + h.dir, title: (h.dir === 'out' ? 'Sent to ' : 'From ') + devName }, [UI.icon(h.dir === 'out' ? 'up' : 'down')]),
+            el('span', { class: 'hist-dir ' + h.dir, title: T(h.dir === 'out' ? 'Sent to ' : 'From ') + devName }, [UI.icon(h.dir === 'out' ? 'up' : 'down')]),
             h.image && h.image.thumb ? el('img', { class: 'hist-thumb', src: h.image.thumb, alt: '' }) : null,
             el('div', { class: 'hist-text' }, [
               el('div', { class: 'hist-preview', text: h.image ? (h.image.shot ? 'Screenshot' : 'Picture') + ' · ' + h.image.w + ' × ' + h.image.h : String(h.text || '').replace(/\s+/g, ' ').trim() || '(whitespace)' }),
@@ -352,7 +352,7 @@
         const fl = s.files || {};
         canSend = fl.dropToMac !== false;
         dropCard.hidden = !canSend || ov.files === false;
-        dropHint.textContent = 'They go to ' + devName + '’s Downloads';
+        dropHint.textContent = T('They go to ' + devName + '’s Downloads');
 
         // most used apps: the phone's own order (Usage access), else what was opened from here
         const apps = (UI.phoneAssets && UI.phoneAssets.apps) || [];

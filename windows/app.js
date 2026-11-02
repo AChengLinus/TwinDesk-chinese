@@ -148,11 +148,11 @@
     const dot = l.state === 'connected' ? 'good' : l.state === 'identity_changed' ? 'bad'
       : (s.pairing || l.state === 'connecting' || l.state === 'reconnecting') ? 'warn' : '';
     $('peer-dot').className = 'dot ' + dot;
-    let text = 'Not paired';
+    let text = T('Not paired');
     if (l.state === 'connected') text = l.macName + (UI.via(s) !== 'Wi-Fi' ? ' · ' + UI.via(s) : '') + (l.rtt != null ? ' · ' + l.rtt + ' ms' : '');
-    else if (s.pairing) text = 'Pairing…';
-    else if (l.state === 'connecting' || l.state === 'reconnecting') text = 'Reconnecting…';
-    else if (l.state === 'identity_changed') text = 'Identity changed';
+    else if (s.pairing) text = T('Pairing…');
+    else if (l.state === 'connecting' || l.state === 'reconnecting') text = T('Reconnecting…');
+    else if (l.state === 'identity_changed') text = T('Identity changed');
     $('peer-text').textContent = text;
     renderPhones(s);
     // Tabs that don't apply to the peer (a phone has no terminal or screen to share to it…).
@@ -191,13 +191,15 @@
     // The connected phone's line (ping, battery) changes often: written in place, the tiles (and
     // their wallpaper) built again only when something else changed, else they flicker.
     const subOf = (d) => (d.connected
-      ? (ph.connected.rttMs != null ? ph.connected.rttMs + ' ms' : 'Connected') + (info.battery != null ? ' · ' + info.battery + '%' + (info.charging ? ' ⚡' : '') : '')
-      : ph.connecting && ph.connecting.id === d.id ? 'Connecting…' : 'Nearby · Click to connect');
+      ? (ph.connected.rttMs != null ? ph.connected.rttMs + ' ms' : T('Connected')) + (info.battery != null ? ' · ' + info.battery + '%' + (info.charging ? ' ⚡' : '') : '')
+      : ph.connecting && ph.connecting.id === d.id ? T('Connecting…') : T('Nearby · Click to connect'));
     const key = JSON.stringify([ph.nearby, ph.connecting, ph.held, colors, UI.phoneWall ? UI.phoneWall.length : 0, current && current.def.id]);
     if (key === phonesKey) {
       ph.nearby.forEach((d, i) => {
         const sub = $('phones').children[i] && $('phones').children[i].querySelector('.phone-sub');
-        if (sub && sub.textContent !== subOf(d)) sub.textContent = subOf(d);
+        if (!sub) return;
+        const want = T(subOf(d)); // 中文后字符数不同，先换算再比，免得每帧都重写
+        if (sub.textContent !== want) sub.textContent = want;
       });
       return;
     }
@@ -207,7 +209,7 @@
       if (d.connected && UI.phoneWall) wall.style.backgroundImage = UI.phoneWall;
       else if (d.connected && colors) wall.style.backgroundImage = 'linear-gradient(160deg, ' + colors.join(', ') + (colors.length === 1 ? ', ' + colors[0] : '') + ')';
       const sub = subOf(d);
-      const b = el('button', { class: 'phone-tile' + (d.connected ? ' connected' : ''), title: d.connected ? d.name : 'Connect to ' + d.name }, [
+      const b = el('button', { class: 'phone-tile' + (d.connected ? ' connected' : ''), title: d.connected ? d.name : T('Connect to ' + d.name) }, [
         wall,
         el('span', { class: 'phone-text' }, [el('span', { class: 'phone-name', text: d.name }), el('span', { class: 'phone-sub', text: sub })]),
         d.connected ? el('span', { class: 'dot good' }) : ph.connecting && ph.connecting.id === d.id ? el('span', { class: 'spin', attrs: { 'aria-hidden': 'true' } }) : null,
@@ -224,30 +226,30 @@
     $('banner').hidden = !s.pairing && !inv;
     if (inv) { // this PC asked a phone to pair: it goes on there
       $('banner').classList.remove('failed');
-      $('pair-title').textContent = 'Press Pair on ' + inv.name;
+      $('pair-title').textContent = T('Press Pair on ' + inv.name);
       $('pair-code-wrap').hidden = true;
       $('pair-match').hidden = true;
-      $('pair-cancel').textContent = 'Cancel';
-      $('pair-hint').textContent = 'TwinDesk on ' + inv.name + ' asks to pair with this PC. Press Pair there, then compare the codes.';
+      $('pair-cancel').textContent = T('Cancel');
+      $('pair-hint').textContent = T('TwinDesk on ' + inv.name + ' asks to pair with this PC. Press Pair there, then compare the codes.');
       return;
     }
     const p = s.pairing;
     if (!p) return;
     $('banner').classList.toggle('failed', p.phase === 'failed');
     const host = p.role === 'host'; // another computer asks to pair with this PC
-    $('pair-title').textContent = host ? p.macName + ' wants to pair' : 'Pairing with ' + p.macName;
+    $('pair-title').textContent = T(host ? p.macName + ' wants to pair' : 'Pairing with ' + p.macName);
     $('pair-code-wrap').hidden = !p.code || !!p.wired; // on the USB cable: nothing to compare
     $('pair-code').textContent = p.code ? p.code.slice(0, 3) + ' ' + p.code.slice(3) : '';
     $('pair-match').hidden = host ? !p.code || p.allowed : p.phase !== 'code';
-    $('pair-match').textContent = host ? 'Allow' : 'Codes match';
-    $('pair-cancel').textContent = host ? 'Deny' : p.phase === 'failed' ? 'Close' : 'Cancel';
+    $('pair-match').textContent = T(host ? 'Allow' : 'Codes match');
+    $('pair-cancel').textContent = T(host ? 'Deny' : p.phase === 'failed' ? 'Close' : 'Cancel');
     const hints = {
-      connecting: 'Connecting to ' + p.address + '…',
-      starting: 'Waiting for ' + p.macName + '…',
-      code: 'Check that ' + p.macName + ' shows the same code, then click Codes match.',
-      waiting: 'Waiting for Allow on ' + p.macName + '…',
+      connecting: T('Connecting to ' + p.address + '…'),
+      starting: T('Waiting for ' + p.macName + '…'),
+      code: T('Check that ' + p.macName + ' shows the same code, then click Codes match.'),
+      waiting: T('Waiting for Allow on ' + p.macName + '…'),
       failed: p.error,
-      request: p.wired ? (p.allowed ? 'Pairing…' : p.qr ? p.macName + ' scanned the QR code. Click Allow to pair.' : p.macName + ' is on the USB cable. Click Allow to pair.') : !p.code ? 'Waiting for the code…' : p.allowed ? 'Waiting for ' + p.macName + '…' : 'Check that ' + p.macName + ' shows the same code, then click Allow.',
+      request: T(p.wired ? (p.allowed ? 'Pairing…' : p.qr ? p.macName + ' scanned the QR code. Click Allow to pair.' : p.macName + ' is on the USB cable. Click Allow to pair.') : !p.code ? 'Waiting for the code…' : p.allowed ? 'Waiting for ' + p.macName + '…' : 'Check that ' + p.macName + ' shows the same code, then click Allow.'),
     };
     $('pair-hint').textContent = hints[p.phase] || '';
   }
@@ -263,17 +265,17 @@
     if (key === peerKey) return;
     peerKey = key;
     // The Display tabs keep their names (Receive screen / Share screen); headings name the peer.
-    const heads = { 'mac-pc': p.Name + ' on ' + p.me, 'pc-mac': p.me + ' on ' + p.name }; // as the Mac: "Inuka on Inukas-MBA"
+    const heads = { 'mac-pc': T(p.Name + ' on ' + p.me), 'pc-mac': T(p.me + ' on ' + p.name) }; // as the Mac: "Inuka on Inukas-MBA"
     for (const [id, text] of Object.entries(heads)) {
       const v = views.get(id);
       if (v) v.headText.textContent = text;
     }
-    for (const e of document.querySelectorAll('[data-dir="m2p"]')) e.textContent = p.toMe;
-    for (const e of document.querySelectorAll('[data-dir="p2m"]')) e.textContent = p.fromMe;
+    for (const e of document.querySelectorAll('[data-dir="m2p"]')) e.textContent = T(p.toMe);
+    for (const e of document.querySelectorAll('[data-dir="p2m"]')) e.textContent = T(p.fromMe);
     // Sentences and route heads with the real name ({name}, {the}, {them}).
-    for (const e of document.querySelectorAll('[data-peer]')) e.textContent = e.dataset.peer.replace(/\{(\w+)\}/g, (m, k) => (k in p ? p[k] : m));
+    for (const e of document.querySelectorAll('[data-peer]')) e.textContent = T(e.dataset.peer).replace(/\{(\w+)\}/g, (m, k) => (k in p ? p[k] : m));
     for (const e of document.querySelectorAll('[data-os="peer"]')) e.className = 'os-ico ' + UI.osClass(p.os);
-    for (const e of document.querySelectorAll('.route')) e.setAttribute('aria-label', [...e.querySelectorAll('.nm')].map((n) => n.textContent).join(' to '));
+    for (const e of document.querySelectorAll('.route')) e.setAttribute('aria-label', [...e.querySelectorAll('.nm')].map((n) => n.textContent).join(T(' to ')));
   }
 
   let wasLinked = null;

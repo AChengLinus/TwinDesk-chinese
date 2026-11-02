@@ -379,7 +379,7 @@ UI.tab({
       const canSend = !(s.hub.perm.messages.missing || []).includes('send');
       send.disabled = !canSend;
       box.disabled = !canSend;
-      box.placeholder = canSend ? 'Text message' : 'Allow sending on the phone to answer here';
+      box.placeholder = T(canSend ? 'Text message' : 'Allow sending on the phone to answer here');
     };
   },
 });

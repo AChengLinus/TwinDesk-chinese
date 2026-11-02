@@ -6,6 +6,7 @@ const P = require('../../shared/protocol.js');
 const { receivedDir } = require('../../shared/received.js');
 const { LINKS } = require('../../shared/about.js');
 const { apply } = require('./settings');
+const I18n = require('../../shared/i18n.js'); // 界面语言：setUiLang 先换主进程这一侧（托盘/通知）
 
 // ctx: hub, link (the selected device's facade), discovery, screen, clip, kvm, terminal, fileDrop, smb, apps, phone, phoneViews, connectPhoneDev(d), settings, save(), push(), buildState(),
 //      checkFirewall(), fixFirewall(), setStartup(on)
@@ -125,7 +126,13 @@ function setupIpc(ctx) {
   handle('setClipboard', (partial) => change('clipboard', partial, () => clip.applySettings()));
   handle('copyHistory', (index) => clip.copyHistory(Number(index)));
   handle('clearHistory', () => clip.clearHistory());
-  handle('setTab', (tab) => change('ui', { tab }));
+  handle('setTab', (tab) => change('ui', { tab })); // invalid names fall back in normalize()
+  // 界面语言（General › App › Language）：主进程先换（托盘、通知、状态行都过 I18n），页面随后自己 reload。
+  handle('setUiLang', (lang) => {
+    I18n.setLang(lang);
+    if (ctx.onLang) ctx.onLang();
+    change('ui', { lang });
+  });
   handle('setChats', (on) => { change('ui', { chats: on === true }); if (ctx.chats && ctx.chats()) ctx.chats().sync(); }); // Messages: WhatsApp, Telegram and Instagram there too
   handle('setOverview', (o) => o && typeof o === 'object' && change('ui', { overview: { ...settings.ui.overview, ...o } })); // General › Overview // invalid names fall back in normalize()
   handle('setMulti', (on) => require('../multi').set(on === true)); // Multi-device off: TwinDesk restarts one to one

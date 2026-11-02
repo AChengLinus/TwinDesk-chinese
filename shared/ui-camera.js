@@ -80,9 +80,9 @@
       });
       facingSeg.set(facing);
       const rotate = UI.button('Rotate', () => cam({ do: 'rotate' }));
-      rotate.title = 'A quarter turn clockwise: here, in its window and in the virtual camera';
+      rotate.title = T('A quarter turn clockwise: here, in its window and in the virtual camera');
       const windowBtn = UI.button('Window', () => start(true, true));
-      windowBtn.title = 'Open it in a window';
+      windowBtn.title = T('Open it in a window');
       const startBtn = UI.button('Start', () => cur && start(!running(cur)));
       const controls = UI.row('{name}’s camera', '', [startBtn, facingSeg, rotate, windowBtn]);
       const picCard = UI.card('', [box, controls]);
@@ -132,7 +132,7 @@
         else if (!phone && c.viewStatus === 'failed') text = `It didn’t start: ${c.viewError || 'unknown'}`;
         else if (!phone && c.viewStatus === 'ended') text = UI.fill('{name} stopped its camera');
         else if (!v.picture) text = phone ? 'Starting the phone’s camera…' : UI.fill('Asking {name} for its camera…');
-        said.textContent = text;
+        said.textContent = T(text);
         said.hidden = !text;
         img.hidden = !on || !!text;
         if (!on && url) {
@@ -140,13 +140,13 @@
           url = '';
           img.removeAttribute('src');
         }
-        startBtn.textContent = on ? 'Stop' : 'Start';
+        startBtn.textContent = T(on ? 'Stop' : 'Start');
         startBtn.disabled = !c.on || (!on && !!why);
         startBtn.title = !on && why ? UI.fill(why) : '';
         facingSeg.el.hidden = !phone;
         rotate.disabled = !on;
         windowBtn.disabled = !on;
-        windowBtn.textContent = (phone ? w && w.shown : c.viewShown) ? 'Window ✓' : 'Window';
+        windowBtn.textContent = T((phone ? w && w.shown : c.viewShown) ? 'Window ✓' : 'Window');
         controls.setHint(on ? `Turned ${v.rotate || 0}°. Click the picture or Window for a window of its own` : '');
 
         // Virtual camera.

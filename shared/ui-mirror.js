@@ -116,7 +116,7 @@
         const apps = (UI.phoneAssets && UI.phoneAssets.apps) || [];
         const term = search.value.trim().toLowerCase();
         const shown = term ? apps.filter((a) => a.name.toLowerCase().includes(term)) : apps;
-        count.textContent = apps.length ? (term ? `${shown.length} of ${apps.length}` : `${apps.length} apps`) : '';
+        count.textContent = apps.length ? T(term ? `${shown.length} of ${apps.length}` : `${apps.length} apps`) : '';
         note.set(ready && !apps.length ? 'Loading the phone’s apps…' : '');
         const k = JSON.stringify([shown.length, term, ph.assets, ready]);
         if (k === key) return;

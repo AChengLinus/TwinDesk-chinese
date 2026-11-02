@@ -1,3 +1,5 @@
+<p align="center"><b>简体中文</b> · <a href="README.en.md"><b>English</b></a></p>
+
 <p align="center">
   <img src=".github/assets/icon.png" width="112" alt="TwinDesk icon">
 </p>
@@ -5,17 +7,17 @@
 <h1 align="center"><a href="https://twin-desk.vercel.app">TwinDesk</a></h1>
 
 <p align="center">
-  <b>All your computers and your phone, working as one desk.</b><br>
-  Screens, apps, files, clipboard, cameras, calls, texts, notifications, mouse and keyboard, shared between Mac, Windows, Linux and Android.<br>
-  Free and open source. No account, no cloud, no shared network needed.
+  <b>你所有的电脑和手机，像一张办公桌一样协同工作。</b><br>
+  屏幕、应用、文件、剪贴板、摄像头、通话、短信、通知、鼠标与键盘，在 Mac、Windows、Linux 与 Android 之间共享。<br>
+  免费开源。无需账号、无需云端、无需共用网络。
 </p>
 
 <p align="center">
-  <a href="#download"><b>⬇️ Download 2.4</b></a> ·
-  <a href="https://twin-desk.vercel.app"><b>Website</b></a> ·
-  <a href="#-new-in-23"><b>What's new</b></a> ·
-  <a href="#-get-started"><b>Get started</b></a> ·
-  <a href="#how-it-works"><b>How it works</b></a>
+  <a href="#download"><b>⬇️ 下载 2.4</b></a> ·
+  <a href="https://twin-desk.vercel.app"><b>官网</b></a> ·
+  <a href="#-new-in-23"><b>新功能</b></a> ·
+  <a href="#-get-started"><b>快速开始</b></a> ·
+  <a href="#how-it-works"><b>工作原理</b></a>
 </p>
 
 <p align="center">
@@ -32,69 +34,82 @@
   <img src=".github/assets/hero.jpg" alt="One Mac's extended screen in a window on another Mac, the Mac's desktop extended onto a tablet, and TwinDesk on a phone" width="100%">
 </p>
 
-Your devices are good at their own jobs and bad at working together. TwinDesk fixes that.
-Put a **Mac and a Windows PC** side by side and use them with one mouse and keyboard. Open the
-PC's apps on the Mac. Turn an old laptop or your **Android tablet** into a second screen. Answer
-your **phone's calls and texts** from the computer, use its **camera in a video call**, and paste
-on one device what you copied on another.
+你的设备各自擅长自己的本职，却不擅长彼此协作。TwinDesk 解决了这个问题。
+把 **Mac 与 Windows PC** 并排放置，用一套鼠标和键盘同时使用它们。在 Mac 上打开
+PC 的应用。把一台旧笔记本或你的 **Android 平板**变成第二块屏幕。从电脑上接听
+**手机的通话和短信**，在视频通话中使用它的**摄像头**，并在一台设备上粘贴
+你在另一台设备上复制的内容。
 
-- **Any combination.** Mac ↔ Windows, Mac ↔ Mac, PC ↔ PC, Linux ↔ anything, and Android ↔ any computer. Or, with [TwinDesk Mesh](#-twindesk-mesh-every-device-at-once), all of them at once.
-- **Anywhere.** Same Wi-Fi, a USB cable, or no shared network at all: Bluetooth and a direct Wi-Fi link of their own.
-- **No account, no cloud.** Devices talk only to each other, on an encrypted link.
-- **Only what you turn on.** Every feature starts off and isn't even loaded until you switch it on.
+- **任意组合。** Mac ↔ Windows、Mac ↔ Mac、PC ↔ PC、Linux ↔ 任何设备，以及 Android ↔ 任何电脑。或者，借助 [TwinDesk Mesh](#-twindesk-mesh-every-device-at-once)，让所有设备同时互联。
+- **任何地点。** 同一 Wi-Fi、一根 USB 线，或者完全不共用网络：Bluetooth 与它们之间直连的 Wi-Fi 链路。
+- **无账号，无云端。** 设备之间只彼此通信，链路加密。
+- **只启用你打开的。** 每项功能默认关闭，在你打开之前甚至不会被加载。
 
 <table>
 <tr>
 <td width="33%" valign="top">
 
-### 💻 [Computers](#-computer-to-computer)
-One mouse and keyboard · second screen · the other computer's apps in windows · files · clipboard · **camera** · sound · terminal
+### 💻 [电脑](#-computer-to-computer)
+一套鼠标和键盘 · 第二块屏幕 · 在窗口中打开另一台电脑的应用 · 文件 · 剪贴板 · **摄像头** · 声音 · 终端
 
 </td>
 <td width="33%" valign="top">
 
-### 📱 [Phones and tablets](#-phone-and-tablet)
-Calls · texts · photos · files · **camera** · **remote and gamepad** · screen and apps in windows · tablet as a second screen
+### 📱 [手机与平板](#-phone-and-tablet)
+通话 · 短信 · 照片 · 文件 · **摄像头** · **遥控器与游戏手柄** · 屏幕与应用在窗口中 · 平板作为第二块屏幕
 
 </td>
 <td width="33%" valign="top">
 
-### 📡 [Connections](#-connections)
-Same Wi-Fi · USB cable · **Bluetooth** · **Wi-Fi Direct** and **hotspot** links made on demand · picked for you, moved for you
+### 📡 [连接](#-connections)
+同一 Wi-Fi · USB 线 · **Bluetooth** · 按需建立的 **Wi-Fi Direct** 与**热点**链路 · 为你选择，为你切换
 
 </td>
 </tr>
 <tr>
 <td width="33%" valign="top">
 
-### 🚀 [Get started](#-get-started)
-Download · open on both · pair once with a code · turn on what you want · [privacy](#privacy): no account, no telemetry
+### 🚀 [快速开始](#-get-started)
+下载 · 在两端打开 · 用配对码配对一次 · 打开你想要的功能 · [隐私](#privacy)：无账号、无遥测
 
 </td>
 <td width="33%" valign="top">
 
-### 🐧 [Linux](#linux) and 🤖 [Android](#android-in-detail) in detail
-X11 and Wayland · shared folders through Samba · the phone app page by page · [wireless debugging](#wireless-debugging), set up once
+### 🐧 [Linux](#linux) 与 🤖 [Android](#android-in-detail) 详解
+X11 与 Wayland · 通过 Samba 共享文件夹 · 逐页介绍手机应用 · [无线调试](#wireless-debugging)，只需设置一次
 
 </td>
 <td width="33%" valign="top">
 
-### 🛠 [Under the hood](#how-it-works)
-[How it works](#how-it-works) · [build and run](#build-and-run) on macOS, Windows, Linux, NixOS and Android · [GitHub Actions](#github-actions)
+### 🛠 [技术内幕](#how-it-works)
+[工作原理](#how-it-works) · 在 macOS、Windows、Linux、NixOS 与 Android 上[构建并运行](#build-and-run) · [GitHub Actions](#github-actions)
 
 </td>
 </tr>
 </table>
 
+<a name="chinese-ui"></a>
+
+## 🇨🇳 中文界面
+
+<p align="center"><b>简体中文</b> · <a href="README.en.md">English</a></p>
+
+这个仓库是 TwinDesk 的**中文汉化分支**：界面文案抽进了词典层（`shared/i18n.js`），默认中文，可随时切回英文。
+
+- **切换**：设置 › 通用 › 语言（中文 / English）。换完整个窗口和托盘菜单立即跟着换。
+- **怎么实现的**：`UI.el` / `UI.row` / `UI.card` / `UI.note` 等渲染原语会自动过一层 `T()`，绝大多数文案只加词条、不改代码；名字和数字拼出来的句子用 `I.pattern`。详见[加词条](#加词条)。
+- **当前进度**：Windows 版的界面、托盘菜单、通知与 HUD 已整体汉化（1000+ 条词条、270+ 条动态句式），摄像头、远程、ReZume 等页面已逐条覆盖。**macOS 与 Linux 的窗口页面、Android App 尚未接入词典层，仍是英文**——这些平台的主窗口用的是各自目录下的 `app.html` / `control.html`，还需要把 i18n 脚本和词条接上去。
+- **安装包**：上游官方安装包是英文的；要中文界面，请用本仓库源码构建（Windows 见 `windows/`，安装包脚本在 `build/`）。
+
 <a name="download"></a>
 
-## ⬇️ Download
+## ⬇️ 下载
 
 <table>
 <tr>
 <td width="25%" align="center" valign="top">
 
-**🍎 macOS**<br><sub>13 Ventura or later</sub>
+**🍎 macOS**<br><sub>13 Ventura 或更高版本</sub>
 
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0-arm64.dmg"><img src="https://img.shields.io/badge/Apple_Silicon-.dmg-000000?style=for-the-badge" alt="macOS, Apple Silicon"></a><br>
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0-x64_Intel.dmg"><img src="https://img.shields.io/badge/Intel-.dmg-555555?style=for-the-badge" alt="macOS, Intel"></a>
@@ -102,7 +117,7 @@ X11 and Wayland · shared folders through Samba · the phone app page by page ·
 </td>
 <td width="25%" align="center" valign="top">
 
-**🪟 Windows**<br><sub>10 and 11</sub>
+**🪟 Windows**<br><sub>10 与 11</sub>
 
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-Setup-2.4.0.exe"><img src="https://img.shields.io/badge/x64-Installer-0078d4?style=for-the-badge" alt="Windows, x64"></a><br>
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-Setup-2.4.0-arm64.exe"><img src="https://img.shields.io/badge/ARM64-Installer-005a9e?style=for-the-badge" alt="Windows on ARM"></a>
@@ -110,51 +125,51 @@ X11 and Wayland · shared folders through Samba · the phone app page by page ·
 </td>
 <td width="25%" align="center" valign="top">
 
-**🐧 Linux**<br><sub>X11 and Wayland, x86_64</sub>
+**🐧 Linux**<br><sub>X11 与 Wayland，x86_64</sub>
 
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0-amd64.deb"><img src="https://img.shields.io/badge/Debian_·_Ubuntu-.deb-d70a53?style=for-the-badge" alt="Linux, .deb"></a><br>
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0-x86_64.AppImage"><img src="https://img.shields.io/badge/Any_distro-AppImage-f0a30a?style=for-the-badge" alt="Linux, AppImage"></a><br>
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/twindesk-bin-2.4.0-1-x86_64.pkg.tar.zst"><img src="https://img.shields.io/badge/Arch-pkg.tar.zst-1793d1?style=for-the-badge" alt="Linux, Arch package"></a><br>
-<sub>NixOS: <code>nix run github:InukaAsith/TwinDesk</code> (<a href="#nixos--nix-flakes">more</a>)</sub>
+<sub>NixOS：<code>nix run github:InukaAsith/TwinDesk</code>（<a href="#nixos--nix-flakes">更多</a>）</sub>
 
 </td>
 <td width="25%" align="center" valign="top">
 
-**🤖 Android**<br><sub>10 or later, phones and tablets</sub>
+**🤖 Android**<br><sub>10 或更高版本，手机与平板</sub>
 
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0.apk"><img src="https://img.shields.io/badge/Phone_app-.apk-3ddc84?style=for-the-badge" alt="Android app"></a><br>
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0-full.apk"><img src="https://img.shields.io/badge/Full_app-.apk-1b8a4c?style=for-the-badge" alt="Android full app"></a><br>
-<sub>The full app adds notifications, texts and Accessibility; the computer can install it for you over wireless debugging</sub>
+<sub>完整版应用增加了通知、短信与 Accessibility；电脑可以通过无线调试为你安装它</sub>
 
 </td>
 </tr>
 </table>
 
-<p align="center">🍺 <b>Homebrew</b> on macOS: <code>brew install --cask inukaasith/twindesk/twindesk</code><br>
-<sub>Update with <code>brew upgrade --cask twindesk</code>: TwinDesk opens again by itself if it was running, so a Mac you drive only through it gets its mouse back. The <a href="https://github.com/InukaAsith/homebrew-twindesk">tap</a> follows every release.</sub></p>
+<p align="center">🍺 macOS 上的 <b>Homebrew</b>：<code>brew install --cask inukaasith/twindesk/twindesk</code><br>
+<sub>用 <code>brew upgrade --cask twindesk</code> 更新：如果 TwinDesk 之前正在运行，它会自行重新打开，这样一台只通过它操控的 Mac 就能拿回自己的鼠标。这个 <a href="https://github.com/InukaAsith/homebrew-twindesk">tap</a> 会跟随每一次发布。</sub></p>
 
 <a name="first-launch"></a>
 
 <details>
-<summary><b>⚠️ First launch: the apps aren't code-signed</b> <sub>how to allow them on macOS, Windows and Android</sub></summary>
+<summary><b>⚠️ 首次启动：这些应用没有代码签名</b> <sub>如何在 macOS、Windows 与 Android 上允许它们运行</sub></summary>
 
-TwinDesk is free and has no paid Apple Developer ID or Windows code-signing certificate, so
-macOS and Windows don't know who made it and ask once before opening it. The source is all here.
+TwinDesk 免费，没有付费的 Apple Developer ID 或 Windows 代码签名证书，因此
+macOS 和 Windows 不知道它是谁做的，打开前会询问一次。源代码全都在这里。
 
 **🍎 macOS**
 
-The easiest way is **Homebrew**, which installs it ready to open:
+最简单的方式是 **Homebrew**，它安装后即可直接打开：
 `brew install --cask inukaasith/twindesk/twindesk`
 
-From the .dmg instead:
+改用 .dmg 安装：
 
-1. Drag TwinDesk into Applications and open it. macOS says it can't verify TwinDesk: click **Done**
-   (not Move to Bin).
-2. Open **System Settings › Privacy & Security**, scroll down to Security and click **Open Anyway**
-   next to "TwinDesk was blocked". Enter your password, then click **Open Anyway** again.
+1. 把 TwinDesk 拖进 Applications 并打开。macOS 会提示无法验证 TwinDesk：点击 **Done**
+   （而不是 Move to Bin）。
+2. 打开 **System Settings › Privacy & Security**，向下滚动到 Security，点击
+   “TwinDesk was blocked” 旁边的 **Open Anyway**。输入你的密码，然后再次点击 **Open Anyway**。
 
-You do this once; updates open normally. If macOS says TwinDesk **is damaged and can't be
-opened**, it isn't: run this in Terminal, then open it again:
+只需做一次；之后更新可以正常打开。如果 macOS 说 TwinDesk **已损坏且无法打开**，
+它并没有损坏：在终端中运行下面的命令，然后重新打开它：
 
 ```sh
 xattr -dr com.apple.quarantine /Applications/TwinDesk.app
@@ -162,279 +177,268 @@ xattr -dr com.apple.quarantine /Applications/TwinDesk.app
 
 **🪟 Windows**
 
-1. If the browser warns that the file isn't commonly downloaded, choose **Keep** (in Edge: **⋯ ›
-   Keep › Show more › Keep anyway**).
-2. When the installer shows **Windows protected your PC** (SmartScreen), click **More info**, then
-   **Run anyway**.
+1. 如果浏览器警告该文件不常被下载，选择 **Keep**（在 Edge 中：**⋯ ›
+   Keep › Show more › Keep anyway**）。
+2. 当安装程序显示 **Windows protected your PC**（SmartScreen）时，点击 **More info**，然后
+   点击 **Run anyway**。
 
-On Windows 11 with **Smart App Control** on, unsigned apps are blocked with no Run anyway button.
-The only way past it is turning it off (Windows Security › App & browser control › Smart App Control
-settings), and on many Windows 11 versions it can't be turned back on without reinstalling Windows.
+在开启了 **Smart App Control** 的 Windows 11 上，未签名的应用会被拦截，没有 Run anyway 按钮。
+唯一的办法是关闭它（Windows Security › App & browser control › Smart App Control
+settings），而在许多 Windows 11 版本上，不重装 Windows 就无法重新开启。
 
 **🤖 Android**
 
-1. Open the downloaded .apk. Android asks to allow your browser or Files app to **install unknown
-   apps**: tap **Settings**, turn on **Allow from this source**, go back and tap **Install**.
-2. If Play Protect warns about an unrecognised developer, tap **More details › Install anyway**.
+1. 打开下载的 .apk。Android 会请求允许你的浏览器或 Files 应用 **install unknown
+   apps**：点击 **Settings**，打开 **Allow from this source**，返回后点击 **Install**。
+2. 如果 Play Protect 警告开发者无法识别，点击 **More details › Install anyway**。
 
-The **full app** (notifications, texts and Accessibility) is easiest installed by the computer over
-[wireless debugging](#wireless-debugging) (Phone page › Notifications from the phone): Android then
-lets you turn those on. Installed by hand, Play Protect may block it, and Android 13 and later grey
-out notification access and Accessibility as a **restricted setting**: open **Settings › Apps ›
-TwinDesk**, tap **⋮ › Allow restricted settings**, then turn them on.
+**完整版应用**（通知、短信与 Accessibility）最简单的方式是由电脑通过
+[无线调试](#wireless-debugging)安装（Phone 页面 › Notifications from the phone）：之后 Android
+就会允许你打开这些功能。如果手动安装，Play Protect 可能会拦截它，而且 Android 13 及更高版本
+会把通知访问和 Accessibility 置灰为 **restricted setting**：打开 **Settings › Apps ›
+TwinDesk**，点击 **⋮ › Allow restricted settings**，然后打开它们。
 
 </details>
 
-<p align="center"><sub>Every file and older version is on the <a href="https://github.com/InukaAsith/TwinDesk/releases">releases page</a>.</sub></p>
+<p align="center"><sub>所有文件与更早的版本都在<a href="https://github.com/InukaAsith/TwinDesk/releases">发布页面</a>上。</sub></p>
 
 ---
 
-# ✨ New in 2.3
+<a name="-new-in-23"></a>
+
+# ✨ 2.3 的新功能
 
 <p align="center">
   <img src=".github/assets/v23-whats-new.jpg" alt="TwinDesk 2.3: your phone is now a camera, a remote and a gamepad" width="100%">
 </p>
 
-Your phone is now **a camera, a remote and a gamepad**. Use its camera in any video call, drive your
-computer from the couch, or play with it as a controller. Copy pictures and screenshots across every
-screen, and lock the pointer to one computer with a key.
+你的手机现在既是**一台摄像头、一个遥控器，也是一个游戏手柄**。在任意视频通话里使用它的摄像头，窝在沙发上操控你的电脑，或者把它当作手柄来玩。在每块屏幕之间复制图片和截图，还能用一个按键把光标锁定到某台电脑上。
 
-| | What's new | |
+| | 新功能 | |
 |---|---|---|
-| 📷 | **Camera.** The phone's camera, or the other computer's, in a window or as a webcam for Zoom, Teams and Meet | [More](#-phone-camera) |
-| 🎮 | **Remote and gamepad.** A touchpad and keyboard for the computer, and a controller it sees as a real one | [More](#-remote-and-gamepad) |
-| 🖼 | **Pictures on the clipboard.** Copy a screenshot on the PC, paste it on the Mac or the phone | [More](#-shared-clipboard) |
-| 🔒 | **Cursor lock.** Scroll Lock keeps the pointer on the computer it's on | [More](#-one-mouse-and-keyboard) |
-| 🎵 | **Media controls.** What's playing on the phone, with play, pause and skip on the computer | [More](#-media-controls-and-phone-sound) |
-| 🪶 | **Lighter.** Every feature off until you turn it on, and about half the memory in the tray | [More](#-also-new-in-23) |
+| 📷 | **摄像头。** 手机摄像头，或另一台电脑的摄像头，可显示在窗口中，或作为网络摄像头供 Zoom、Teams 和 Meet 使用 | [更多](#-phone-camera) |
+| 🎮 | **遥控器与游戏手柄。** 为电脑提供触控板和键盘，还有一个被它当作真实手柄识别的控制器 | [更多](#-remote-and-gamepad) |
+| 🖼 | **剪贴板中的图片。** 在 PC 上复制截图，再粘贴到 Mac 或手机上 | [更多](#-shared-clipboard) |
+| 🔒 | **光标锁定。** Scroll Lock 让光标停留在它所在的电脑上 | [更多](#-one-mouse-and-keyboard) |
+| 🎵 | **媒体控制。** 手机上正在播放的内容，可在电脑上播放、暂停和跳过 | [更多](#-media-controls-and-phone-sound) |
+| 🪶 | **更轻量。** 每个功能在你开启之前都是关闭的，托盘中的内存占用约减半 | [更多](#-also-new-in-23) |
 
-## ➕ Also new in 2.3
+<a name="-also-new-in-23"></a>
 
-- **Every feature is off on a fresh install** and nothing of it is loaded until you switch it on. Updating keeps your settings.
-- **Closed to the tray or menu bar, the window is gone too:** a Windows PC went from about 240 MB to about 125 MB.
-- **<kbd>Ctrl+Alt+V</kbd> / <kbd>⌃⌥V</kbd> pastes files straight into the app in front**, a chat or an email, not only into a folder.
-- **Choose where received files go** (General › Received files) on Windows and Linux, as on the Mac.
-- **Phone windows:** Enter sends in WhatsApp, Instagram and Telegram; on Windows the controls sit in a side panel, with Rotate and a screenshot button.
-- **The phone's own screen on the computer**, started from the phone's Screen page.
-- **Touchpad mode** for the computer's screen on the phone: slide to move the pointer, tap to click.
-- **The phone's battery:** a locked phone no longer lights up by itself, and discovery no longer keeps it awake.
-- **Wireless debugging can switch itself off** when the computer is gone (General › Allow on the phone).
-- **The pointer on the phone** shows over the notification shade and on Settings screens too.
-- **Steadier Bluetooth and Wi-Fi Direct with phones**, and Android Studio or scrcpy's own adb is used before the bundled one, so they stop knocking each other off.
-- **Intel Mac downloads** of their own, and builds that can be signed and notarized with a Developer ID.
+## ➕ 2.3 的其他新功能
 
-Thanks to everyone who sent pull requests for this release: see [Thanks](#thanks).
+- **全新安装时每个功能都是关闭的**，在你开启之前不会加载其中任何部分。更新会保留你的设置。
+- **关闭到托盘或菜单栏时，窗口也随之消失：** 一台 Windows PC 的占用从约 240 MB 降到约 125 MB。
+- **<kbd>Ctrl+Alt+V</kbd> / <kbd>⌃⌥V</kbd> 把文件直接粘贴到前台的应用中**，聊天窗口或电子邮件，而不只是粘贴到文件夹里。
+- **在 Windows 和 Linux 上可以选择接收文件的保存位置**（通用 › 接收的文件），与 Mac 上一样。
+- **手机窗口：** 在 WhatsApp、Instagram 和 Telegram 中按 Enter 发送；在 Windows 上控件位于侧边面板中，还有旋转和截图按钮。
+- **在电脑上显示手机自身的屏幕**，从手机的屏幕页面启动。
+- **触控板模式**，在手机上操作电脑屏幕：滑动移动光标，轻点执行点击。
+- **手机电池：** 锁屏的手机不再自己亮起，设备发现也不再让它保持唤醒。
+- **无线调试可以自行关闭**，当电脑不在时（通用 › 在手机上允许）。
+- **手机上的光标**也会显示在通知栏和设置界面上。
+- **与手机之间的 Bluetooth 和 Wi-Fi Direct 更稳定**，并优先使用 Android Studio 或 scrcpy 自带的 adb，而不是随附的那个，这样它们就不会互相把对方挤掉。
+- **独立的 Intel Mac 下载**，以及可以用 Developer ID 签名和公证的构建。
 
-<sub>Older releases: 2.2 brought [TwinDesk Mesh](#-twindesk-mesh-every-device-at-once), 2.1 brought
-[Bluetooth and Wi-Fi Direct](#-connections) and the phone's [calls, texts, photos and files](#-calls-and-messages).
-Every release's notes are on the [releases page](https://github.com/InukaAsith/TwinDesk/releases).</sub>
+感谢所有为本版本提交拉取请求的人：见[致谢](#thanks)。
+
+<sub>更早的版本：2.2 带来了 [TwinDesk Mesh](#-twindesk-mesh-every-device-at-once)，2.1 带来了
+[Bluetooth 和 Wi-Fi Direct](#-connections) 以及手机的[通话、短信、照片和文件](#-calls-and-messages)。
+每个版本的说明都在[发布页面](https://github.com/InukaAsith/TwinDesk/releases)上。</sub>
 
 ---
 
-# 💻 Computer to computer
+<a name="-computer-to-computer"></a>
+
+# 💻 电脑到电脑
 
 <p align="center">
   <img src=".github/assets/mac-windows.jpg" alt="A Mac connected to a Windows PC, and the PC's apps listed on the Mac" width="100%">
 </p>
 
-The same app on every platform, so a Mac and a PC pair just like two Macs.
+每个平台都是同一个应用，因此 Mac 和 PC 配对起来就像两台 Mac 一样。
 
-## 🖱 One mouse and keyboard
+<a name="-one-mouse-and-keyboard"></a>
 
-Push the pointer off the edge of your screen and **keep working on the other computer**, as if
-they were one. Your keyboard follows the pointer. Trackpad gestures (Spaces swipes, pinch to zoom,
-show desktop) carry over, and a double-tap of the hotkey brings everything home. Set which side the
-other computer is on, edge resistance and pointer speed.
+## 🖱 一套鼠标和键盘
 
-**Cursor lock** (new in 2.3) keeps the pointer on the computer it's on, even the one the mouse isn't
-plugged into: press **Scroll Lock** (F14 on a Mac), or use the Cursor tab or the tray / menu bar.
+把光标推出屏幕边缘，就能**在另一台电脑上继续工作**，仿佛它们是一台。键盘会跟随光标。触控板手势（Spaces 滑动、双指捏合缩放、显示桌面）同样适用，双击热键即可让一切回到本机。可以设置另一台电脑在哪一侧、边缘阻力和光标速度。
 
-## 🖥 Extended display and remote screen
+**光标锁定**（2.3 新增）让光标停留在它所在的电脑上，哪怕那台电脑并没有插着鼠标：按 **Scroll Lock**（Mac 上是 F14），或使用光标页签、托盘 / 菜单栏。
 
-Extend your Mac onto a PC or another Mac with a **real virtual display**, or mirror it. Or bring
-the other computer's screen into a window and control it from there. Low-latency H.264 with
-*Fastest* and *Smooth* playback, and optional frame generation.
+## 🖥 扩展显示与远程屏幕
+
+用**真正的虚拟显示器**把你的 Mac 扩展一台 PC 或另一台 Mac 上，或者镜像它。也可以把另一台电脑的屏幕放进一个窗口，并从那里控制它。低延迟 H.264，提供*最快*和*流畅*两种播放模式，还可选帧生成。
 
 <p align="center">
   <img src=".github/assets/mac-screen-window.jpg" alt="The MacBook Pro's extended screen in a window on the Studio Mac, with the Receive screen settings" width="100%">
 </p>
 
-## 🪟 The other computer's apps, in windows of their own
+## 🪟 另一台电脑的应用，各有自己的窗口
 
-Open a **Windows app on your Mac** (or a Mac app on your PC) and it gets **a window of its own**,
-with its own Dock icon or Start-menu pin. No full remote desktop, just the app you need, next to
-your own.
+在你的 **Mac 上打开一个 Windows 应用**（或在 PC 上打开 Mac 应用），它就会拥有**自己的窗口**，并带有自己的 Dock 图标或开始菜单固定项。不需要完整的远程桌面，只有你需要的那个应用，就在你自己的应用旁边。
 
 <p align="center">
   <img src=".github/assets/mac-apps.jpg" alt="Chess, Clock and Calculator from one Mac running in their own windows on the other Mac" width="100%">
 </p>
 
-## 📷 Camera sharing
+## 📷 摄像头共享
 
-Show the other computer's camera in a window, or send it to **a webcam every app can pick**:
-**TwinDesk Camera** in Zoom, Teams, Meet or the browser. A computer shares its camera only when you
-turn on *Let … see this camera* on it, and a popup there says who is watching. The same works with
-a [phone's camera](#-phone-camera).
+把另一台电脑的摄像头显示在窗口里，或把它作为**任何应用都能选择到的网络摄像头**：Zoom、Teams、Meet 或浏览器中的 **TwinDesk Camera**。只有当你在那台电脑上开启*允许……查看此摄像头*时，它才会共享摄像头，并且那里会弹窗显示谁正在观看。用[手机的摄像头](#-phone-camera)也一样。
 
-The virtual camera installs the first time you turn it on: a Windows 11 camera (one administrator
-prompt), v4l2loopback on Linux (one password prompt), and on the Mac it goes into **OBS Virtual
-Camera** (or TwinDesk's own camera extension, in builds signed for it).
+虚拟摄像头会在你第一次开启它时安装：Windows 11 上是一个摄像头（需要一次管理员授权），Linux 上是 v4l2loopback（需要一次密码授权），而在 Mac 上它会被装进 **OBS Virtual Camera**（在获得相应签名的构建中，也可以使用 TwinDesk 自己的摄像头扩展）。
 
-## 📁 Files, shared folders and terminal
+## 📁 文件、共享文件夹和终端
 
-**Drag files across the screen edge** and drop them anywhere, or copy with <kbd>⌃⌥C</kbd> and
-paste with <kbd>⌃⌥V</kbd> (<kbd>Ctrl+Alt+C/V</kbd> on Windows and Linux), into a folder or straight
-into the app in front. Send from the macOS Share menu or Explorer's *Send to*, or **share a folder**
-that shows up as a network drive on the other side. Files on their way show **live progress**.
-Need a shell? `ssh twindesk` opens one on the other computer, no passwords needed.
+**把文件拖过屏幕边缘**，放到任何地方；或者用 <kbd>⌃⌥C</kbd> 复制、<kbd>⌃⌥V</kbd> 粘贴（Windows 和 Linux 上是 <kbd>Ctrl+Alt+C/V</kbd>），粘贴到文件夹里，或直接粘贴到前台应用中。可以从 macOS 的共享菜单或资源管理器的*发送到*发送，或者**共享一个文件夹**，它会以网络驱动器的形式出现在另一端。传输中的文件会显示**实时进度**。需要一个 shell？`ssh twindesk` 会在另一台电脑上打开一个，无需密码。
 
 <p align="center">
   <img src=".github/assets/computers-files.jpg" alt="The Files page and the Terminal page" width="100%">
 </p>
 
-## 📋 Shared clipboard
+<a name="-shared-clipboard"></a>
 
-Copy on one computer and paste on the other, instantly or when you switch over. **Pictures** go too
-(new in 2.3), up to 10 MB: take a screenshot with <kbd>Win+Shift+S</kbd> on the PC and paste it on
-the Mac. Entries from password managers are skipped, and a Recent list keeps the last few things
-you copied, pictures with a preview.
+## 📋 共享剪贴板
+
+在一台电脑上复制，在另一台电脑上粘贴，可以立即粘贴，也可以在你切换过去时粘贴。**图片**也能传递（2.3 新增），最大 10 MB：在 PC 上用 <kbd>Win+Shift+S</kbd> 截图，再粘贴到 Mac 上。来自密码管理器的条目会被跳过，最近列表会保留你最近复制的几项内容，图片带有预览。
 
 <p align="center">
   <img src=".github/assets/computers-clipboard.jpg" alt="The same copied text in the clipboard history on both Macs" width="100%">
 </p>
 
-## 🔔 Notifications, sound and Wake-on-LAN
+## 🔔 通知、声音和网络唤醒
 
-See one computer's notifications on the other as native notifications, and hear one computer's
-sound on the other. Wake a sleeping computer with Wake-on-LAN, and every switch you flip is
-shared by both sides and remembered for the pair.
+在一台电脑上以原生通知的形式查看另一台电脑的通知，并在另一台电脑上听到一台电脑的声音。用网络唤醒唤醒休眠的电脑，你拨动的每个开关都会被两端共享，并为此配对记住。
 
-## 🔀 More than two devices
+## 🔀 不止两台设备
 
-Pair as many computers and phones as you like. **Switch** moves the session to another paired
-device nearby, **Take over** claims one that's busy with someone else, and **Disconnect** lets go.
-All from the Overview, the menu bar or the tray.
+你可以随意配对任意多台电脑和手机。**切换**会把会话转移到附近的另一台已配对设备，**接管**会认领一台正被其他设备占用的设备，**断开连接**则放开它。这些操作都可以在概览、菜单栏或托盘中完成。
 
-## 🕸 TwinDesk Mesh: every device at once
+<a name="-twindesk-mesh-every-device-at-once"></a>
+
+## 🕸 TwinDesk Mesh：所有设备同时在线
 
 <p align="center">
   <img src=".github/assets/v22-mesh-desk.jpg" alt="The pointer travelling from a Windows PC across a MacBook and a Linux laptop onto a phone, with the desk map below" width="100%">
 </p>
 
-Your laptop, your desktop, the Linux box in the corner and your phone, **all connected at once**,
-each talking straight to the others with no hub in between.
+你的笔记本、台式机、角落里的 Linux 主机和你的手机，**同时全部连接**，彼此直接通信，中间不需要任何集线器。
 
-- **One mouse, every screen.** Line your devices up on the map once, and the pointer goes from the PC to the Mac to the Linux laptop to the phone.
-- **One clipboard.** Copy on any of them, paste on any other. The newest copy wins.
-- **One notification pool.** Your phone buzzes, and every computer shows it.
-- **Pair once, join all.** A new device paired with one computer meets the rest by itself.
+- **一套鼠标，每块屏幕。** 在桌面地图上把设备排好一次，光标就能从 PC 走到 Mac，再走到 Linux 笔记本，最后走到手机。
+- **一个剪贴板。** 在任意一台设备上复制，在任意另一台上粘贴。最新的一次复制优先。
+- **一个通知池。** 你的手机振动，每台电脑都会显示出来。
+- **配对一次，加入全部。** 与一台电脑配对的新设备会自动结识其余设备。
 
-Mesh is in **beta** on Windows, Mac and Linux: turn it on in the **Multi-device** tab, and off again
-any time with everything as you left it. Connecting just two devices? You won't need it. Still
-coming to Mesh: the Camera, pictures on the clipboard, and files dragged to more than one device at a
-time; the phone connects to one computer at a time, and Linux joins over the same Wi-Fi only.
+Mesh 在 Windows、Mac 和 Linux 上处于 **beta** 阶段：在**多设备**页签中开启它，随时可以再关掉，一切都会保持你离开时的样子。只连接两台设备？你并不需要它。Mesh 之后还会加入：摄像头、剪贴板中的图片，以及一次把文件拖到多台设备；手机一次只连接一台电脑，Linux 只能通过同一 Wi-Fi 加入。
 
 ---
 
-# 📱 Phone and tablet
+<a name="-phone-and-tablet"></a>
 
-Most phone links stop at notifications and a file drop. In TwinDesk your Android phone or tablet is
-a **full peer**: it pairs like a computer and gets the same features, plus its calls, texts, photos,
-files and camera.
+# 📱 手机与平板
 
-## 📞 Calls and messages
+大多数手机连接只停留在通知和文件传输上。在 TwinDesk 中，你的 Android 手机或平板是一个
+**完整的对等设备**：它像电脑一样配对，获得同样的功能，外加它自己的通话、短信、照片、
+文件和摄像头。
 
-Answer, decline and make your phone's calls from the computer. When it rings, a small window shows
-who's calling with **Answer** and **Decline**. With Bluetooth, the computer becomes **the phone's
-headset**, so you talk and listen right there. The **Calls** page has a number pad, your contacts
-and the call history.
+<a name="-calls-and-messages"></a>
 
-Read and reply to your texts on **Messages**: every conversation, pictures included, and a count in
-the sidebar.
+## 📞 通话与短信
+
+在电脑上接听、拒接和拨打手机的通话。来电时，一个小窗口会显示来电者，并提供**接听**和**拒接**。借助 Bluetooth，电脑会成为**手机的头戴设备**，让你直接在那里说话和收听。**通话**页面有数字键盘、联系人和通话记录。
+
+在**短信**中阅读并回复你的文字消息：每一个会话，图片也包含在内，还有侧边栏中的
+计数。
 
 <p align="center">
   <img src=".github/assets/v21-calls-messages.jpg" alt="The Calls page with an incoming call and the call history, and the Messages page with a conversation" width="100%">
 </p>
 
-## 🖼 Photos and phone files
+## 🖼 照片与手机文件
 
-Browse the phone's **photos and videos** on **Photos**, open any of them big, and save one or many
-to the computer. **Phone Files** browses the phone's whole storage: save, upload, rename, delete, or
-just drop files on the page. **Shared folders work both ways:** a folder the phone shares opens in
-Finder, Explorer or the Linux file manager, and one the computer shares shows up in the phone's
-Files app.
+在**照片**中浏览手机的**照片和视频**，以全尺寸打开其中任意一张，并把一张或多张保存
+到电脑。**手机文件**可浏览手机的整个存储：保存、上传、重命名、删除，或
+直接把文件拖放到页面上。**共享文件夹双向生效：** 手机共享的文件夹会在
+Finder、Explorer 或 Linux 文件管理器中打开，而电脑共享的文件夹会出现在手机的
+文件应用中。
 
 <p align="center">
   <img src=".github/assets/v21-photos-files.jpg" alt="The Photos page with the phone's gallery, and Phone Files with shared folders and the phone's storage" width="100%">
 </p>
 
-## 📷 Phone camera
+<a name="-phone-camera"></a>
 
-The phone's **back or front camera**, in a window on the computer or as the **TwinDesk Camera**
-webcam in any video call. Switch cameras and rotate the picture from the Camera tab, or start it
-from the phone's own Camera page.
+## 📷 手机摄像头
 
-## 🎮 Remote and gamepad
+手机**后置或前置摄像头**的画面，可显示在电脑上的窗口中，或作为**TwinDesk Camera**
+网络摄像头用于任何视频通话。在摄像头页签中切换摄像头并旋转画面，或从手机自己的
+摄像头页面启动它。
+
+<a name="-remote-and-gamepad"></a>
+
+## 🎮 遥控器与游戏手柄
 
 <p align="center">
   <img src=".github/assets/v23-remote.jpg" alt="The phone's Remote: a touchpad with a row of keys, and the gamepad laid out like an Xbox controller" width="100%">
 </p>
 
-The phone's **Remote** page turns it into the computer's remote, for the couch or a presentation:
+手机的**遥控器**页面会把它变成电脑的遥控器，适合躺在沙发上或在演示时使用：
 
-- **Touchpad and keyboard.** Slide to move, tap to click, two fingers to scroll, with the keys a
-  phone keyboard lacks (Esc, Tab, Ctrl, Alt, arrows, media and volume). Rotate it for landscape.
-- **Gamepad,** laid out like an Xbox controller. Its buttons press the keys you choose, or turn on
-  **Real gamepad** and the computer sees an actual controller: an Xbox 360 controller on Windows,
-  a gamepad on Linux.
-- **A Bluetooth gamepad for any computer**, the Mac included, with no TwinDesk and no driver there:
-  pair the phone in the computer's Bluetooth settings once.
+- **触控板与键盘。** 滑动以移动，轻点以单击，双指滚动，还包括
+  手机键盘缺少的按键（Esc、Tab、Ctrl、Alt、方向键、媒体和音量）。可旋转为横屏。
+- **游戏手柄，** 布局像 Xbox 手柄。它的按钮会按下你选定的按键，或者开启
+  **真实游戏手柄**，让电脑看到一只真正的控制器：Windows 上是 Xbox 360 手柄，
+  Linux 上则是游戏手柄。
+- **适用于任何电脑的 Bluetooth 游戏手柄**，包括 Mac，那台电脑上既不需要 TwinDesk，也不需要驱动：
+  只需在电脑的 Bluetooth 设置中与手机配对一次。
 
-Turn on **Remote** on the computer to let the phone drive it.
+在电脑上开启**遥控器**，让手机来操控它。
 
-## 🎵 Media controls and phone sound
+<a name="-media-controls-and-phone-sound"></a>
 
-What's playing on the phone shows in its card on the Overview, with its art, **Previous,
-Play/Pause, Next** and a bar to seek. On Windows and Linux, **Play phone sound here** makes the
-computer the phone's Bluetooth speaker.
+## 🎵 媒体控制与手机声音
 
-## 📲 Phone screen and apps on the computer
+手机上正在播放的内容会显示在概览中它的卡片里，包含封面、**上一首、
+播放/暂停、下一首**，以及一个用于定位播放进度的进度条。在 Windows 和 Linux 上，**在此播放手机声音**会让
+电脑成为手机的 Bluetooth 音箱。
 
-See your phone's screen in a window and control it with your mouse, trackpad and keyboard. Better
-still, open **single Android apps in windows of their own**, side by side with your desktop apps.
-Pin them to the Dock or the Start menu and use them like any other app. In WhatsApp, Instagram and
-Telegram, Enter sends.
+## 📲 电脑上的手机屏幕与应用
+
+在窗口中查看手机屏幕，并用鼠标、触控板和键盘控制它。更棒的是，
+可以**在各自独立的窗口中打开单个 Android 应用**，与你的桌面应用并排使用。
+把它们固定到 Dock 或开始菜单，就能像任何其他应用一样使用。在 WhatsApp、Instagram 和
+Telegram 中，Enter 用于发送。
 
 <p align="center">
   <img src=".github/assets/phone-on-mac.jpg" alt="The tablet's home screen in a Mac window, and Calculator, Calendar and Clock open as separate Mac windows" width="100%">
 </p>
 
-## 🖥 Tablet as a second screen
+## 🖥 平板作为第二屏幕
 
-Turn a tablet or phone into an **extra monitor**. **Extend** for more desktop space, or **Mirror**
-to show what's on your screen. Use touch as the mouse, or switch on touchpad mode.
+把平板或手机变成**额外的显示器**。用**扩展**获得更多桌面空间，或用**镜像**
+显示你屏幕上的内容。用触摸当作鼠标，或开启触控板模式。
 
 <p align="center">
   <img src=".github/assets/second-screen.jpg" alt="Share screen settings on the Mac, and the tablet showing the extended Mac desktop" width="100%">
 </p>
 
-## 📤 Files, clipboard, notifications, mouse and keyboard
+## 📤 文件、剪贴板、通知、鼠标与键盘
 
-- **Files.** *Send to computer* or *Copy to computer* from any Android app's share menu; from the
-  computer, the Share menu, *Send to*, a drag across the screen edge or <kbd>⌃⌥C</kbd> / <kbd>Ctrl+Alt+C</kbd>.
-- **Clipboard.** Text and pictures both ways, the phone's screenshots included, and a Quick Settings tile to send it.
-- **Notifications.** The phone's on the computer as native notifications, and the other way around. Hide the text or mute single apps.
-- **Mouse and keyboard.** Push the pointer past the screen edge and it **carries on onto the phone**;
-  type with your real keyboard in any Android app.
+- **文件。** 从任何 Android 应用的分享菜单中*发送到电脑*或*复制到电脑*；从
+  电脑端，则用“共享”菜单、*发送到*、拖过屏幕边缘，或 <kbd>⌃⌥C</kbd> / <kbd>Ctrl+Alt+C</kbd>。
+- **剪贴板。** 双向的文本和图片，包括手机的截图，还有一个用于发送的快捷设置磁贴。
+- **通知。** 手机的通知在电脑上作为原生通知显示，反过来也一样。可隐藏文字内容，或单独对某个应用静音。
+- **鼠标与键盘。** 把指针推过屏幕边缘，它就会**继续延伸到手机上**；
+  在任何 Android 应用中使用真实键盘输入。
 
 <p align="center">
   <img src=".github/assets/share-files.jpg" alt="The Mac's Files page, the Android share menu with Send to computer and Copy to computer, and a received-file notification on the tablet" width="100%">
 </p>
 
-## 📱 The Android app
+## 📱 Android 应用
 
-The Android app adapts to the device: tabs at the bottom on a phone, a full sidebar on a tablet.
-Every page names the computer you're connected to and shows what's shared in each direction.
+Android 应用会适配设备：手机上底部是页签，平板上则是完整的侧边栏。
+每个页面都会显示你所连接的电脑，并展示各个方向共享的内容。
 
 <p align="center">
   <img src=".github/assets/android-phone.jpg" alt="The Android app on a phone: Overview, Screen, Files, Clipboard and More" width="100%">
@@ -442,224 +446,181 @@ Every page names the computer you're connected to and shows what's shared in eac
 
 ---
 
-# 📡 Connections
+<a name="-connections"></a>
+
+# 📡 连接方式
 
 <p align="center">
   <img src=".github/assets/v21-connections.jpg" alt="Same Wi-Fi, Bluetooth LE, Wi-Fi Direct, phone hotspot and USB cable" width="100%">
 </p>
 
-You never have to choose. TwinDesk uses the same network when there is one, moves a phone onto
-the **USB cable** when you plug it in, and falls back to **Bluetooth** when the Wi-Fi goes: on a
-train, or in a café whose guest Wi-Fi blocks devices. The link and its latency are always shown at
-the top of the app (*38 ms · Bluetooth*).
+你永远不必做选择。TwinDesk 在存在同一网络时使用它，在你插上手机时把手机切换到
+**USB 数据线**，在 Wi-Fi 不可用时回退到 **Bluetooth**：比如在
+火车上，或在一家访客 Wi-Fi 会屏蔽设备的咖啡馆里。连接方式及其延迟始终显示在
+应用顶部（*38 ms · Bluetooth*）。
 
-Bluetooth is great for the session but too slow for a screen or a big file. So when you start one,
-TwinDesk **brings up a direct Wi-Fi link** between the two devices for as long as it's needed, then
-goes back to Bluetooth. Press **Connect with Wi-Fi Direct** to keep it, or let the computer join the
-phone's **hotspot**.
+Bluetooth 适合维持会话，但对于屏幕或大文件来说太慢了。因此当你开始这类操作时，
+TwinDesk 会在两台设备之间**建立一条直接的 Wi-Fi 链路**，持续所需的时间，然后
+回到 Bluetooth。按**使用 Wi-Fi Direct 连接**可保持该链路，或让电脑加入
+手机的**热点**。
 
-| | Same Wi-Fi | USB cable | Bluetooth | + Wi-Fi Direct or hotspot |
+| | 同一 Wi-Fi | USB 数据线 | Bluetooth | + Wi-Fi Direct 或热点 |
 |---|:-:|:-:|:-:|:-:|
-| Session, clipboard text, notifications | ✅ | ✅ | ✅ | ✅ |
-| Mouse and keyboard, remote | ✅ | ✅ | ✅ | ✅ |
-| Calls and texts | ✅ | ✅ | ✅ | ✅ |
-| Screens, apps, cameras, files, photos, clipboard pictures | ✅ | ✅ | moves to Wi-Fi Direct | ✅ |
-| Terminal between computers (`ssh twindesk`) | ✅ | — | on Wi-Fi Direct | ✅ |
+| 会话、剪贴板文本、通知 | ✅ | ✅ | ✅ | ✅ |
+| 鼠标与键盘、遥控器 | ✅ | ✅ | ✅ | ✅ |
+| 通话与短信 | ✅ | ✅ | ✅ | ✅ |
+| 屏幕、应用、摄像头、文件、照片、剪贴板图片 | ✅ | ✅ | 切换到 Wi-Fi Direct | ✅ |
+| 电脑之间的终端（`ssh twindesk`） | ✅ | — | 通过 Wi-Fi Direct | ✅ |
 
-Who can turn up over Bluetooth is up to you: **Bluetooth with phones** (on) and **Bluetooth with
-computers** (off until you want it), on the Overview and in General.
+谁能通过 Bluetooth 出现由你决定：**与手机的蓝牙**（开启）和**与电脑的
+蓝牙**（默认关闭，直到你需要时），在概览中和通用中均可设置。
 
 ---
 
-# 🚀 Get started
+<a name="-get-started"></a>
+
+# 🚀 快速开始
 
 <p align="center">
   <img src=".github/assets/tour.gif" alt="A tour of the TwinDesk window" width="820">
 </p>
 
-1. **Download** TwinDesk for each computer and your phone ([above](#download), or from the [releases](https://github.com/InukaAsith/TwinDesk/releases/latest)).
-2. **Open it on both.** They find each other on the same network, over Bluetooth, or over a USB cable for a phone.
-3. **Pair once** by comparing a code (on a USB cable, just click Allow). From then on they connect by themselves.
-4. **Turn on what you want.** Each feature has a tab with a switch, and shows what it does until you turn it on.
+1. **下载**每台电脑和你的手机对应的 TwinDesk（[见上文](#download)，或从 [发布版本](https://github.com/InukaAsith/TwinDesk/releases/latest)）。
+2. **在两端打开它。** 它们会在同一网络上、经由 Bluetooth，或对手机而言经由 USB 数据线互相发现。
+3. **配对一次**，比对验证码即可（使用 USB 数据线时，只需点击允许）。此后它们会自动连接。
+4. **开启你想要的功能。** 每个功能都有一个带开关的页签，在你开启之前会说明它的作用。
 
-For the phone's screen, apps and camera in windows, TwinDesk walks you through turning on Android's
-wireless debugging once ([details](#wireless-debugging)). Files, clipboard, calls and photos work
-without it. The phone's notifications, texts, media controls and mouse and keyboard through
-Accessibility come with the full app, which the computer installs once over wireless debugging.
+如果要在窗口中显示手机的屏幕、应用和摄像头，TwinDesk 会引导你开启一次 Android 的
+无线调试（[详情](#wireless-debugging)）。文件、剪贴板、通话和照片无需它也能工作。
+手机的通知、短信、媒体控制，以及通过无障碍实现的鼠标与键盘，都来自完整应用，
+电脑会通过无线调试安装一次。
 
-| Pair | What you get |
+| 配对 | 你能获得 |
 |---|---|
-| Mac ↔ Windows PC, Mac ↔ Mac, PC ↔ PC | Every computer feature |
-| Linux ↔ Mac, PC or Linux | Every computer feature ([a few differences](#linux)) |
-| Android ↔ Mac, Windows or Linux | Every phone and tablet feature (Real gamepad on Windows and Linux) |
-| All of them at once | [TwinDesk Mesh](#-twindesk-mesh-every-device-at-once) (beta) |
+| Mac ↔ Windows 电脑、Mac ↔ Mac、电脑 ↔ 电脑 | 全部电脑功能 |
+| Linux ↔ Mac、电脑或 Linux | 全部电脑功能（[少数差异](#linux)） |
+| Android ↔ Mac、Windows 或 Linux | 全部手机与平板功能（Windows 和 Linux 上支持真实游戏手柄） |
+| 以上全部同时使用 | [TwinDesk Mesh](#-twindesk-mesh-every-device-at-once)（beta） |
 
-## Privacy
+<a name="privacy"></a>
 
-TwinDesk only talks to devices you've paired with, directly over your own network, Bluetooth, a
-direct Wi-Fi link or a cable. There are no accounts, no telemetry and no cloud relay. Your calls,
-texts, photos and camera go straight from the phone to your computer and nowhere else. The only
-internet request is an update check against GitHub's public releases, which you can turn off.
+## 隐私
+
+TwinDesk 只与你配对过的设备通信，直接经由你自己的网络、Bluetooth、
+直连 Wi-Fi 链路或数据线。没有账号，没有遥测，也没有云端中继。你的通话、
+短信、照片和摄像头会直接从手机传到你的电脑，不会去往别处。唯一的
+互联网请求是针对 GitHub 公开发布版本的更新检查，你可以将其关闭。
 
 <br>
 
 ---
 
-
-Everything below is for the curious and for people building TwinDesk themselves.
+下面的内容是为好奇的人和想自己构建 TwinDesk 的人准备的。
 
 <a name="linux"></a>
 <details>
-<summary><h2>🐧 Linux</h2> <sub>X11 and Wayland, shared folders, Extend, virtual camera and gamepad</sub></summary>
+<summary><h2>🐧 Linux</h2> <sub>X11 与 Wayland、共享文件夹、扩展、虚拟摄像头和游戏手柄</sub></summary>
 
-On Linux, TwinDesk runs on both X11 and Wayland. On Wayland, the mouse and keyboard go through
-evdev and uinput (the Setup screen grants access once), and screens are captured through the
-desktop portal. A few things work a little differently:
+在 Linux 上，TwinDesk 同时运行在 X11 和 Wayland 上。在 Wayland 上，鼠标和键盘通过 evdev 和 uinput 工作（设置界面会一次性授予访问权限），屏幕则通过桌面门户捕获。有几处细节略有不同：
 
-- **Shared folder.** Sharing uses Samba. The first time, one password prompt installs it if it's
-  missing and adds a network-only account. The other computer's folder is connected with GVFS
-  and shows in the file manager's sidebar.
-- **Copy and paste files.** <kbd>Ctrl+Alt+C</kbd> copies what's selected in the file manager in
-  front (or files you already copied), and <kbd>Ctrl+Alt+V</kbd> pastes into the file manager
-  window in front (else Downloads). Right-click › *Send to* works in Nautilus, Nemo, Caja,
-  Dolphin and Thunar.
-- **Dragging files across the edge.** Files dragged in from the other computer are dropped into
-  the folder under the pointer, or the desktop. On Wayland, they go to the file manager window in
-  front. Dragging files out of Linux needs an Xorg session.
-- **Extend.** On GNOME (Wayland) it uses Mutter's own virtual monitor; pick "Virtual remote
-  monitor" when the desktop asks which screen to share. On X11 it switches on a spare output of
-  the graphics driver (not available on NVIDIA's driver). That needs a small helper, which the
-  .deb installs; with the AppImage, Share screen › *TwinDesk virtual display* › Install puts it in
-  once, with your password.
-- **Apps.** Opening this computer's apps on the other side needs an Xorg session.
-- **Virtual camera and gamepad.** TwinDesk Camera is a v4l2loopback device, and Real gamepad a
-  uinput controller ("TwinDesk Gamepad"); each asks for your password once, the first time it's
-  turned on.
-- **Bluetooth and Wi-Fi Direct.** Bluetooth LE goes through BlueZ, and direct Wi-Fi links through
-  NetworkManager, hosted beside the computer's own Wi-Fi where the adapter allows (2.4 GHz groups
-  for a phone).
-- **Android phone.** Everything in [Android](#android-in-detail) works on Linux too: the phone's screen and
-  apps in windows, the mouse and keyboard across the edge, files, clipboard, notifications and
-  sound. The package carries adb; the Setup screen's firewall fix opens mDNS (5353/udp) so the
-  phone's wireless debugging is found.
+- **共享文件夹。** 共享使用 Samba。第一次时，如果缺少它，一次密码提示就会把它装好，并添加一个仅用于网络的账户。另一台电脑的文件夹通过 GVFS 连接，并显示在文件管理器的侧边栏中。
+- **复制和粘贴文件。** <kbd>Ctrl+Alt+C</kbd> 复制最前面文件管理器中选中的内容（或你已经复制的文件），<kbd>Ctrl+Alt+V</kbd> 粘贴到最前面的文件管理器窗口中（否则粘贴到 Downloads）。右键 › *发送到* 在 Nautilus、Nemo、Caja、Dolphin 和 Thunar 中可用。
+- **跨边缘拖动文件。** 从另一台电脑拖入的文件会落入光标下的文件夹，或桌面。在 Wayland 上，它们会进入最前面的文件管理器窗口。从 Linux 向外拖动文件需要 Xorg 会话。
+- **扩展。** 在 GNOME（Wayland）上，它使用 Mutter 自带的虚拟显示器；当桌面询问要共享哪块屏幕时，选择 "Virtual remote monitor"。在 X11 上，它会启用显卡驱动的一个空闲输出（NVIDIA 驱动上不可用）。这需要一个小型辅助程序，.deb 会安装它；使用 AppImage 时，共享屏幕 › *TwinDesk 虚拟显示器* › 安装，即可一次性装好，需要你的密码。
+- **应用。** 在另一侧打开这台电脑的应用需要 Xorg 会话。
+- **虚拟摄像头和游戏手柄。** TwinDesk Camera 是一个 v4l2loopback 设备，Real gamepad 是一个 uinput 控制器（"TwinDesk Gamepad"）；两者第一次开启时都会要求输入一次密码。
+- **Bluetooth 与 Wi-Fi Direct。** Bluetooth LE 通过 BlueZ 工作，直连 Wi-Fi 通过 NetworkManager 工作，在适配器允许的位置与电脑自身的 Wi-Fi 并存（为手机使用 2.4 GHz 频段组）。
+- **Android 手机。** [Android](#android-in-detail) 中的一切在 Linux 上同样可用：手机屏幕和窗口形式的应用、跨边缘的鼠标和键盘、文件、剪贴板、通知和声音。软件包自带 adb；设置界面的防火墙修复会放行 mDNS (5353/udp)，这样手机的无线调试才能被发现。
 
 </details>
 
 <a name="android-in-detail"></a>
 <details>
-<summary><h2>🤖 Android in detail</h2> <sub>the phone app page by page, and wireless debugging</sub></summary>
+<summary><h2>🤖 Android 详解</h2> <sub>逐页说明手机应用，以及无线调试</sub></summary>
 
-Install TwinDesk on the phone, open it next to TwinDesk on the computer and pair from Overview › Nearby. The phone needs Android 10, and Android 11 for everything that goes through wireless debugging.
+在手机上安装 TwinDesk，把它与电脑上的 TwinDesk 并排打开，然后从概览 › 附近进行配对。手机需要 Android 10，而所有经由无线调试的功能需要 Android 11。
 
-### The phone app
+### 手机应用
 
-The app is laid out like the computers' (a sidebar on tablets, tabs at the bottom on phones), and
-every page names the computer it's connected to:
+应用的布局与电脑端相同（平板上是侧边栏，手机上是底部标签页），并且每个页面都会显示它所连接的电脑：
 
-| Page | What it does |
+| 页面 | 功能 |
 |---|---|
-| **Overview** | The computer you're connected to, Connect and Disconnect, nearby computers to pair with, and the wireless debugging card until that's set up |
-| **Screen** | Use the phone as a screen for the computer: Mirror, or Extend the desktop onto it. Touch works as the mouse (tap to click, hold to right click, drag to select or move windows, two fingers to scroll), with the computer's sound and Smooth playback |
-| **Cursor** | The computer's mouse on the phone across the screen edge, its pointer speed here, reverse scrolling, right and middle click |
-| **Keyboard** | The computer's keyboard types on the phone, every key as a key, so any layout works and the soft keyboard stays out of the way. A keyboard on the phone types on the computer |
-| **Remote** | The phone as the computer's touchpad and keyboard, or as a gamepad: keys of your choosing, a real controller (Windows, Linux), or a Bluetooth gamepad for any computer |
-| **Camera** | The phone's back or front camera on the computer, and whether its virtual camera takes it |
-| **Clipboard** | Copy on one, paste on the other, each way on its own switch, at once or when sent |
-| **Notifications** | The phone's notifications on the computer, with the text hidden if you like, and the computer's on the phone |
-| **Files** | Send files, copy them to paste on the computer, and see where the computer's files land |
-| **Sound** | The phone's sound on the computer, and the computer's sound on the phone |
-| **General** | The phone's name, background running, and the permissions TwinDesk uses, each with its switch |
-| **About** | Source code, releases, the license, and what goes over wireless debugging and the network |
+| **概览** | 你已连接的电脑、连接和断开连接、可配对的附近电脑，以及无线调试尚未设置好时的那张卡片 |
+| **屏幕** | 把手机当作电脑的屏幕：镜像，或把桌面扩展到手机上。触摸可作为鼠标使用（轻点即单击，按住即右键单击，拖动可选择或移动窗口，双指滚动），并带有电脑的声音和流畅播放 |
+| **光标** | 电脑的鼠标跨屏幕边缘来到手机上、在这里设置指针速度、反向滚动、右键和中键单击 |
+| **键盘** | 电脑的键盘在手机上打字，每个键都作为按键，因此任何布局都可用，软键盘也不会挡路。手机上的键盘可在电脑上打字 |
+| **遥控器** | 把手机当作电脑的触控板和键盘，或当作游戏手柄：自选按键、真实手柄（Windows、Linux），或可用于任何电脑的 Bluetooth 游戏手柄 |
+| **摄像头** | 手机的后置或前置摄像头用于电脑，以及虚拟摄像头是否采用它 |
+| **剪贴板** | 在一台设备上复制、在另一台上粘贴，两个方向各有开关，即时生效或在发送时生效 |
+| **通知** | 手机的通知显示在电脑上，可隐藏文本，电脑的通知也显示在手机上 |
+| **文件** | 发送文件、复制文件以便在电脑上粘贴，并查看电脑的文件落在哪里 |
+| **声音** | 手机的声音在电脑上播放，电脑的声音在手机上播放 |
+| **通用** | 手机的名称、后台运行，以及 TwinDesk 使用的各项权限，每项都有开关 |
+| **关于** | 源代码、发行版、许可协议，以及哪些内容经由无线调试和网络传输 |
 
-And outside the app:
+应用之外：
 
-- **Share sheet:** *Send to computer* and *Copy to computer* in every app's Share menu.
-- **Quick Settings tiles:** *Send clipboard* and *Wireless debugging*.
-- **Home screen shortcuts:** the computer's screen, and wireless debugging on in one tap.
-- **The ongoing notification** shows what's connected, with Exit.
-- **Copied on the computer:** files copied with <kbd>⌃⌥C</kbd> / <kbd>Ctrl+Alt+C</kbd> arrive as a
-  notification with Copy (paste them in any app) and Save.
-- **The computer can install the full app** over wireless debugging (Phone page › Notifications
-  from the phone): Play Protect blocks downloaded apps that read notifications or texts, or use
-  Accessibility, so the download leaves those out and the computer adds them. Settings and pairing stay.
+- **分享菜单：** 每个应用的分享菜单中的 *发送到电脑* 和 *复制到电脑*。
+- **快捷设置磁贴：** *发送剪贴板* 和 *无线调试*。
+- **主屏幕快捷方式：** 电脑的屏幕，以及一键开启无线调试。
+- **常驻通知** 显示当前连接的内容，并带有退出。
+- **在电脑上复制：** 用 <kbd>⌃⌥C</kbd> / <kbd>Ctrl+Alt+C</kbd> 复制的文件会以通知形式到达，带有复制（可在任意应用中粘贴）和保存。
+- **电脑可以通过无线调试安装完整版应用**（手机页面 › 来自手机的通知）：Play Protect 会阻止下载的应用读取通知或短信，或使用 Accessibility，因此下载的版本会去掉这些内容，再由电脑补上。设置和配对会保留。
 
 <a name="wireless-debugging"></a>
 
-### Wireless debugging
+### 无线调试
 
-Files, the clipboard and notifications work right away. The phone's screen, its apps in windows,
-touch, your mouse and keyboard on the phone and its sound go through **wireless debugging**, which
-TwinDesk pairs with once:
+文件、剪贴板和通知可立即使用。手机的屏幕、它以窗口形式显示的应用、触摸、你在手机上的鼠标和键盘以及手机的声音都经由**无线调试**，TwinDesk 只需为它配对一次：
 
 <p align="center">
   <img src=".github/assets/ui-phone-pair.jpg" alt="Overview: the wireless debugging card under the connected computers, with the pairing code" width="820">
 </p>
 
-- Until it's paired, a card under the connected computers on Overview (on the computer and on the
-  phone) walks you through it. Open *Developer options › Wireless debugging › Pair device with
-  pairing code* on the phone and type the 6-digit code on the computer, or on the phone in
-  TwinDesk's notification (Settings' dialog stays open). The phone sends the code to whichever
-  computer it's connected to: Mac, PC or Linux.
-- After that TwinDesk switches wireless debugging on by itself when it needs it, follows it to its
-  new port every time it restarts, and keeps the pairing from expiring (Android otherwise forgets
-  a computer after 7 days unused). Phones that switch it off on every Wi-Fi change or screen lock
-  (MIUI, HyperOS) get it switched back on as soon as they're unlocked, or a prompt if they refuse.
-  Wireless debugging only runs while **USB debugging** is on too, so TwinDesk turns both on.
-- **Xiaomi, Redmi and POCO** also need *Developer options › USB debugging (Security settings)* for
-  touch, mouse and keyboard (it asks for a Mi account). Without it the screen shows but input is
-  refused; the computer's Phone page says "Touch blocked" until it's on.
-- **On a Mac, the phone in Finder.** Turn it on in the Mount tab and click Mount: the phone shows
-  under Locations like any server. Until then TwinDesk never looks at the phone's files. It goes
-  through the cable when USB debugging is allowed, else over wireless debugging. Finder's `.DS_Store` and `._` files never land on the phone.
+- 在配对之前，概览中已连接电脑下方的一张卡片（电脑上和手机上都有）会引导你完成配对。在手机上打开 *开发者选项 › 无线调试 › 使用配对码配对设备*，然后在电脑上输入 6 位配对码，或在手机上 TwinDesk 的通知中输入（设置应用的对话框会保持打开）。手机把配对码发送给它所连接的那台电脑：Mac、PC 或 Linux。
+- 此后 TwinDesk 会在需要时自行开启无线调试，每次它重启后都会跟随到新端口，并让配对不对过期（否则 Android 会在电脑闲置 7 天后忘记它）。对于每次切换 Wi-Fi 或锁屏都会把它关掉的手机（MIUI、HyperOS），TwinDesk 会在一解锁时就重新开启，如果手机拒绝则给出提示。无线调试只有在 **USB 调试** 也开启时才能运行，因此 TwinDesk 会把两者都打开。
+- **Xiaomi、Redmi 和 POCO** 还需要 *开发者选项 › USB 调试（安全设置）* 才能使用触摸、鼠标和键盘（该选项需要 Mi account）。没有它，屏幕会显示但输入会被拒绝；在开启之前，电脑上的手机页面会显示 "触摸被阻止"。
+- **在 Mac 上，手机出现在 Finder 中。** 在挂载标签页中开启它，然后点击挂载：手机就会像任何服务器一样显示在位置栏中。在此之前 TwinDesk 从不查看手机的文件。当允许 USB 调试时它走线缆，否则走无线调试。Finder 的 `.DS_Store` 和 `._` 文件永远不会落到手机上。
 
 </details>
 
 <a name="how-it-works"></a>
 <details>
-<summary><h2>⚙️ How it works</h2> <sub>the Electron app, the native helpers and the link between devices</sub></summary>
+<summary><h2>⚙️ 工作原理</h2> <sub>Electron 应用、原生辅助程序，以及设备之间的连接</sub></summary>
 
 <p align="center">
   <img src=".github/assets/how-it-works.svg" alt="Architecture: an Electron app and a native helper on each computer, linked by a TLS control channel, WebRTC media and system services" width="100%">
 </p>
 
-Each computer runs an **Electron app**, which handles the window, pairing, the link and the state
-machines. Next to it runs a small **native helper** for everything the OS keeps to itself:
-capturing and injecting input, virtual displays, gestures, window capture and native drag and drop.
+每台电脑都运行一个 **Electron 应用**，它负责窗口、配对、连接和状态机。它旁边运行一个小型的 **原生辅助程序**，处理操作系统保留给自己的所有事情：捕获和注入输入、虚拟显示器、手势、窗口捕获和原生拖放。
 
-| Folder | What's in it |
+| 文件夹 | 内容 |
 |---|---|
-| `mac/` | macOS app (Electron) |
-| `mac-helper/` | macOS helper (Swift): virtual display, event tap, input injection, audio, apps, SMB |
-| `windows/` | Windows app (Electron) and installer |
-| `windows-helper/` | Windows helper (C#): hooks, SendInput, Raw Input touchpad, window capture, native drag |
-| `linux/` | Linux app (Electron) |
-| `linux-helper/` | Linux helper (C): XInput2 / XTest on X11, evdev / uinput on Wayland, XRandR, window list, XDND edge strip |
-| `android/` | Android app (Kotlin, Jetpack Compose); the computers drive the phone through adb and [scrcpy](https://github.com/Genymobile/scrcpy)'s server |
-| `shared/` | Used by every app: the wire protocol, the Bluetooth pipe and Wi-Fi Direct links, the phone hub (Calls, Messages, Photos, Phone Files), shared folders, frame generation and icons |
+| `mac/` | macOS 应用（Electron） |
+| `mac-helper/` | macOS 辅助程序（Swift）：虚拟显示器、event tap、输入注入、声音、应用、SMB |
+| `windows/` | Windows 应用（Electron）和安装程序 |
+| `windows-helper/` | Windows 辅助程序（C#）：钩子、SendInput、Raw Input 触控板、窗口捕获、原生拖动 |
+| `linux/` | Linux 应用（Electron） |
+| `linux-helper/` | Linux 辅助程序（C）：X11 上的 XInput2 / XTest、Wayland 上的 evdev / uinput、XRandR、窗口列表、XDND 边缘条 |
+| `android/` | Android 应用（Kotlin、Jetpack Compose）；电脑通过 adb 和 [scrcpy](https://github.com/Genymobile/scrcpy) 的服务器驱动手机 |
+| `shared/` | 所有应用共用：传输协议、Bluetooth 管道与 Wi-Fi Direct 连接、手机中枢（通话、短信、照片、手机文件）、共享文件夹、帧生成和图标 |
 
-The link between two devices is one TLS session wherever it runs: on the local network, through
-a phone's USB cable (adb), or through **Bluetooth LE** (a GATT pipe of TwinDesk's own,
-`shared/blepipe.js`). When a session on Bluetooth needs bandwidth, `shared/netlink.js` brings up a
-**Wi-Fi Direct** group or joins a phone's hotspot, moves the session onto it, and takes it down
-again once nothing needs it. Calls, Messages, Photos and Phone Files are `shared/phonehub.js` on
-the computers, answered by TwinDesk on the phone.
+两台设备之间的连接无论运行在哪里都是一个 TLS 会话：在本地网络上、通过手机的 USB 线缆（adb），或通过 **Bluetooth LE**（TwinDesk 自己的 GATT 管道，`shared/blepipe.js`）。当 Bluetooth 上的会话需要带宽时，`shared/netlink.js` 会建立一个 **Wi-Fi Direct** 组或加入手机的热点，把会话迁移过去，并在不再需要时再把它关闭。通话、短信、照片和手机文件在电脑上是 `shared/phonehub.js`，由手机上的 TwinDesk 应答。
 
-Files between two computers on the network or a cable stream over HTTPS on the same port, beside the
-control link and up to four at a time (`shared/fastfile.js`), so mouse and keyboard never wait
-behind a big file. Through Bluetooth, Wi-Fi Direct, a hotspot, or with an older TwinDesk on the
-other side, they go as before: in pieces on the control link.
+网络或线缆上两台电脑之间的文件在同一端口上通过 HTTPS 流式传输，与控制链路并存，最多同时四个（`shared/fastfile.js`），因此鼠标和键盘永远不会排在大文件后面等待。经由 Bluetooth、Wi-Fi Direct、热点，或对端是较旧版本的 TwinDesk 时，它们仍和以前一样传输：在控制链路上分片进行。
 
-Ports: TCP **47800** (control link and files) and UDP **47801** (discovery) on the local network.
+端口：本地网络上的 TCP **47800**（控制链路和文件）和 UDP **47801**（发现）。
 
 </details>
 
 <a name="build-and-run"></a>
 <details>
-<summary><h2>🛠 Build and run</h2> <sub>macOS, Windows, Linux, NixOS, Android and GitHub Actions</sub></summary>
+<summary><h2>🛠 构建与运行</h2> <sub>macOS、Windows、Linux、NixOS、Android 与 GitHub Actions</sub></summary>
 
-You need [Node.js](https://nodejs.org) 18+ on every platform.
+每个平台都需要 [Node.js](https://nodejs.org) 18+。
 
-### macOS (13 Ventura or later)
+### macOS（13 Ventura 或更高版本）
 
 ```sh
 xcode-select --install          # Swift compiler for the helper
@@ -670,32 +631,29 @@ npm start                       # run from source
 npm run dist && npm run dmg     # build TwinDesk.app and TwinDesk-<version>-<arch>.dmg in mac/dist/
 ```
 
-The disk image is named after the app inside it: `TwinDesk-2.4.0-arm64.dmg` for Apple Silicon,
-`TwinDesk-2.4.0-x64.dmg` for Intel. Keep those names on a release: the in-app updater picks the
-one for each Mac by them.
+磁盘映像以其中的应用命名：Apple Silicon 为 `TwinDesk-2.4.0-arm64.dmg`，
+Intel 为 `TwinDesk-2.4.0-x64.dmg`。发布时请保留这些名称：应用内更新器会据此为每台 Mac 挑选对应的那个。
 
-By default, `npm run dist` targets the Mac's current architecture. To build an Intel
-package from an Apple Silicon Mac, use:
+默认情况下，`npm run dist` 面向 Mac 当前的架构。要从 Apple Silicon Mac 构建 Intel 包，请使用：
 
 ```sh
 npm run dist:x64 && npm run dmg
 ```
 
-To build the Intel app and its image in one step, run `npm run dmg:intel`; it writes
-`mac/dist/TwinDesk-<version>-x64.dmg`.
+要一步构建 Intel 应用及其映像，请运行 `npm run dmg:intel`；它会写入
+`mac/dist/TwinDesk-<version>-x64.dmg`。
 
-Use `npm run dist:arm64 && npm run dmg` for Apple Silicon explicitly. The x64 build
-cross-compiles the Swift helpers and packages the x64 Electron runtime, so it does
-not require an Intel Mac.
+要明确为 Apple Silicon 构建，请使用 `npm run dist:arm64 && npm run dmg`。x64 构建会交叉编译
+Swift 辅助程序并打包 x64 Electron 运行时，因此不需要 Intel Mac。
 
-On first launch, TwinDesk asks for **Screen Recording**, **Accessibility** and **Input
-Monitoring** (once; after that the General tab shows each permission's status).
+首次启动时，TwinDesk 会请求**屏幕录制**、**无障碍**和**输入
+监控**权限（仅一次；此后常规标签页会显示每项权限的状态）。
 
-`npm run dist` signs the app with a certificate of its own, made the first time in
-`~/.twindesk-signing` (keep a backup). macOS keeps permissions per signature, so with the same
-certificate they carry over when an update is dragged into Applications. An app built without it is
-signed ad-hoc, and macOS treats every update as a new app; TwinDesk then clears the stale entries so
-Allow works again.
+`npm run dist` 会用它自己的证书为应用签名，该证书在首次构建时生成于
+`~/.twindesk-signing`（请保留备份）。macOS 按签名保存权限，因此使用同一
+证书时，把更新拖入“应用程序”后权限会延续。不带该证书构建的应用会
+以 ad-hoc 方式签名，macOS 会把每次更新都当作新应用；此时 TwinDesk 会清除过时的条目，
+让“允许”重新生效。
 
 ### Windows 10 / 11
 
@@ -708,15 +666,14 @@ npm run dist                    :: NSIS installer in windows\dist\
 npm run dist -- arm64           :: the Windows on ARM installer (or `x64 arm64` for both)
 ```
 
-`npm run dist` also works on a Mac or Linux: it skips the helper build and packages the
-`macshare-winhelper.exe` already in `windows-helper\bin\` (for example, one taken from a release).
+`npm run dist` 在 Mac 或 Linux 上同样可用：它会跳过辅助程序的构建，并打包
+`windows-helper\bin\` 中已有的 `macshare-winhelper.exe`（例如从发布版本中取出的那个）。
 
-The installer adds the firewall rules (for every network profile, so a standard account on a
-Public network doesn't need an administrator later). The Setup screen, shown once, offers to fix
-the firewall if something changed (that needs an administrator) and to install the optional Virtual
-Display Driver for Extend.
+安装程序会添加防火墙规则（针对所有网络配置文件，因此“公用”网络上的标准账户
+之后无需管理员权限）。设置向导页只显示一次，如果某些设置发生变化，它会提供
+修复防火墙的选项（这需要管理员权限），并提供安装可选的虚拟显示器驱动程序，用于扩展。
 
-### Linux (X11 or Wayland)
+### Linux（X11 或 Wayland）
 
 ```sh
 sudo apt install build-essential libx11-dev libxi-dev libxtst-dev libxext-dev libxrandr-dev libxfixes-dev
@@ -727,16 +684,16 @@ npm start
 npm run dist                    # AppImage and .deb in linux/dist/
 ```
 
-The Setup screen walks you through the rest. On Wayland that means input access (one admin
-prompt, then log out and back in once). It can also install OpenSSH for the terminal. Extend on
-GNOME Wayland uses Python 3 with GObject and GStreamer's PipeWire plugin (`python3-gi`,
-`gstreamer1.0-pipewire`), which GNOME desktops already have.
+设置向导页会引导你完成其余步骤。在 Wayland 上，这意味着输入访问权限（一次管理员
+提示，然后注销并重新登录一次）。它还可以为终端安装 OpenSSH。在
+GNOME Wayland 上，扩展使用 Python 3 加 GObject 和 GStreamer 的 PipeWire 插件（`python3-gi`、
+`gstreamer1.0-pipewire`），GNOME 桌面已经自带这些。
 
 <a name="nixos--nix-flakes"></a>
 
-#### NixOS & Nix Flakes
+#### NixOS 与 Nix Flakes
 
-TwinDesk includes a `flake.nix` with package, dev shell, and NixOS module support:
+TwinDesk 包含一个 `flake.nix`，支持包、开发环境和 NixOS 模块：
 
 ```sh
 # Run directly with flakes
@@ -746,7 +703,7 @@ nix run github:InukaAsith/TwinDesk
 nix develop
 ```
 
-On NixOS, enable the module in your system configuration:
+在 NixOS 上，在系统配置中启用该模块：
 
 ```nix
 {
@@ -757,14 +714,14 @@ On NixOS, enable the module in your system configuration:
 }
 ```
 
-See [docs/nixos.md](docs/nixos.md) for full options (firewall, Wi-Fi Direct capability wrappers, virtual displays, and more).
+完整选项（防火墙、Wi-Fi Direct 能力包装、虚拟显示器等）见 [docs/nixos.md](docs/nixos.md)。
 
 
-#### Testing the Linux app from a Mac
+#### 从 Mac 测试 Linux 应用
 
-`linux/scripts/vm-test.sh` runs it in a [Parallels Desktop](https://www.parallels.com) Linux VM
-(Ubuntu with the packages above and Node.js): it copies this checkout into the VM, builds the
-helper, starts TwinDesk in the VM's desktop session and drives it from the Mac.
+`linux/scripts/vm-test.sh` 会在 [Parallels Desktop](https://www.parallels.com) Linux 虚拟机
+（装有上述软件包和 Node.js 的 Ubuntu）中运行它：它把这份检出复制到虚拟机中、构建
+辅助程序、在虚拟机的桌面会话中启动 TwinDesk，并从 Mac 上驱动它。
 
 ```sh
 linux/scripts/vm-test.sh start            # sync, build and (re)start it in the VM
@@ -773,7 +730,7 @@ linux/scripts/vm-test.sh eval "UI.go('cursor')"
 linux/scripts/vm-test.sh log
 ```
 
-On the VM's shared network it finds the Mac's TwinDesk and pairs like any Linux computer.
+在虚拟机的共享网络上，它能发现 Mac 的 TwinDesk，并像任何 Linux 电脑一样配对。
 
 ### Android
 
@@ -782,50 +739,110 @@ cd android
 ./gradlew assembleRelease        # JDK 17+; app/build/outputs/apk/{standard,full}/release/
 ```
 
-`standard` is the build people download. `full` adds notification access, the SMS permissions
-(Messages) and the Accessibility service (mouse and keyboard without wireless debugging), which Play Protect blocks in downloaded apps; the computers install it over wireless debugging (Phone page ›
-Notifications from the phone), so `npm run dist` on each platform bundles the newest
-`android/dist/*-full.apk`.
+`standard` 是人们下载的构建。`full` 增加了通知访问权限、短信权限
+（信息）和无障碍服务（无需无线调试即可使用鼠标和键盘），而 Play Protect 会阻止下载的应用使用这些功能；
+电脑通过无线调试安装它（手机页面 ›
+来自手机的通知），因此每个平台上的 `npm run dist` 都会打包最新的
+`android/dist/*-full.apk`。
 
 <a name="github-actions"></a>
 
 ### GitHub Actions
 
-**Build Android**, **Build Linux** and **Build Windows** (Actions tab › Run workflow) make the
-standard and full APKs, the AppImage and .deb, and the x64 and arm64 installers, helpers included.
-Set the `ANDROID_KEYSTORE` secret to the key the Android app is signed with
-(`base64 -i ~/.android/debug.keystore`): the APKs then install over existing ones, and the Linux and
-Windows builds carry the full Android app. Without it the APKs get the runner's own key and the
-computers' builds leave the Android app out.
+**Build Android**、**Build Linux** 和 **Build Windows**（Actions 标签页 › Run workflow）会生成
+standard 和 full APK、AppImage 和 .deb，以及 x64 和 arm64 安装程序，并包含辅助程序。
+将 `ANDROID_KEYSTORE` secret 设置为 Android 应用签名所用的密钥
+（`base64 -i ~/.android/debug.keystore`）：这样 APK 就能覆盖安装到现有应用上，Linux 和
+Windows 构建也会携带完整的 Android 应用。若不设置它，APK 会使用 runner 自己的密钥，
+电脑端的构建则不会包含 Android 应用。
 
-To Authenticode-sign the Windows installers, set the `WIN_CSC_LINK` secret to a base64-encoded
-Windows code-signing `.pfx` certificate and `WIN_CSC_KEY_PASSWORD` to its password. Keep the
-certificate and password out of the repository. When `WIN_CSC_LINK` is set, the Windows build fails
-if signing cannot complete instead of silently publishing an unsigned installer. Signing gives
-users a verified publisher and can help SmartScreen reputation build over time; it does not
-guarantee that antivirus products will stop flagging a file.
+要对 Windows 安装程序进行 Authenticode 签名，请将 `WIN_CSC_LINK` secret 设置为 base64 编码的
+Windows 代码签名 `.pfx` 证书，并将 `WIN_CSC_KEY_PASSWORD` 设为其密码。请将
+证书和密码保存在仓库之外。设置 `WIN_CSC_LINK` 后，如果签名无法完成，Windows 构建会失败，
+而不是静默发布未签名的安装程序。签名会为用户提供经过验证的发布者，并有助于
+随时间积累 SmartScreen 声誉；它并不能保证杀毒软件停止标记文件。
 
 </details>
 
-## Thanks
+<a name="chinese-ui"></a>
 
-TwinDesk is better for everyone who sent a pull request:
+# 🌐 中文界面与语言切换
 
-- [@DevPsycho-07](https://github.com/DevPsycho-07): the phone as a remote ([#44](https://github.com/InukaAsith/TwinDesk/pull/44)), screenshots across the clipboard ([#45](https://github.com/InukaAsith/TwinDesk/pull/45)), phone window controls ([#46](https://github.com/InukaAsith/TwinDesk/pull/46)) and phone fixes ([#43](https://github.com/InukaAsith/TwinDesk/pull/43))
-- [@benzntech](https://github.com/benzntech): the phone's camera ([#48](https://github.com/InukaAsith/TwinDesk/pull/48)), Developer ID signing and notarization ([#40](https://github.com/InukaAsith/TwinDesk/pull/40)) and the Mac's downloads ([#39](https://github.com/InukaAsith/TwinDesk/pull/39))
-- [@atse25029-collab](https://github.com/atse25029-collab): WhatsApp and Instagram in phone windows ([#42](https://github.com/InukaAsith/TwinDesk/pull/42))
-- [@philopaterwaheed](https://github.com/philopaterwaheed): Cursor lock ([#49](https://github.com/InukaAsith/TwinDesk/pull/49))
-- [@ghustanov](https://github.com/ghustanov): wireless debugging's auto-off ([#31](https://github.com/InukaAsith/TwinDesk/pull/31)) and the Mac helpers' Info.plist ([#30](https://github.com/InukaAsith/TwinDesk/pull/30))
-- [@m-uvex](https://github.com/m-uvex): the Nix flake and NixOS module ([#37](https://github.com/InukaAsith/TwinDesk/pull/37))
-- Erdoğan Yeşil ([@erdodo](https://github.com/erdodo)): the mesh TwinDesk Mesh is built on ([#29](https://github.com/InukaAsith/TwinDesk/pull/29)), and [#8](https://github.com/InukaAsith/TwinDesk/pull/8) and [#9](https://github.com/InukaAsith/TwinDesk/pull/9)
-- [@Jay-Prajapati01](https://github.com/Jay-Prajapati01): signed Windows installers ([#13](https://github.com/InukaAsith/TwinDesk/pull/13))
+这个仓库里的 TwinDesk 已带简体中文界面：**默认就是中文**，随时可以切回英文。
 
-And thanks to everyone who reports problems and shares ideas in the [issues](https://github.com/InukaAsith/TwinDesk/issues).
+- 切换位置：**通用 › 应用 › 语言**（`中文` / `English`）。选完窗口会重载一次，所有窗口和托盘菜单一起换。
+- 选择的语言存在 `settings.json` 的 `ui.lang`（`"zh"` 或 `"en"`），下次启动沿用：
+  - Windows：`%APPDATA%\MacShare\settings.json`
+  - macOS：`~/Library/Application Support/MacShare/settings.json`
+  - Linux：`~/.config/MacShare/settings.json`
 
-## License
+## 它是怎么做的
 
-TwinDesk is free software, licensed under the [GNU General Public License v3.0](LICENSE).
-Copyright © 2026 inukaasith.
+代码里继续写英文，显示之前查一次词典；英文模式下 `T()` 原样返回，一个词条都不用撤。
 
-Parts are adapted from [DeskPad](https://github.com/Stengo/DeskPad) (MIT). See [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES)
-for details.
+| 文件 | 作用 |
+| --- | --- |
+| `shared/i18n.js` | 词典引擎：`T(s)` 查表、`I18n.setLang('zh' \| 'en')`、`I18n.add`、`I18n.pattern` |
+| `shared/lang/zh.core.js` | 通用词条：侧栏页签、配对横幅、状态、托盘、HUD |
+| `shared/lang/zh.media.js` | 屏幕共享、摄像头、遥控、ReZume |
+| `shared/lang/zh.comms.js` | 通话、短信、手机中枢 |
+| `shared/lang/zh.io.js` | 文件、挂载、终端、剪贴板 |
+| `shared/lang/zh.devices.js` | 手机、平板、ADB、镜像 |
+| `shared/lang/zh.settings.js` | 通用设置、关于、更新、多设备 |
+| `shared/lang/zh.pages.js` | 一对一（非 Mesh）界面的页面 |
+| `shared/i18n-dom.js` | 词典装好之后，填 `app.html` 里 `data-t` / `data-ta` 的静态文案 |
+
+- **渲染进程**：`windows/ui-kit.js` 的 `UI.el` / `UI.row` / `UI.card` / `UI.note` 会自动对 `text`、`label`、`hint`、子字符串以及 `title` / `aria-label` / `placeholder` / `alt` 调 `T()`，所以**改文案通常只要加词条**。
+- **主进程**（托盘、通知、HUD、状态行、显示器名）：`const I18n = require('../shared/i18n.js')` 之后写 `I18n.T('…')`。这些文件里常有 `const T = P.T`（协议消息类型），**不要用裸 `T`**。
+
+## 加词条
+
+```js
+// shared/lang/zh.io.js 末尾
+I.add({
+  'Mount as a drive': '挂载成磁盘',
+});
+
+// 名字、数字拼出来的句子
+I.pattern(/^Connected to (.+)$/, (m) => '已连接到 ' + I.T(m[1]));
+```
+
+规则：
+
+- **pattern 先注册先匹配**，越具体越靠前：`/^Connected to (.+)\. Double-tap (.+)…$/` 必须排在 `/^Connected to (.+)$/` 之前。
+- 一个 pattern 返回 `null` 表示「这条不算」，会继续试后面的 pattern。
+- 中文全角标点；中英文之间留一个空格。
+- 设备名、品牌、快捷键名、路径、文件名、另一端传回来的数据串不翻。
+
+## 仍然是英文的地方
+
+- **macOS / Linux 的主窗口（`mac/control.html`、`linux/app.html`）和 Android App** 还没接入词典层，整个界面仍是英文。
+- 设备名、`TwinDesk`、`ADB`、`Wi-Fi` / `Wi-Fi Direct`、快捷键名（`Scroll Lock`、`F11`）、作者与链接。
+- Mac 上的 `Dock`、`Menu bar` 按专有名词保留英文（Windows 上对应的 `Taskbar` / `Tray` 译作「任务栏」「托盘」）。
+- 手机端 App 和另一台电脑发回来的提示属于数据，不是本机文案。
+
+<a name="thanks"></a>
+
+## 致谢
+
+TwinDesk 因每一位提交拉取请求的人而更好：
+
+- [@DevPsycho-07](https://github.com/DevPsycho-07)：把手机作为遥控器（[#44](https://github.com/InukaAsith/TwinDesk/pull/44)）、跨剪贴板截图（[#45](https://github.com/InukaAsith/TwinDesk/pull/45)）、手机窗口控制（[#46](https://github.com/InukaAsith/TwinDesk/pull/46)）以及手机端修复（[#43](https://github.com/InukaAsith/TwinDesk/pull/43)）
+- [@benzntech](https://github.com/benzntech)：手机的摄像头（[#48](https://github.com/InukaAsith/TwinDesk/pull/48)）、Developer ID 签名与公证（[#40](https://github.com/InukaAsith/TwinDesk/pull/40)）以及 Mac 的下载（[#39](https://github.com/InukaAsith/TwinDesk/pull/39)）
+- [@atse25029-collab](https://github.com/atse25029-collab)：手机窗口中的 WhatsApp 和 Instagram（[#42](https://github.com/InukaAsith/TwinDesk/pull/42)）
+- [@philopaterwaheed](https://github.com/philopaterwaheed)：光标锁定（[#49](https://github.com/InukaAsith/TwinDesk/pull/49)）
+- [@ghustanov](https://github.com/ghustanov)：无线调试的自动关闭（[#31](https://github.com/InukaAsith/TwinDesk/pull/31)）以及 Mac 辅助程序的 Info.plist（[#30](https://github.com/InukaAsith/TwinDesk/pull/30)）
+- [@m-uvex](https://github.com/m-uvex)：Nix flake 和 NixOS 模块（[#37](https://github.com/InukaAsith/TwinDesk/pull/37)）
+- Erdoğan Yeşil（[@erdodo](https://github.com/erdodo)）：TwinDesk Mesh 所基于的 mesh（[#29](https://github.com/InukaAsith/TwinDesk/pull/29)），以及 [#8](https://github.com/InukaAsith/TwinDesk/pull/8) 和 [#9](https://github.com/InukaAsith/TwinDesk/pull/9)
+- [@Jay-Prajapati01](https://github.com/Jay-Prajapati01)：已签名的 Windows 安装程序（[#13](https://github.com/InukaAsith/TwinDesk/pull/13)）
+
+还要感谢所有在 [issues](https://github.com/InukaAsith/TwinDesk/issues) 中报告问题并分享想法的人。
+
+## 许可协议
+
+TwinDesk 是自由软件，依据 [GNU General Public License v3.0](LICENSE) 授权。
+Copyright © 2026 inukaasith。
+
+部分内容改编自 [DeskPad](https://github.com/Stengo/DeskPad)（MIT）。详见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES)。
+
+

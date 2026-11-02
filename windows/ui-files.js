@@ -83,14 +83,14 @@ UI.tab({
       // Send files
       canSend = s.link.state === 'connected';
       zone.classList.toggle('off', !canSend);
-      zoneText.textContent = canSend ? 'Drop files or folders here' : 'Connect to send files';
-      zoneHint.textContent = !canSend ? '' : p.phone ? 'They go to ' + p.the + '’s Downloads'
-        : 'They go to ' + p.the + '’s Downloads, or the folder chosen there for received files';
+      zoneText.textContent = T(canSend ? 'Drop files or folders here' : 'Connect to send files');
+      zoneHint.textContent = !canSend ? '' : T(p.phone ? 'They go to ' + p.the + '’s Downloads'
+        : 'They go to ' + p.the + '’s Downloads, or the folder chosen there for received files');
       sendBtn.disabled = !canSend;
       const b = f.batch;
       sendBar.hidden = !b;
       if (b) sendBar.firstChild.style.width = Math.floor((100 * b.sent) / Math.max(1, b.bytes)) + '%';
-      sendRow.setHint(b ? (b.kind === 'paste' ? 'Pasting ' : 'Sending ') + b.name + ' to ' + p.the + (b.files > 1 ? ' · ' + (b.index + 1) + ' of ' + b.files : '') : canSend ? 'To ' + p.the : '');
+      sendRow.setHint(b ? (b.kind === 'paste' ? 'Pasting ' : 'Sending ') + b.name + ' to ' + p.the + (b.files > 1 ? T(' · ' + (b.index + 1) + ' of ' + b.files) : '') : canSend ? 'To ' + p.the : '');
       // Shortcuts
       const ck = f.clip;
       keysSw.set(f.shortcuts);
@@ -111,7 +111,7 @@ UI.tab({
       share.set(f.shareOn);
       const busy = m.busy === 'setup' ? 'Setting up…' : m.busy === 'remove' ? 'Removing…' : '';
       sharePill.hidden = !f.shareOn && !busy;
-      sharePill.textContent = busy || (m.peer && m.peer.mounted ? 'On {name}' : m.peer && m.peer.error ? 'Problem' : 'Shared');
+      sharePill.textContent = T(busy || (m.peer && m.peer.mounted ? 'On {name}' : m.peer && m.peer.error ? 'Problem' : 'Shared'));
       sharePill.className = 'pill ' + (busy ? 'muted' : m.peer && m.peer.mounted ? 'good' : m.peer && m.peer.error ? 'bad' : 'muted');
       chooseBtn.disabled = !!m.busy;
       pcShare.setHint(m.message || (m.peer && m.peer.error) || m.folder);
@@ -119,26 +119,26 @@ UI.tab({
       cancelBtn.hidden = !f.current;
       if (f.current) {
         const c = f.current;
-        outRow.label.textContent = 'Sending ' + c.name + (c.count > 1 ? ' (' + (c.index + 1) + ' of ' + c.count + ')' : '');
+        outRow.label.textContent = T('Sending ' + c.name) + (c.count > 1 ? T(' (' + (c.index + 1) + ' of ' + c.count + ')') : '');
         outRow.setHint(mb(c.sent) + ' of ' + mb(c.size) + (f.queued ? ' · ' + f.queued + ' more waiting' : ''));
       } else {
-        outRow.label.textContent = f.last ? (f.last.ok ? 'Sent ' : 'Not sent: ') + (f.last.name || '') : 'Nothing sent';
+        outRow.label.textContent = T(f.last ? (f.last.ok ? 'Sent ' : 'Not sent: ') + (f.last.name || '') : 'Nothing sent');
         outRow.setHint(f.last ? f.last.text + ' · ' + UI.ago(f.last.at) : '');
       }
       const inc = f.incoming;
       const dr = f.drag;
       if (dr.state) {
-        inRow.label.textContent = (dr.state === 'copying' ? 'Copying ' : 'Dragging ') + dr.name;
+        inRow.label.textContent = T((dr.state === 'copying' ? 'Copying ' : 'Dragging ') + dr.name);
         inRow.setHint(dr.state === 'copying' ? '' : 'Esc cancels');
         return;
       }
       if (dr.last && (!inc.last || dr.last.at > inc.last.at)) {
-        inRow.label.textContent = dr.last.ok ? 'Received from {name}' : 'Not received';
+        inRow.label.textContent = T(dr.last.ok ? 'Received from {name}' : 'Not received');
         inRow.setHint(dr.last.text + ' · ' + UI.ago(dr.last.at));
         return;
       }
-      inRow.label.textContent = inc.receiving ? 'Receiving ' + inc.receiving + ' file' + (inc.receiving > 1 ? 's' : '') + ' from {name}'
-        : inc.last ? (inc.last.ok ? 'Received ' : 'Not received: ') + inc.last.name : 'Nothing received';
+      inRow.label.textContent = T(inc.receiving ? 'Receiving ' + inc.receiving + ' file' + (inc.receiving > 1 ? 's' : '') + ' from {name}'
+        : inc.last ? (inc.last.ok ? 'Received ' : 'Not received: ') + inc.last.name : 'Nothing received');
       inRow.setHint(inc.receiving ? '' : inc.last ? inc.last.text + ' · ' + UI.ago(inc.last.at) : '');
     };
   },

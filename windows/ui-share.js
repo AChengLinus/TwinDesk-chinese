@@ -108,15 +108,15 @@ UI.tab({
 
       missing.hidden = !v.checked || v.installed;
       missingBtn.disabled = !!v.busy;
-      missingBtn.textContent = v.busy === 'install' ? 'Installing…' : 'Install';
+      missingBtn.textContent = T(v.busy === 'install' ? 'Installing…' : 'Install');
       installBtn.hidden = v.installed;
       installBtn.disabled = !!v.busy || !v.checked;
-      installBtn.textContent = v.busy === 'install' ? 'Installing…' : 'Install';
+      installBtn.textContent = T(v.busy === 'install' ? 'Installing…' : 'Install');
       removeBtn.hidden = !v.installed;
       removeBtn.disabled = !!v.busy || p.mode === 'extend';
       driver.setHint(v.busy === 'remove' ? 'Removing…' : v.busy === 'install' ? 'Installing…' : v.installed ? 'Installed. Adds the extra screen for Extend.' : 'Adds an extra screen for Extend. Installs a display driver and asks for administrator rights once.');
-      inputRow.label.textContent = 'Receive input from ' + UI.peer(s).them;
-      remoteRow.label.textContent = 'Let ' + UI.peer(s).the + ' start and switch this screen';
+      inputRow.label.textContent = T('Receive input from ' + UI.peer(s).them);
+      remoteRow.label.textContent = T('Let ' + UI.peer(s).the + ' start and switch this screen');
       remoteRow.setHint(p.remote ? 'Opening the screen window there starts sharing; Extend and Mirror can be switched from there.' : '');
       note.set(v.message);
     };

@@ -40,14 +40,14 @@ UI.tab({
       const connected = s.link.state === 'connected';
       pair.update(s); // the two direction switches follow the settings
       listCard.hidden = !s.macApps.on;
-      listCard.querySelector('.card-title > span').textContent = UI.peer(s).name + '’s apps';
+      listCard.querySelector('.card-title > span').textContent = T(UI.peer(s).name + '’s apps');
       if (connected && s.macApps.on && !asked && !a.list.length) { asked = true; api.listApps(); }
       openCount.hidden = !a.open;
-      openCount.label.textContent = a.open + ' open here';
+      openCount.label.textContent = T(a.open + ' open here');
       const pa = s.pcApps;
       pcState.hidden = !pa.allow;
-      pcState.label.textContent = pa.streaming ? pa.streaming + ' open on {name}'
-        : !connected ? 'Waiting for {name}' : !pa.macAccepts ? 'Turned off on {name}' : pa.open ? 'Connecting…' : 'None open';
+      pcState.label.textContent = T(pa.streaming ? pa.streaming + ' open on {name}'
+        : !connected ? 'Waiting for {name}' : !pa.macAccepts ? 'Turned off on {name}' : pa.open ? 'Connecting…' : 'None open');
       pcState.setHint(pa.message || '');
       if (!connected) asked = false;
       note.set(a.message || '');
@@ -74,7 +74,7 @@ UI.tab({
         return b;
       }));
       status.hidden = items.length > 0;
-      status.label.textContent = !connected ? 'Waiting for {name}' : a.loading ? 'Loading…' : q ? 'No app matches' : 'No apps yet';
+      status.label.textContent = T(!connected ? 'Waiting for {name}' : a.loading ? 'Loading…' : q ? 'No app matches' : 'No apps yet');
       status.setHint(!connected || a.loading || q ? '' : 'Click Refresh to ask {name} for its apps.');
     }
     return render;

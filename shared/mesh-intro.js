@@ -8,6 +8,8 @@
   const NODES = [['monitor', 110, 78], ['laptop', 320, 46], ['monitor', 530, 84], ['phone', 214, 196], ['laptop', 430, 200]];
 
   const device = (kind, x, y) => FeatureArt.device(kind, x, y); // shared/feature-art.js, loaded first
+  // This file builds its text by hand (no UI.el), so it looks the strings up itself.
+  const tr = (s) => (typeof T === 'function' ? T(s) : s);
 
   function art() {
     const lines = [];
@@ -28,7 +30,7 @@
     wrap.className = 'mesh-art';
     wrap.setAttribute('aria-hidden', 'true');
     wrap.innerHTML = `<svg viewBox="0 0 640 250" role="img">${lines.join('')}${dots.join('')}${NODES.map((n) => device(...n)).join('')}</svg>`
-      + '<p>Every device linked to every other: one clipboard and one set of notifications for all, and the mouse and keyboard across all of them.</p>';
+      + '<p>' + tr('Every device linked to every other: one clipboard and one set of notifications for all, and the mouse and keyboard across all of them.') + '</p>';
     return wrap;
   }
 
@@ -37,7 +39,7 @@
     const el = (tag, cls, text) => {
       const e = document.createElement(tag);
       if (cls) e.className = cls;
-      if (text) e.textContent = text;
+      if (text) e.textContent = tr(text);
       return e;
     };
 

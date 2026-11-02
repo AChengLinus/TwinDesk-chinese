@@ -77,7 +77,7 @@ UI.tab({
       key = k;
       apps.replaceChildren(...(n.apps.length
         ? n.apps.map((a) => {
-          const sw = UI.switch((v) => api.muteNotifApp({ app: a.app, muted: !v }), { label: 'Send ' + a.appName });
+          const sw = UI.switch((v) => api.muteNotifApp({ app: a.app, muted: !v }), { label: T('Send') + ' ' + a.appName });
           sw.set(!n.muted.includes(a.app));
           return UI.row(a.appName, '', [sw]);
         })

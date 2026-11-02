@@ -37,6 +37,9 @@ const ICONS = {
   multi: 'M2 5h9v6.5H2z M5 14h3 M6.5 11.5V14 M13 4h5v12h-5z M15 13.5h1', // a computer and a phone: Multi-device
 };
 
+// 这些属性装的是给人看的文字，也要查表（shared/i18n.js）；class / role / aria-controls 之类不动。
+const T_ATTRS = new Set(['title', 'aria-label', 'placeholder', 'alt']);
+
 const UI = {
   api: window.macshare,
   P: window.MacShareProtocol,
@@ -47,11 +50,15 @@ const UI = {
     const e = document.createElement(tag);
     for (const [k, v] of Object.entries(props)) {
       if (k === 'class') e.className = v;
-      else if (k === 'text') e.textContent = v;
-      else if (k === 'attrs') for (const [a, av] of Object.entries(v)) e.setAttribute(a, av);
+      else if (k === 'text') e.textContent = T(v);
+      else if (k === 'attrs') for (const [a, av] of Object.entries(v)) e.setAttribute(a, T_ATTRS.has(a) ? T(av) : av);
+      else if (T_ATTRS.has(k)) e[k] = T(v);
       else e[k] = v;
     }
-    for (const c of [].concat(children)) if (c != null && c !== false) e.append(c);
+    for (const c of [].concat(children)) {
+      if (c == null || c === false) continue;
+      e.append(typeof c === 'string' ? T(c) : c);
+    }
     return e;
   },
 
@@ -121,14 +128,14 @@ const UI = {
     const out = UI.el('output');
     let dragging = false;
     input.onpointerdown = () => { dragging = true; };
-    input.oninput = () => { out.textContent = format(Number(input.value)); };
+    input.oninput = () => { out.textContent = T(format(Number(input.value))); };
     input.onchange = () => { dragging = false; onChange(Number(input.value)); };
     return {
       el: UI.el('div', { class: 'slider' }, [input, out]),
       set(v) {
         if (dragging) return;
         input.value = v;
-        out.textContent = format(Number(v));
+        out.textContent = T(format(Number(v)));
       },
     };
   },
@@ -185,12 +192,12 @@ const UI = {
   },
 
   ago(ts) {
-    if (!ts) return 'never';
+    if (!ts) return T('never');
     const s = Math.round((Date.now() - ts) / 1000);
-    if (s < 10) return 'just now';
-    if (s < 60) return `${s} s ago`;
-    if (s < 3600) return `${Math.round(s / 60)} min ago`;
-    if (s < 86400) return `${Math.round(s / 3600)} h ago`;
+    if (s < 10) return T('just now');
+    if (s < 60) return T(`${s} s ago`);
+    if (s < 3600) return T(`${Math.round(s / 60)} min ago`);
+    if (s < 86400) return T(`${Math.round(s / 3600)} h ago`);
     return new Date(ts).toLocaleDateString();
   },
 
@@ -247,7 +254,7 @@ const UI = {
     const card = UI.card('Details', rows);
     card.set = (map) => labels.forEach((label, i) => {
       const t = map[label];
-      vals[label].textContent = t == null ? '' : String(t);
+      vals[label].textContent = t == null ? '' : T(String(t));
       rows[i].hidden = t == null || t === '';
     });
     return card;
@@ -255,7 +262,7 @@ const UI = {
 
   // "Hardware" / "Software" from getStats' powerEfficient flag, with the implementation name.
   codecImpl(name, hw) {
-    return (hw ? 'Hardware' : 'Software') + (name ? ' (' + name + ')' : '');
+    return T((hw ? 'Hardware' : 'Software') + (name ? ' (' + name + ')' : ''));
   },
 
   // Who the other computer is: titles name what is connected. With a
@@ -269,8 +276,8 @@ const UI = {
     const same = os === 'win';
     // Device names everywhere: this PC by its own name,
     // the other computer by its name (or "the other computer" before anything was paired).
-    const me = (s && s.device && s.device.name) || 'This PC';
-    const name = (p && p.name) || 'the other computer';
+    const me = (s && s.device && s.device.name) || T('This PC');
+    const name = (p && p.name) || T('the other computer');
     const Name = name.charAt(0).toUpperCase() + name.slice(1);
     return {
       os, same, me, name, Name, phone: os === 'android',
@@ -317,11 +324,14 @@ const UI = {
     return row;
   },
 
-  // A template with {me}, {name}, {Name}, … filled from the current state.
+  // A template with {me}, {name}, {Name}, … filled from the current state. 整句先查中文词条
+  // （词条里照样写 {name}），再填名字，这样中文的语序可以跟英文不一样。
   fill(t) {
-    if (!t || !String(t).includes('{')) return t || '';
+    if (!t) return '';
+    const s = T(String(t));
+    if (!s.includes('{')) return s;
     const p = UI.peer(UI.state);
-    return String(t).replace(/\{(\w+)\}/g, (m, k) => (k in p ? p[k] : m));
+    return s.replace(/\{(\w+)\}/g, (m, k) => (k in p ? p[k] : m));
   },
 
   isPhone: (s) => !!(s && s.session && s.session.os === 'android'),
@@ -388,7 +398,7 @@ const UI = {
   keyRecorder(onChange, opts = {}) {
     const b = UI.el('button', { class: 'btn small keyrec' });
     let value = '', recording = false;
-    const show = () => { b.textContent = recording ? 'Press keys…' : UI.keysLabel(value) || 'None'; b.classList.toggle('on', recording); };
+    const show = () => { b.textContent = recording ? T('Press keys…') : UI.keysLabel(value) || T('None'); b.classList.toggle('on', recording); };
     const keyOf = (e) => {
       if (/^Key[A-Z]$/.test(e.code)) return e.code.slice(3);
       if (/^Digit\d$/.test(e.code)) return e.code.slice(5);
@@ -421,9 +431,9 @@ const UI = {
 
   // The hotkey choices (P.HOTKEYS) as this PC names them.
   // Right, left or either side (P.HOTKEYS), in this PC's words ("Left Ctrl", "Alt (either side)").
-  HOTKEYS: Object.fromEntries(window.MacShareProtocol.HOTKEYS.map((c) => [c, window.MacShareProtocol.hotkeyName(c, 'win')])),
+  HOTKEYS: Object.fromEntries(window.MacShareProtocol.HOTKEYS.map((c) => [c, T(window.MacShareProtocol.hotkeyName(c, 'win'))])),
   hotkeyName(s) {
-    return UI.P.hotkeyName((s && s.keys && s.keys.hotkey) || 'AltRight', 'win');
+    return T(UI.P.hotkeyName((s && s.keys && s.keys.hotkey) || 'AltRight', 'win'));
   },
 
   // Cursor tab › Cursor lock (shared/cursorlock.js): the switch is not a setting, it lasts until the
@@ -443,10 +453,10 @@ const UI = {
         lock.disable(!connected);
         key.set(s.keys.lockKeys);
         const where = k.mode === 'driving' ? p.name : p.me;
-        const press = s.keys.lockKeys ? ' While the pointer is on ' + p.me + ', ' + UI.keysLabel(s.keys.lockKeys) + ' on either keyboard locks or unlocks it (each computer has its own key).' : '';
-        lockRow.setHint(k.lockError ? k.lockError : !connected ? 'Keeps the pointer on one computer, even when the mouse is plugged into another.' + press
-          : k.locked ? 'The pointer stays on ' + where + ': the screen edges don’t cross.' + press
-            : 'Keeps the pointer on ' + where + ', where it is now, even when the mouse is plugged into another computer.' + press);
+        const press = s.keys.lockKeys ? T(' While the pointer is on ' + p.me + ', ' + UI.keysLabel(s.keys.lockKeys) + ' on either keyboard locks or unlocks it (each computer has its own key).') : '';
+        lockRow.setHint((k.lockError ? k.lockError : !connected ? T('Keeps the pointer on one computer, even when the mouse is plugged into another.')
+          : k.locked ? T('The pointer stays on ' + where + ': the screen edges don’t cross.')
+            : T('Keeps the pointer on ' + where + ', where it is now, even when the mouse is plugged into another computer.')) + press);
       },
     };
   },
@@ -460,14 +470,14 @@ const UI = {
       const p = UI.peer(s);
       const WHERE = { home: 'On ' + p.me, driving: 'On ' + p.name, driven: p.Name + ' is using ' + p.me };
       const off = k.linked === false || k.paused;
-      pill.textContent = off ? 'Sharing off' : (k.locked ? 'Locked · ' : '') + (WHERE[k.mode] || WHERE.home);
+      pill.textContent = T(off ? 'Sharing off' : (k.locked ? 'Locked · ' : '') + (WHERE[k.mode] || WHERE.home));
       pill.className = 'pill ' + (off ? 'bad' : k.mode === 'home' ? 'muted' : 'good');
       row.setHint(k.helper && k.helper !== 'starting' ? k.helper
-        : k.linked === false ? 'Cursor sharing is off. Double-tap ' + UI.hotkeyName(s) + ' to turn it on.'
-        : k.paused ? 'Cursor sharing is off over Bluetooth. It comes back on Wi-Fi, or double-tap ' + UI.hotkeyName(s) + ' to turn it on.'
-        : s.link.state !== 'connected' ? 'Waiting for ' + p.the
-          : k.mode === 'home' && !k.message ? 'Connected to ' + p.name + '. Double-tap ' + UI.hotkeyName(s) + ' to turn cursor sharing off.'
-          : k.message || 'Double-tap ' + UI.hotkeyName(s) + ({ home: ' to turn cursor sharing off', driving: ' to come back and turn cursor sharing off', driven: ' to take it back' }[k.mode] || ''));
+        : k.linked === false ? T('Cursor sharing is off. Double-tap ' + UI.hotkeyName(s) + ' to turn it on.')
+        : k.paused ? T('Cursor sharing is off over Bluetooth. It comes back on Wi-Fi, or double-tap ' + UI.hotkeyName(s) + ' to turn it on.')
+        : s.link.state !== 'connected' ? T('Waiting for ' + p.the)
+          : k.mode === 'home' && !k.message ? T('Connected to ' + p.name + '. Double-tap ' + UI.hotkeyName(s) + ' to turn cursor sharing off.')
+          : k.message || T('Double-tap ' + UI.hotkeyName(s) + ({ home: ' to turn cursor sharing off', driving: ' to come back and turn cursor sharing off', driven: ' to take it back' }[k.mode] || '')));
     };
     return row;
   },

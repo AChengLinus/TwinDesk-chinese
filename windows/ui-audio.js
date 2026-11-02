@@ -44,9 +44,9 @@ UI.tab({
       recvState.hidden = !a.receive;
       const nm = UI.peer(s).name;
       const phone = UI.phoneSound && UI.phoneSound(s);
-      recvState.label.textContent = phone != null ? phone : a.receiving ? 'Playing ' + nm : connected ? 'Turned off on ' + nm : 'Waiting for ' + nm;
+      recvState.label.textContent = T(phone != null ? phone : a.receiving ? 'Playing ' + nm : connected ? 'Turned off on ' + nm : 'Waiting for ' + nm);
       sendState.hidden = !a.send && !a.error;
-      sendState.label.textContent = a.sending ? 'Playing on ' + nm : !connected ? 'Waiting for ' + nm : !a.macAccepts ? 'Turned off on ' + nm : 'Connecting…';
+      sendState.label.textContent = T(a.sending ? 'Playing on {name}' : !connected ? 'Waiting for ' + nm : !a.macAccepts ? 'Turned off on ' + nm : 'Connecting…');
       sendState.setHint(a.error || '');
     };
   },

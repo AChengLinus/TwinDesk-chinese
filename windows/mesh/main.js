@@ -6,6 +6,8 @@
 const { app, BrowserWindow, Tray, Menu, nativeImage, nativeTheme, Notification, shell, globalShortcut } = require('electron');
 const { Updates } = require('../../shared/updates.js');
 const { aboutInfo } = require('../../shared/about.js');
+// 中文界面：原生菜单/托盘/通知里的文字在这里查表（主进程里已有 const T = P.T，所以用 I18n.T）。
+const I18n = require('../../shared/i18n.js');
 const { execFile } = require('child_process');
 const crypto = require('crypto');
 const os = require('os');
@@ -154,6 +156,9 @@ function loadDevice() {
 function start() {
   device = loadDevice();
   settings = loadSettings(store); // settings.json and the mesh's own in multi.json (settings.js)
+  I18n.setLang(settings.ui.lang); // 界面语言（General › App）：主进程这一侧的托盘/通知/状态行跟着它
+  // 渲染进程在加载 UI 模块之前同步问一次语言（preload-app.js 的 sendSync），晚了会闪一下英文。
+  require('electron').ipcMain.on('uiLang', (e) => { e.returnValue = I18n.lang; });
 
   discovery = new Discovery(device);
   discovery.on('change', pushState);
@@ -280,12 +285,12 @@ function start() {
   const liveToast = (tag, title, got, total) => {
     if (Date.now() - live[tag] < 500) return;
     live[tag] = Date.now();
-    helper.send('toastProgress', { aumid: AUMID, tag, title, status: peerName(), value: total ? got / total : -1, label: total ? pct(got, total) + ' %' : '' });
+    helper.send('toastProgress', { aumid: AUMID, tag, title: I18n.T(title), status: peerName(), value: total ? got / total : -1, label: total ? pct(got, total) + ' %' : '' });
   };
   const liveDone = (tag, title, text) => {
     if (!live[tag]) return;
     live[tag] = 0;
-    helper.send('toastDone', { aumid: AUMID, tag, title, text });
+    helper.send('toastDone', { aumid: AUMID, tag, title: I18n.T(title), text: I18n.T(text) });
   };
   fileRecv.onBatchProgress = (b) => {
     if (Date.now() - b.at < 400) return; // small batches: only the "Pasted" / "Received" popup
@@ -335,7 +340,7 @@ function start() {
     onShowModal: showUpdateWindow,
     notify: (title, body, onClick) => {
       if (!Notification.isSupported()) return;
-      updateNote = new Notification({ title, body });
+      updateNote = new Notification({ title: I18n.T(title), body: I18n.T(body) });
       updateNote.on('click', onClick);
       updateNote.show();
     },
@@ -344,7 +349,8 @@ function start() {
   const ipc = setupIpc({ devctl: () => devctl, chats: () => chats, hub, link, discovery, screen, clip, kvm, layoutSync, terminal, sshd, fileDrop, smb, apps, sound, pcScreen, pcApps, peerApps, vdd, notifs, fileClip, wake, updates, settings, save: saveSettings, push: pushState, buildState,
     get phone() { return phone; }, get phoneViews() { return phone ? phone.views : null; }, get phoneDrive() { return phoneDrive; }, connectPhoneDev, cancelPhoneInvite, phoneHub: loadHub,
     get net() { return net; }, applyNet, joinHotspot, applyMesh: () => autoJoin && autoJoin.schedule(),
-    checkFirewall, fixFirewall, setStartup, onApp: updateTray });
+    checkFirewall, fixFirewall, setStartup, onApp: updateTray,
+    onLang: () => { trayKey = ''; updateTray(); } }); // 换语言：托盘菜单的文字得重画一遍
   pairSync = new PairSync({ link, settings, save: saveSettings, set: ipc.set, only: ['clipboard', 'notifs', 'apps', 'audio', 'cursor', 'terminal', 'files'] }); // Two-way switches per pair (no ReZume or Remote here)
   nativeTheme.on('updated', () => { checkTaskbar(); pushState(); });
   link.start();
@@ -936,12 +942,12 @@ function saveSettings() {
 
 function statusLine(s) {
   switch (s.link.state) {
-    case 'connected': return 'Connected to ' + s.link.macName;
-    case 'connecting': return 'Connecting…';
-    case 'reconnecting': return s.link.busy || 'Reconnecting…';
-    case 'stopped': return 'Disconnected';
-    case 'identity_changed': return 'Pair again';
-    default: return 'Not paired';
+    case 'connected': return I18n.T('Connected to ' + s.link.macName);
+    case 'connecting': return I18n.T('Connecting…');
+    case 'reconnecting': return s.link.busy || I18n.T('Reconnecting…');
+    case 'stopped': return I18n.T('Disconnected');
+    case 'identity_changed': return I18n.T('Pair again');
+    default: return I18n.T('Not paired');
   }
 }
 
@@ -1062,7 +1068,7 @@ function updateTray(s = buildState()) {
   const kind = (os) => (os === 'mac' ? 'Mac' : os === 'linux' ? 'Linux' : os === 'android' ? 'Phone' : 'PC');
   tray.setContextMenu(Menu.buildFromTemplate(trayMenu.template({
     connected,
-    status: connected ? 'Connected to ' + name + rtt : 'Not connected',
+    status: connected ? I18n.T('Connected to ' + name + rtt) : I18n.T('Not connected'),
     home: away ? () => kvm.home() : null,
     shared: { checked: kvm.linked && !kvm.paused, set: (on) => kvm.setShared(on) },
     lock: connected ? { label: 'Lock Cursor on ' + (kvm.mode === 'driving' ? other : device.name) + ' (' + CL.keysLabel(settings.keys.lockKeys, 'win') + ')', checked: kvm.locked, set: (on) => kvm.setLocked(on) } : null,

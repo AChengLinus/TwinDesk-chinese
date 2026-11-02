@@ -81,7 +81,7 @@ UI.nowPlaying = () => {
   const sub = el('div', { class: 'np-sub' });
   const prev = ctl('prev', '<path d="M5 4.5v11 M15.5 4.5v11L7 10z"/>', 'Previous');
   const play = ctl('toggle', PLAY, 'Play');
-  const next = ctl('next', '<path d="M15 4.5v11 M4.5 4.5v11L13 10z"/>', 'Next');
+  const next = ctl('next', '<path d="M15 4.5v11 M4.5 4.5v11L13 10z"/>', 'Next track');
   const bar = el('div', { class: 'np-bar' }, [el('div', { class: 'np-fill' })]);
   const time = el('div', { class: 'np-time' });
   const box = el('div', { class: 'np', hidden: true }, [
@@ -129,7 +129,7 @@ UI.nowPlaying = () => {
       title.textContent = now.title;
       sub.textContent = [now.artist, now.appName].filter(Boolean).join(' · ');
       play.replaceChildren(svg(now.playing ? PAUSE : PLAY));
-      play.title = now.playing ? 'Pause' : 'Play';
+      play.title = T(now.playing ? 'Pause' : 'Play');
       play.setAttribute('aria-label', play.title);
       prev.disabled = !now.prev;
       next.disabled = !now.next;

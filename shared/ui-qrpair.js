@@ -25,13 +25,13 @@ UI.qrPairCard = () => {
   const card = UI.card('', [row, box]);
 
   async function refresh() {
-    showBtn.textContent = open ? 'Hide' : 'Show QR Code';
+    showBtn.textContent = T(open ? 'Hide' : 'Show QR Code');
     box.hidden = !open;
     if (!open) return;
     const v = await api.qrPair();
     if (!v || !v.url) {
       img.replaceChildren();
-      note.textContent = (v && v.why) || 'Not ready yet';
+      note.textContent = T((v && v.why) || 'Not ready yet');
       return;
     }
     if (v.url !== url) {
@@ -41,7 +41,7 @@ UI.qrPairCard = () => {
       img.replaceChildren(c);
     }
     until = v.until || 0;
-    note.textContent = 'A new code comes every 10 minutes. Only someone who sees this screen can use it.';
+    note.textContent = T('A new code comes every 10 minutes. Only someone who sees this screen can use it.');
   }
   // A code that ran out is drawn again while it's shown.
   setInterval(() => { if (open && until && Date.now() > until) refresh(); }, 15000);

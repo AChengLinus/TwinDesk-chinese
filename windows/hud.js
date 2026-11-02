@@ -5,6 +5,8 @@
 // Port of mac/hud.js; also used for the file popups.
 const path = require('path');
 const { BrowserWindow, screen } = require('electron');
+// 中文界面：切屏提示（药丸/大卡片）的文字在各个模块里用英文拼好，统一在这里查表。
+const I18n = require('../shared/i18n.js');
 
 const W = 380, H = 64, SHOW_MS = 1400;
 const BIG_W = 460, BIG_H = 230, BIG_MS = 2200; // the cursor sharing on/off card
@@ -43,7 +45,7 @@ class Hud {
     const [w, h] = big ? [BIG_W, BIG_H] : [W, H];
     const y = big ? d.y + (d.height - h) / 2 - d.height * 0.08 : d.y + d.height - h - 72;
     this.win.setBounds({ x: Math.round(d.x + (d.width - w) / 2), y: Math.round(y), width: w, height: h });
-    this.win.webContents.send('hud', { kind, text, sub });
+    this.win.webContents.send('hud', { kind, text: I18n.T(text), sub: I18n.T(sub) });
     this.win.showInactive();
     this.win.moveTop();
     clearTimeout(this.timer);

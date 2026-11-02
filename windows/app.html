@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- TwinDesk — Copyright (C) 2026 inukaasith. GPL-3.0, see LICENSE. -->
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:">
@@ -13,12 +13,12 @@
   <link rel="stylesheet" href="../shared/ui-device.css">
 </head>
 <body>
-  <nav id="sidebar" aria-label="Sections">
+  <nav id="sidebar" data-ta="aria-label|Sections">
     <div class="identity">
       <div class="app-mark" aria-hidden="true"></div>
       <div class="who">
         <div class="app-name">TwinDesk</div>
-        <div class="peer"><span id="peer-dot" class="dot"></span><span id="peer-text">Not paired</span></div>
+        <div class="peer"><span id="peer-dot" class="dot"></span><span id="peer-text" data-t="Not paired">Not paired</span></div>
       </div>
     </div>
     <div id="phones"></div>
@@ -28,18 +28,27 @@
   <main id="content">
     <section id="banner" class="banner" hidden>
       <div class="banner-text">
-        <div><strong id="pair-title">Pairing</strong></div>
-        <div id="pair-code-wrap"><span class="code-label">Code</span> <span id="pair-code" class="code"></span></div>
+        <div><strong id="pair-title" data-t="Pairing">Pairing</strong></div>
+        <div id="pair-code-wrap"><span class="code-label" data-t="Code">Code</span> <span id="pair-code" class="code"></span></div>
         <div id="pair-hint" class="hint"></div>
       </div>
       <div class="banner-actions">
-        <button id="pair-match" class="btn primary">Codes match</button>
-        <button id="pair-cancel" class="btn">Cancel</button>
+        <button id="pair-match" class="btn primary" data-t="Codes match">Codes match</button>
+        <button id="pair-cancel" class="btn" data-t="Cancel">Cancel</button>
       </div>
     </section>
     <div id="pages"></div>
   </main>
 
+  <script src="../shared/i18n.js"></script>
+  <script src="../shared/lang/zh.core.js"></script>
+  <script src="../shared/lang/zh.media.js"></script>
+  <script src="../shared/lang/zh.comms.js"></script>
+  <script src="../shared/lang/zh.io.js"></script>
+  <script src="../shared/lang/zh.devices.js"></script>
+  <script src="../shared/lang/zh.settings.js"></script>
+  <script src="../shared/lang/zh.pages.js"></script>
+  <script src="../shared/i18n-dom.js"></script><!-- 词典装好之后填 data-t / data-ta（必须排在 lang 之后） -->
   <script src="../shared/protocol.js"></script>
   <script src="ui-kit.js"></script>
   <script src="../shared/otp.js"></script>

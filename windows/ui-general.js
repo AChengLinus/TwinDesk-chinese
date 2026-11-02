@@ -50,6 +50,10 @@ UI.tab({
     const media = UI.mediaControlsRow(); // a phone's media controls on the Phone page (shared/ui-nowplaying.js)
     const deviceName = el('span', { class: 'value' });
     const deviceRow = UI.row('Computer name', 'How other computers see this one', [deviceName]);
+    // 界面语言（settings.ui.lang，shared/i18n.js）：换完 reload 一次，所有页面和托盘菜单跟着换。
+    const langSeg = UI.segmented([{ value: 'zh', label: '中文' }, { value: 'en', label: 'English' }],
+      (v) => api.setUiLang(v).then(() => location.reload()));
+    const langRow = UI.row('Language', 'Every TwinDesk window and the tray menu', [langSeg.el]);
 
     // Appearance: the phone's wallpaper behind it here (settings.phone.wallpaper, was on the Phone page).
     const wallSw = UI.switch((v) => api.setPhone({ wallpaper: v }), { label: 'Show the phone’s wallpaper' });
@@ -69,6 +73,7 @@ UI.tab({
         UI.row('Start with Windows', 'TwinDesk waits in the tray', [startup]),
         recvRow,
       ]),
+      UI.card('App', [langRow]),
       UI.card('Appearance', [
         UI.row('Show a popup when switching', 'When the mouse and keyboard move between devices', [hudSw]),
         wallRow,
@@ -87,12 +92,13 @@ UI.tab({
       for (const k of Object.keys(partSw)) partSw[k].set(ov[k] !== false);
       startup.set(s.startup);
       hudSw.set(s.app.hud);
+      langSeg.set((s.ui && s.ui.lang) === 'en' ? 'en' : 'zh');
       const f = s.files || {};
       recvReset.hidden = !f.receivedFolder;
       recvRow.setHint((f.receivedFolder && f.received !== f.receivedFolder ? f.receivedFolder + ' isn’t there now: Downloads meanwhile. ' : (f.received || 'Downloads') + ' · ')
         + 'Files sent to {me} from another computer or a phone, and what’s saved from a phone’s Files and Photos');
       const fw = s.firewall || {};
-      fwPill.textContent = fw.checking ? 'Checking…' : fw.ok ? 'OK' : fw.ok === false ? 'Needs a fix' : '';
+      fwPill.textContent = T(fw.checking ? 'Checking…' : fw.ok ? 'OK' : fw.ok === false ? 'Needs a fix' : '');
       fwPill.className = 'pill ' + (fw.checking ? 'muted' : fw.ok ? 'good' : 'bad');
       fwRow.setHint(fw.ok === false ? fw.message || '' : '');
       fwCheck.disabled = !!fw.checking;
@@ -105,11 +111,11 @@ UI.tab({
           : 'Its network adapter wakes {me} on a magic packet. Asks for administrator rights to change it');
       sendToRow.setHint(s.peer ? 'Right-click files › Send to › ' + s.peer.name + ' (TwinDesk)' : 'Shows up once a computer is paired');
       const h = s.kvmState.helper;
-      helperPill.textContent = h ? (h === 'starting' ? 'Starting…' : 'Not running') : 'Running';
+      helperPill.textContent = T(h ? (h === 'starting' ? 'Starting…' : 'Not running') : 'Running');
       helperPill.className = 'pill ' + (h ? (h === 'starting' ? 'muted' : 'bad') : 'good');
       helperRow.setHint(h && h !== 'starting' ? h : '');
       const v = s.pcScreen.vdd;
-      vddPill.textContent = !v.checked ? 'Checking…' : v.busy === 'install' ? 'Installing…' : v.busy === 'remove' ? 'Removing…' : v.installed ? 'Installed' : 'Not installed';
+      vddPill.textContent = T(!v.checked ? 'Checking…' : v.busy === 'install' ? 'Installing…' : v.busy === 'remove' ? 'Removing…' : v.installed ? 'Installed' : 'Not installed');
       vddPill.className = 'pill ' + (!v.checked || v.busy ? 'muted' : v.installed ? 'good' : 'bad');
       vddInstall.hidden = !v.checked || v.installed;
       vddInstall.disabled = !!v.busy;
@@ -128,7 +134,7 @@ UI.tab({
           : 'On the same Wi-Fi network (not Wi-Fi Direct), Bluetooth goes off until the session ends. With a computer, phones can’t find this one meanwhile');
       blePcRow.setHint(n.blePc !== true ? 'Only computers on this network connect'
         : radio || 'A computer nearby connects through Bluetooth; files and screens switch to Wi-Fi Direct for a moment');
-      btPill.textContent = n.radio === 'off' ? 'Off' : n.radio === 'unsupported' ? 'Not supported' : n.radio ? 'On' : 'Unknown';
+      btPill.textContent = T(n.radio === 'off' ? 'Off' : n.radio === 'unsupported' ? 'Not supported' : n.radio ? 'On' : 'Unknown');
       btPill.className = 'pill ' + (n.radio === 'off' || n.radio === 'unsupported' ? 'bad' : n.radio ? 'good' : 'muted');
       deviceName.textContent = s.device.name;
     };

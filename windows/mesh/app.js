@@ -113,7 +113,7 @@
       v.body.inert = off; // shown as it is; it works again on Wi-Fi
     }
     // macOnly: true = only with a Mac; 'linux' = everything but a Linux peer (Apps).
-    const limited = !v.limitNote || !s.peer ? '' : v.def.macOnly === 'linux' ? (s.peer.os === 'linux' ? 'Not on Linux yet' : '') : UI.peer(s).limited;
+    const limited = !v.limitNote || !s.peer ? '' : v.def.macOnly === 'linux' ? (s.peer.os === 'linux' ? T('Not on Linux yet') : '') : UI.peer(s).limited;
     if (v.limitNote) v.limitNote.set(limited);
     if (v.master) {
       const d = v.def.master.disabled; // a boolean, or (s) => boolean
@@ -148,11 +148,11 @@
     const dot = l.state === 'connected' ? 'good' : l.state === 'identity_changed' ? 'bad'
       : (s.pairing || l.state === 'connecting' || l.state === 'reconnecting') ? 'warn' : '';
     $('peer-dot').className = 'dot ' + dot;
-    let text = 'Not paired';
+    let text = T('Not paired');
     if (l.state === 'connected') text = l.macName + (UI.via(s) !== 'Wi-Fi' ? ' · ' + UI.via(s) : '') + (l.rtt != null ? ' · ' + l.rtt + ' ms' : '');
-    else if (s.pairing) text = 'Pairing…';
-    else if (l.state === 'connecting' || l.state === 'reconnecting') text = 'Reconnecting…';
-    else if (l.state === 'identity_changed') text = 'Identity changed';
+    else if (s.pairing) text = T('Pairing…');
+    else if (l.state === 'connecting' || l.state === 'reconnecting') text = T('Reconnecting…');
+    else if (l.state === 'identity_changed') text = T('Identity changed');
     $('peer-text').textContent = text;
     renderPhones(s);
     // Tabs that don't apply to the peer (a phone has no terminal or screen to share to it…).
@@ -221,11 +221,11 @@
     // their wallpaper) built again only when something else changed, else they flicker.
     const subOf = (d) => {
       const mine = (ph.phones || []).find((x) => x.id === d.id) || null; // this phone's own numbers, not the active one's
-      if (!d.connected) return ph.connecting && ph.connecting.id === d.id ? 'Connecting…' : 'Nearby · Click to connect';
+      if (!d.connected) return ph.connecting && ph.connecting.id === d.id ? T('Connecting…') : T('Nearby · Click to connect');
       const rtt = mine ? mine.rttMs : ph.connected && ph.connected.rttMs;
       const bat = mine ? mine.battery : info.battery;
       const chg = mine ? mine.charging : info.charging;
-      return (rtt != null ? rtt + ' ms' : 'Connected') + (bat != null ? ' · ' + bat + '%' + (chg ? ' ⚡' : '') : '');
+      return (rtt != null ? rtt + ' ms' : T('Connected')) + (bat != null ? ' · ' + bat + '%' + (chg ? ' ⚡' : '') : '');
     };
     const phones = ph.nearby.map((d) => ({ id: d.id, name: d.name, connected: !!d.connected, connecting: !!(ph.connecting && ph.connecting.id === d.id), sub: subOf(d) }));
     const tiles = M.buildTiles({ peers: s.peers || [], phones, transport: UI.via(s) });
@@ -234,7 +234,9 @@
       const subs = new Map(tiles.map((t) => [t.id, t.sub]));
       for (const b of $('phones').children) {
         const sub = b.querySelector('.phone-sub');
-        if (sub && subs.has(b.dataset.id) && sub.textContent !== subs.get(b.dataset.id)) sub.textContent = subs.get(b.dataset.id);
+        if (!sub || !subs.has(b.dataset.id)) continue;
+        const want = T(subs.get(b.dataset.id)); // 中文后字符数不同，先换算再比，免得每帧都重写
+        if (sub.textContent !== want) sub.textContent = want;
       }
       return;
     }
@@ -252,11 +254,11 @@
       }
       const b = el('button', {
         class: 'phone-tile' + (t.kind === 'computer' ? ' computer' : '') + (t.connected ? ' connected' : '') + (t.selected ? ' selected' : '') + (t.state === 'via' ? ' via' : ''),
-        title: t.state === 'via' ? t.name + ' is reached through ' + t.via.join(', ') : t.action === 'connect' ? 'Connect to ' + t.name : t.name,
+        title: T(t.state === 'via' ? t.name + ' is reached through ' + t.via.join(', ') : t.action === 'connect' ? 'Connect to ' + t.name : t.name),
       }, [
         wall,
         el('span', { class: 'phone-text' }, [el('span', { class: 'phone-name', text: t.name }), el('span', { class: 'phone-sub', text: t.sub })]),
-        t.connected ? el('span', { class: 'dot good' }) : t.state === 'connecting' ? el('span', { class: 'spin', attrs: { 'aria-hidden': 'true' } }) : t.state === 'via' ? el('span', { class: 'pill muted', text: 'via ' + (t.via[0] || '…') }) : null,
+        t.connected ? el('span', { class: 'dot good' }) : t.state === 'connecting' ? el('span', { class: 'spin', attrs: { 'aria-hidden': 'true' } }) : t.state === 'via' ? el('span', { class: 'pill muted', text: T('via ' + (t.via[0] || '…')) }) : null,
       ]);
       b.dataset.id = t.id;
       b.dataset.connected = t.connected ? '1' : '';
@@ -265,7 +267,7 @@
       b.onclick = () => pick(t);
       if (t.forget && t.forget.length) { // paired but offline: forget it (right-click, or the x on hover); a stale twin goes too
         const forget = () => { for (const id of t.forget) Promise.resolve(api.forgetPeer(id)).catch(() => {}); };
-        b.appendChild(el('span', { class: 'tile-x', role: 'button', title: 'Forget ' + t.name, text: '×', onclick: (e) => { e.stopPropagation(); forget(); } }));
+        b.appendChild(el('span', { class: 'tile-x', role: 'button', title: T('Forget ' + t.name), text: '×', onclick: (e) => { e.stopPropagation(); forget(); } }));
         b.oncontextmenu = (e) => { e.preventDefault(); forget(); };
       }
       return b;
@@ -278,30 +280,30 @@
     $('banner').hidden = !s.pairing && !inv;
     if (inv) { // this PC asked a phone to pair: it goes on there
       $('banner').classList.remove('failed');
-      $('pair-title').textContent = 'Press Pair on ' + inv.name;
+      $('pair-title').textContent = T('Press Pair on ' + inv.name);
       $('pair-code-wrap').hidden = true;
       $('pair-match').hidden = true;
-      $('pair-cancel').textContent = 'Cancel';
-      $('pair-hint').textContent = 'TwinDesk on ' + inv.name + ' asks to pair with this PC. Press Pair there, then compare the codes.';
+      $('pair-cancel').textContent = T('Cancel');
+      $('pair-hint').textContent = T('TwinDesk on ' + inv.name + ' asks to pair with this PC. Press Pair there, then compare the codes.');
       return;
     }
     const p = s.pairing;
     if (!p) return;
     $('banner').classList.toggle('failed', p.phase === 'failed');
     const host = p.role === 'host'; // another computer asks to pair with this PC
-    $('pair-title').textContent = host ? p.macName + ' wants to pair' : 'Pairing with ' + p.macName;
+    $('pair-title').textContent = T(host ? p.macName + ' wants to pair' : 'Pairing with ' + p.macName);
     $('pair-code-wrap').hidden = !p.code || !!p.wired; // on the USB cable: nothing to compare
     $('pair-code').textContent = p.code ? p.code.slice(0, 3) + ' ' + p.code.slice(3) : '';
     $('pair-match').hidden = host ? !p.code || p.allowed : p.phase !== 'code';
-    $('pair-match').textContent = host ? 'Allow' : 'Codes match';
-    $('pair-cancel').textContent = host ? 'Deny' : p.phase === 'failed' ? 'Close' : 'Cancel';
+    $('pair-match').textContent = T(host ? 'Allow' : 'Codes match');
+    $('pair-cancel').textContent = T(host ? 'Deny' : p.phase === 'failed' ? 'Close' : 'Cancel');
     const hints = {
-      connecting: 'Connecting to ' + p.address + '…',
-      starting: 'Waiting for ' + p.macName + '…',
-      code: 'Check that ' + p.macName + ' shows the same code, then click Codes match.',
-      waiting: 'Waiting for Allow on ' + p.macName + '…',
+      connecting: T('Connecting to ' + p.address + '…'),
+      starting: T('Waiting for ' + p.macName + '…'),
+      code: T('Check that ' + p.macName + ' shows the same code, then click Codes match.'),
+      waiting: T('Waiting for Allow on ' + p.macName + '…'),
       failed: p.error,
-      request: p.wired ? (p.allowed ? 'Pairing…' : p.macName + ' is on the USB cable. Click Allow to pair.') : !p.code ? 'Waiting for the code…' : p.allowed ? 'Waiting for ' + p.macName + '…' : 'Check that ' + p.macName + ' shows the same code, then click Allow.',
+      request: T(p.wired ? (p.allowed ? 'Pairing…' : p.macName + ' is on the USB cable. Click Allow to pair.') : !p.code ? 'Waiting for the code…' : p.allowed ? 'Waiting for ' + p.macName + '…' : 'Check that ' + p.macName + ' shows the same code, then click Allow.'),
     };
     $('pair-hint').textContent = hints[p.phase] || '';
   }
@@ -317,17 +319,17 @@
     if (key === peerKey) return;
     peerKey = key;
     // The Display tabs keep their names (Receive screen / Share screen); headings name the peer.
-    const heads = { 'mac-pc': p.Name + ' on ' + p.me, 'pc-mac': p.me + ' on ' + p.name }; // as the Mac: "Inuka on Inukas-MBA"
+    const heads = { 'mac-pc': T(p.Name + ' on ' + p.me), 'pc-mac': T(p.me + ' on ' + p.name) }; // as the Mac: "Inuka on Inukas-MBA"
     for (const [id, text] of Object.entries(heads)) {
       const v = views.get(id);
       if (v) v.headText.textContent = text;
     }
-    for (const e of document.querySelectorAll('[data-dir="m2p"]')) e.textContent = p.toMe;
-    for (const e of document.querySelectorAll('[data-dir="p2m"]')) e.textContent = p.fromMe;
+    for (const e of document.querySelectorAll('[data-dir="m2p"]')) e.textContent = T(p.toMe);
+    for (const e of document.querySelectorAll('[data-dir="p2m"]')) e.textContent = T(p.fromMe);
     // Sentences and route heads with the real name ({name}, {the}, {them}).
-    for (const e of document.querySelectorAll('[data-peer]')) e.textContent = e.dataset.peer.replace(/\{(\w+)\}/g, (m, k) => (k in p ? p[k] : m));
+    for (const e of document.querySelectorAll('[data-peer]')) e.textContent = T(e.dataset.peer).replace(/\{(\w+)\}/g, (m, k) => (k in p ? p[k] : m));
     for (const e of document.querySelectorAll('[data-os="peer"]')) e.className = 'os-ico ' + UI.osClass(p.os);
-    for (const e of document.querySelectorAll('.route')) e.setAttribute('aria-label', [...e.querySelectorAll('.nm')].map((n) => n.textContent).join(' to '));
+    for (const e of document.querySelectorAll('.route')) e.setAttribute('aria-label', [...e.querySelectorAll('.nm')].map((n) => n.textContent).join(T(' to ')));
   }
 
   // The selected device changed: the sections show the new device (no data of the previous one stays), and

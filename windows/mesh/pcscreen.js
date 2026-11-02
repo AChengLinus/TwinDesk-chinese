@@ -11,6 +11,7 @@
 const { desktopCapturer, screen: displays } = require('electron');
 const P = require('../../shared/protocol.js');
 const RemoteInput = require('../remote-input');
+const I18n = require('../../shared/i18n.js');
 
 const T = P.T;
 
@@ -279,8 +280,8 @@ class PcScreen {
       .filter(({ r }) => !(v && r.x === v.x && r.y === v.y))
       .map(({ d, r }, i) => {
         // The monitor's own name; a laptop panel often has none (real names, not 'Monitor').
-        const name = d.label || (d.internal ? 'Built-in screen' : 'Monitor ' + (i + 1));
-        return { id: String(d.id), label: name + ', ' + r.width + ' × ' + r.height + (d.id === primary ? ' (main)' : '') };
+        const name = d.label || (d.internal ? I18n.T('Built-in screen') : I18n.T('Monitor') + ' ' + (i + 1));
+        return { id: String(d.id), label: name + ', ' + r.width + ' × ' + r.height + (d.id === primary ? ' ' + I18n.T('(main)') : '') };
       });
   }
 
@@ -305,7 +306,7 @@ PcScreen.displayModel = () => {
   const ox = o ? o.r.x : 0;
   const oy = o ? o.r.y : 0;
   return rects.map(({ d, r }, i) => ({
-    id: String(d.id), name: d.label || (d.internal ? 'Built-in screen' : 'Monitor ' + (i + 1)),
+    id: String(d.id), name: d.label || (d.internal ? I18n.T('Built-in screen') : I18n.T('Monitor') + ' ' + (i + 1)),
     x: r.x - ox, y: r.y - oy, w: r.width, h: r.height, scale: d.scaleFactor || 1, primary: d.id === primary.id,
   }));
 };

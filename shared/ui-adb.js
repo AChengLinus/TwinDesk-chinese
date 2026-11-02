@@ -49,14 +49,14 @@ UI.adbCard = () => {
     const off = br.state === 'waitingWifi';
     const [cls, label] = STATES[br.state] || STATES.off;
     pill.className = 'pill ' + (ready && br.inputBlocked ? 'bad' : cls);
-    pill.textContent = ready && br.inputBlocked ? 'Touch blocked' : label;
+    pill.textContent = T(ready && br.inputBlocked ? 'Touch blocked' : label);
     retry.hidden = ready;
     row.setHint(off ? (/direct Wi-Fi/.test(br.message) ? br.message : 'Off on the phone. Mirroring and ADB control need it; Accessibility control doesn’t.')
       : ready && br.inputBlocked ? 'The screen works, but this Xiaomi blocks input. On the phone: Developer options › USB debugging (Security settings).'
         : ready ? 'Screen, apps, touch and keyboard, and the clipboard in the background' : br.message || '');
     const pairable = br.state === 'needsPair' || !!br.canPair;
     howBtn.hidden = ready;
-    howBtn.textContent = howOpen ? 'Hide steps' : 'Show steps';
+    howBtn.textContent = T(howOpen ? 'Hide steps' : 'Show steps');
     how.hidden = ready || !howOpen;
     pairRow.hidden = !pairable;
     steps.set(br.state === 'needsPair' ? 'TwinDesk pairs with the phone’s wireless debugging once. After that, mirroring, phone apps and ADB control work without this step.' : '');

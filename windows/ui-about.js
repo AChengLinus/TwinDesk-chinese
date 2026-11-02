@@ -74,14 +74,14 @@ UI.tab({
     return (s) => {
       const a = s.about || { app: {}, pc: {} };
       nameEl.textContent = a.app.name || 'TwinDesk';
-      verEl.textContent = 'Version ' + (a.app.version || s.version || '');
+      verEl.textContent = T('Version ' + (a.app.version || s.version || ''));
       thanksRow.setHint(a.app.thanks || '');
       thanksRow.hidden = !a.app.thanks;
       pc.set({
         'Computer name': a.pc.host,
         System: a.pc.os,
         Kernel: a.pc.kernel,
-        Processor: a.pc.cpu ? a.pc.cpu + (a.pc.cores ? ' · ' + a.pc.cores + ' cores' : '') : '',
+        Processor: a.pc.cpu ? a.pc.cpu + (a.pc.cores ? T(' · ' + a.pc.cores + ' cores') : '') : '',
         Memory: a.pc.memory,
         Architecture: a.pc.arch,
       });
@@ -93,10 +93,10 @@ UI.tab({
         updGet.hidden = !u.available;
         updNotes.hidden = !u.available;
         updUnskip.hidden = !u.available || !u.skipped;
-        updStatus.textContent = u.checking ? 'Checking…'
+        updStatus.textContent = T(u.checking ? 'Checking…'
           : u.available
             ? (u.skipped ? u.latest + ' is available (skipped)' : u.latest + ' is available')
-            : u.checkedAt ? 'Up to date' : '';
+            : u.checkedAt ? 'Up to date' : '');
         updRow.setHint(u.error ? 'Couldn’t check: ' + u.error
           : u.available ? 'You have ' + u.current + '. ' + (u.download ? 'Download ' + u.download.name : 'Opens the release page')
             : u.noReleases ? 'Version ' + u.current + '. No releases published yet'

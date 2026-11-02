@@ -17,7 +17,7 @@ UI.tab({
     const { api } = UI;
     const turnOff = UI.button('Turn off', () => {
       turnOff.disabled = true;
-      turnOff.textContent = 'Restarting…';
+      turnOff.textContent = T('Restarting…');
       api.setMulti(false);
     }, 'small');
 

@@ -11,19 +11,23 @@
 //       found: [{label, click}], byAddress(), lookAgain(), again?: {label, click},
 //       disconnect?: {label, click}, update?: {label, click}, open(), log(), quit(),
 //       rezume?: [{label, click}] (Continue …, Send … to: shared/rezume.js)}
+// 中文界面：菜单项写英文原串，tr() 查表换成中文；设备名、屏幕名查不到就原样显示。
 'use strict';
 
-const check = (label, o) => ({ label, type: 'checkbox', checked: !!o.checked, click: (i) => o.set(i.checked) });
+const I18n = require('./i18n.js');
+const tr = (s) => I18n.T(s);
+
+const check = (label, o) => ({ label: tr(label), type: 'checkbox', checked: !!o.checked, click: (i) => o.set(i.checked) });
 const sep = { type: 'separator' };
 
 function connectTo(m) {
   return {
-    label: 'Connect To',
+    label: tr('Connect To'),
     submenu: [
-      ...(m.found.length ? m.found : [{ label: 'Nobody nearby', enabled: false }]),
+      ...(m.found.length ? m.found : [{ label: tr('Nobody nearby'), enabled: false }]),
       sep,
-      { label: 'Connect by Address…', click: m.byAddress },
-      { label: 'Look Again', click: m.lookAgain },
+      { label: tr('Connect by Address…'), click: m.byAddress },
+      { label: tr('Look Again'), click: m.lookAgain },
     ],
   };
 }
@@ -31,16 +35,16 @@ function connectTo(m) {
 function template(m) {
   const status = { label: m.status, enabled: false };
   if (!m.connected) {
-    return [status, ...(m.again ? [m.again] : []), connectTo(m), sep, { label: 'Open TwinDesk…', click: m.open }, { label: 'Quit TwinDesk', click: m.quit }];
+    return [status, ...(m.again ? [{ ...m.again, label: tr(m.again.label) }] : []), connectTo(m), sep, { label: tr('Open TwinDesk…'), click: m.open }, { label: tr('Quit TwinDesk'), click: m.quit }];
   }
   return [
     status,
-    ...(m.home ? [{ label: 'Bring Mouse and Keyboard Back', click: m.home }] : []),
+    ...(m.home ? [{ label: tr('Bring Mouse and Keyboard Back'), click: m.home }] : []),
     ...(m.rezume && m.rezume.length ? [...m.rezume, sep] : []),
     check('Cursor Sharing', m.shared),
     sep,
     {
-      label: 'Mouse and Keyboard',
+      label: tr('Mouse and Keyboard'),
       submenu: [
         check('Share Keyboard', m.keyboard),
         ...(m.lock ? [check(m.lock.label, m.lock)] : []),
@@ -51,15 +55,15 @@ function template(m) {
         check('Show a Popup When Switching', m.popup),
       ],
     },
-    { label: 'Screen', submenu: m.screen.map((x) => check(x.label, x)) },
-    { label: 'Clipboard and Sound', submenu: [check('Share Clipboard', m.clipboard), check('Send Sound', m.sound)] },
-    { label: 'Files', submenu: [check('Drag Files Across the Screen Edge', m.drag), check(m.shortcuts.label, m.shortcuts)] },
-    { label: 'Connection', submenu: [...(m.disconnect ? [m.disconnect, sep] : []), connectTo(m)] },
+    { label: tr('Screen'), submenu: m.screen.map((x) => check(x.label, x)) },
+    { label: tr('Clipboard and Sound'), submenu: [check('Share Clipboard', m.clipboard), check('Send Sound', m.sound)] },
+    { label: tr('Files'), submenu: [check('Drag Files Across the Screen Edge', m.drag), check(m.shortcuts.label, m.shortcuts)] },
+    { label: tr('Connection'), submenu: [...(m.disconnect ? [{ ...m.disconnect, label: tr(m.disconnect.label) }, sep] : []), connectTo(m)] },
     sep,
-    ...(m.update ? [m.update] : []),
-    { label: 'Open TwinDesk…', click: m.open },
-    { label: 'Open Log Folder', click: m.log },
-    { label: 'Quit TwinDesk', click: m.quit },
+    ...(m.update ? [{ ...m.update, label: tr(m.update.label) }] : []),
+    { label: tr('Open TwinDesk…'), click: m.open },
+    { label: tr('Open Log Folder'), click: m.log },
+    { label: tr('Quit TwinDesk'), click: m.quit },
   ];
 }
 

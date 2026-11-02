@@ -128,7 +128,7 @@ UI.tab({
       h1.textContent = c.name;
       desc.textContent = [info.maker && info.model ? `${info.maker} ${info.model}` : info.model, info.release && `Android ${info.release}`].filter(Boolean).join(' · ');
       name.textContent = c.name;
-      sub.textContent = [c.usb ? 'USB cable' : '', c.rttMs != null ? `${c.rttMs} ms` : 'Connected', info.battery != null ? `Battery ${info.battery}%${info.charging ? ', charging' : ''}` : ''].filter(Boolean).join(' · ');
+      sub.textContent = [c.usb ? T('USB cable') : '', c.rttMs != null ? `${c.rttMs} ms` : T('Connected'), info.battery != null ? T(`Battery ${info.battery}%${info.charging ? ', charging' : ''}`) : ''].filter(Boolean).join(' · ');
       if (UI.phoneWall) dev.style.setProperty('--phone-wall', UI.phoneWall);
       else if (info.colors && info.colors.length) dev.style.setProperty('--phone-wall', `linear-gradient(160deg, ${info.colors.join(', ')}${info.colors.length === 1 ? `, ${info.colors[0]}` : ''})`);
       else dev.style.removeProperty('--phone-wall');
@@ -137,16 +137,16 @@ UI.tab({
       showBtn.disabled = !ready;
       const n = s.net || {};
       wifiOn = (n.why || []).includes('user') || !!n.linked; // made for the screen or files too
-      wifiBtn.textContent = wifiOn ? 'Back to Bluetooth' : 'Connect with Wi-Fi Direct';
+      wifiBtn.textContent = T(wifiOn ? 'Back to Bluetooth' : 'Connect with Wi-Fi Direct');
       wifiBtn.hidden = !(wifiOn || !!(s.net && s.net.transport === 'ble'));
       hotspotBtn.hidden = wifiOn || n.state === 'hotspot' || !(s.net && s.net.transport === 'ble');
       const off = br.state === 'waitingWifi';
       howBtn.hidden = !off;
-      howBtn.textContent = howOpen ? 'Hide' : 'Show me how';
+      howBtn.textContent = T(howOpen ? 'Hide' : 'Show me how');
       how.hidden = !off || !howOpen;
       const [cls, label] = STATES[br.state] || STATES.off;
       adbPill.className = `pill ${ready && br.inputBlocked ? 'bad' : cls}`;
-      adbPill.textContent = ready && br.inputBlocked ? 'Touch blocked' : label;
+      adbPill.textContent = T(ready && br.inputBlocked ? 'Touch blocked' : label);
       adbRow.setHint(off ? (/direct Wi-Fi/.test(br.message) ? br.message : 'Wireless debugging is off on the phone. The screen and ADB control need it; Accessibility doesn’t.') : ready && br.inputBlocked ? 'The screen works, but Xiaomi refuses touch, mouse and keyboard from here. On the phone: Settings › Developer options › USB debugging (Security settings): on (it asks for a Mi account).'
         : ready ? 'The phone’s screen, touch, mouse and keyboard, and its clipboard in the background' : br.message);
       pairRow.hidden = br.state !== 'needsPair' && !br.canPair;
@@ -160,8 +160,8 @@ UI.tab({
       fullBtn.hidden = full;
       fullBtn.disabled = !ready || !br.fullApk || (inst && inst.state === 'installing');
       fullRow.setHint(inst && inst.state !== 'failed' && inst.message ? inst.message
-        : !br.fullApk ? 'This build of TwinDesk doesn’t carry the Android app.'
-          : `${inst && inst.state === 'failed' ? `${inst.message} ` : ''}The TwinDesk you downloaded can’t read the phone’s notifications (Play Protect blocks downloaded apps that can). Install the full app over it: its settings and pairing stay.${ready ? '' : ' Needs wireless debugging.'}`);
+        : !br.fullApk ? T('This build of TwinDesk doesn’t carry the Android app.')
+          : T(`${inst && inst.state === 'failed' ? `${inst.message} ` : ''}The TwinDesk you downloaded can’t read the phone’s notifications (Play Protect blocks downloaded apps that can). Install the full app over it: its settings and pairing stay.${ready ? '' : ' Needs wireless debugging.'}`));
 
       const settings = ph.settings || {};
       sound.set(!!settings.sound);
@@ -171,8 +171,8 @@ UI.tab({
       arrowSwipe.set(settings.arrowSwipe === true);
       controls.set(settings.controls || 'top');
       via.set(br.input || (settings.input === 'phone' ? 'phone' : 'adb'));
-      viaRow.setHint(br.inputMode === 'auto' ? (br.state === 'ready' ? 'Automatic: ADB, wireless debugging is ready' : 'Automatic: Accessibility until wireless debugging is ready')
-        : br.input === 'phone' ? 'TwinDesk on the phone taps and types itself. The phone asks once to allow it in Accessibility' : 'Wireless debugging: full control');
+      viaRow.setHint(T(br.inputMode === 'auto' ? (br.state === 'ready' ? 'Automatic: ADB, wireless debugging is ready' : 'Automatic: Accessibility until wireless debugging is ready')
+        : br.input === 'phone' ? 'TwinDesk on the phone taps and types itself. The phone asks once to allow it in Accessibility' : 'Wireless debugging: full control'));
 
       // apps (icons come with UI.phoneAssets)
       const apps = (UI.phoneAssets && UI.phoneAssets.apps) || [];

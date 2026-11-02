@@ -198,7 +198,8 @@ function normalize(s) {
     // that restarts, a phone connecting don't bring the screen back).
     setup: { skipped: Array.isArray(setup.skipped) ? setup.skipped.filter((x) => typeof x === 'string').slice(0, 10) : [], done: bool(setup.done, Array.isArray(setup.skipped) && setup.skipped.length > 0) },
     // overview: what Overview shows (General › Overview), each on unless switched off.
-    ui: { tab: OLD_TABS[ui.tab] || (TABS.includes(ui.tab) ? ui.tab : 'overview'), overview: overviewParts(ui.overview), chats: bool(ui.chats, false) },
+    // lang: the interface language (General › App): 'zh' 中文, 'en' the English text as written.
+    ui: { tab: OLD_TABS[ui.tab] || (TABS.includes(ui.tab) ? ui.tab : 'overview'), overview: overviewParts(ui.overview), chats: bool(ui.chats, false), lang: ui.lang === 'en' ? 'en' : 'zh' },
     windows: s.windows && typeof s.windows === 'object' ? s.windows : {},
   };
 }

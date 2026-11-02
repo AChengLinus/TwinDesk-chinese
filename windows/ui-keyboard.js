@@ -43,7 +43,7 @@ UI.tab({
       switchSw.set(s.kvm.hotkeySwitch);
       switchSw.disable(!!s.kvm.mouse);
       switchRow.setHint(s.kvm.mouse ? 'Only when Cursor is off' : 'Double-tap to type on ' + p.the + ' and back');
-      otherHotkey.label.textContent = 'Hotkey on ' + p.the;
+      otherHotkey.label.textContent = T('Hotkey on {name}');
       otherHotkey.setHint('Set in TwinDesk on ' + p.the);
       // Ctrl/Cmd swapping only between a Mac and a PC.
       swapRow.hidden = p.os !== 'mac';

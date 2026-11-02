@@ -76,12 +76,12 @@ UI.tab({
 
     function paint() {
       wrap.classList.toggle('selecting', selecting);
-      selectBtn.textContent = selecting ? 'Done' : 'Select';
+      selectBtn.textContent = T(selecting ? 'Done' : 'Select');
       saveBtn.hidden = !selecting;
       saveBtn.disabled = !chosen.size;
-      saveBtn.textContent = chosen.size ? `Save ${chosen.size} to ${UI.fill('{me}')}` : 'Save';
+      saveBtn.textContent = chosen.size ? T(`Save ${chosen.size} to ${UI.fill('{me}')}`) : T('Save');
       for (const [id, t] of tiles) t.classList.toggle('chosen', chosen.has(id));
-      status.textContent = items.length ? `${items.length}${more ? '+' : ''} ${kind === 'videos' ? 'videos' : kind === 'all' ? 'items' : kind}` : '';
+      status.textContent = items.length ? T(`${items.length}${more ? '+' : ''} ${kind === 'videos' ? 'videos' : kind === 'all' ? 'items' : kind}`) : '';
     }
 
     // The tiles on screen get their pictures, those first (what scrolled past is dropped).
@@ -130,7 +130,7 @@ UI.tab({
     function save(ids) {
       if (!ids.length) return;
       UI.hubAsk({ t: 'media.save', ids });
-      status.textContent = `Saving ${ids.length} to ${UI.fill('{me}')}’s ${UI.receivedName(UI.state)}…`;
+      status.textContent = T(`Saving ${ids.length} to ${UI.fill('{me}')}’s ${UI.receivedName(UI.state)}…`);
       if (selecting) { selecting = false; chosen.clear(); }
       paint();
     }
@@ -199,7 +199,7 @@ UI.tab({
 
     return (s) => {
       top.render(s);
-      bigSave.textContent = `Save to ${UI.fill('{me}')}`;
+      bigSave.textContent = T(`Save to ${UI.fill('{me}')}`);
       const ready = UI.hubReady(s, 'media') && !UI.onBle(s); // over Bluetooth: the Wi-Fi Direct note only
       wrap.hidden = !ready;
       if (!ready) { loaded = false; view(null); return; }

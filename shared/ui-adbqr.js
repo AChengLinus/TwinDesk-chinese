@@ -24,7 +24,7 @@ UI.adbQr = () => {
 
   function paint(s) {
     const q = s && s.adbQr;
-    btn.textContent = open ? 'Hide' : 'Show QR Code';
+    btn.textContent = T(open ? 'Hide' : 'Show QR Code');
     box.hidden = !open;
     if (!open) return;
     if (q && q.text && q.text !== drawn) {
@@ -35,11 +35,11 @@ UI.adbQr = () => {
       open = false;
       drawn = '';
       box.hidden = true;
-      btn.textContent = 'Show QR Code';
+      btn.textContent = T('Show QR Code');
       row.setHint(q.done === 'paired' ? 'Paired. Connecting…' : q.done === 'timeout' ? 'The QR code timed out. Show it again to retry.' : q.done.replace(/^failed: /, 'Didn’t pair: '));
       return;
     }
-    note.textContent = q && q.text ? 'Waiting for the phone…' : 'Wireless debugging isn’t available here.';
+    note.textContent = T(q && q.text ? 'Waiting for the phone…' : 'Wireless debugging isn’t available here.');
   }
 
   return {

@@ -131,7 +131,7 @@ UI.tab({
     const retryBtn = UI.button('Connect', () => api.hub({ do: 'audio', a: 'connect' }));
     // Which paired Bluetooth device the phone is, when its name didn't say (or to change it).
     const which = UI.select([], (id) => id && api.hub({ do: 'opt', btDevice: id }));
-    which.el.setAttribute('aria-label', 'Which phone');
+    which.el.setAttribute('aria-label', T('Which phone'));
     const statusRow = UI.row('Bluetooth', '', [which.el, retryBtn]);
     const soundCard = UI.card('Sound', [audioRow, statusRow]);
 
@@ -144,11 +144,11 @@ UI.tab({
     const step3 = UI.row('3. Confirm the code on both', '');
     const pairedRow = UI.row('', '');
     const forgetBtn = UI.button('Forget', () => {
-      if (forgetBtn.dataset.sure !== '1') { forgetBtn.dataset.sure = '1'; forgetBtn.textContent = 'Forget?'; forgetBtn.classList.add('danger'); return; }
+      if (forgetBtn.dataset.sure !== '1') { forgetBtn.dataset.sure = '1'; forgetBtn.textContent = T('Forget?'); forgetBtn.classList.add('danger'); return; }
       unsure();
       api.hub({ do: 'audio', a: 'forget' });
     }, 'small');
-    const unsure = () => { forgetBtn.dataset.sure = ''; forgetBtn.textContent = 'Forget'; forgetBtn.classList.remove('danger'); };
+    const unsure = () => { forgetBtn.dataset.sure = ''; forgetBtn.textContent = T('Forget'); forgetBtn.classList.remove('danger'); };
     const forgetRow = UI.row('Forget', '', [forgetBtn]);
     const setupCard = UI.card('Bluetooth setup', [step1, step2, step3, pairedRow, forgetRow]);
     // Back in this window from pairing (Settings, or the phone): connected at once when they are.
@@ -213,18 +213,18 @@ UI.tab({
       nowCard.hidden = !c;
       if (c) {
         avatarSlot.replaceChildren(UI.avatar(c.name || c.number, c.photo));
-        who.textContent = c.name || c.number || 'Unknown number';
+        who.textContent = c.name || c.number || T('Unknown number');
         const bt = h.audio && h.audio.state === 'ready';
-        sub.textContent = c.state === 'ringing' ? `Incoming call${c.name && c.number ? ` · ${c.number}` : ''}`
-          : `${c.dir === 'out' ? 'Calling' : 'On a call'} · ${UI.duration((Date.now() - c.since) / 1000)}${bt ? (h.audio.here ? ' · Sound here' : ' · Sound on the phone') : ''}`;
+        sub.textContent = T(c.state === 'ringing' ? `Incoming call${c.name && c.number ? ` · ${c.number}` : ''}`
+          : `${c.dir === 'out' ? 'Calling' : 'On a call'} · ${UI.duration((Date.now() - c.since) / 1000)}${bt ? (h.audio.here ? ' · Sound here' : ' · Sound on the phone') : ''}`);
         const ringing = c.state === 'ringing';
         answer.hidden = !ringing;
         decline.hidden = !ringing;
         end.hidden = ringing;
         mute.hidden = ringing;
-        mute.textContent = h.muted ? 'Unmute' : 'Mute';
+        mute.textContent = T(h.muted ? 'Unmute' : 'Mute');
         where.hidden = ringing || !bt || h.audio.canMove === false;
-        where.textContent = bt && h.audio.here ? 'Sound on the phone' : 'Sound here';
+        where.textContent = T(bt && h.audio.here ? 'Sound on the phone' : 'Sound here');
       }
       dialCard.hidden = !ready;
       contactsCard.hidden = !canContacts(s);
@@ -268,10 +268,10 @@ UI.tab({
       step3.hidden = paired;
       pairedRow.hidden = !paired;
       if (paired) {
-        pairedRow.label.textContent = `Paired with ${phone}`;
+        pairedRow.label.textContent = T(`Paired with ${phone}`);
         pairedRow.setHint('Over classic Bluetooth, which carries the calls’ sound');
       } else {
-        step1.label.textContent = `1. On ${phone}: Settings › Bluetooth › Pair new device`;
+        step1.label.textContent = T(`1. On ${phone}: Settings › Bluetooth › Pair new device`);
         step1.setHint(`${phone} can be found while that screen is open`);
         step2.label.textContent = UI.fill('2. Pair from {me}');
         step2.setHint((a && a.pairHow) || `In {me}’s Bluetooth settings, add a device and pick ${phone}`);

@@ -72,7 +72,7 @@ UI.tab({
       historySize.set(c.historySize);
       const refused = s.link.state === 'connected' && !c.peerAccepts;
       peerRow.hidden = !refused;
-      peerRow.label.textContent = 'Turned off on ' + UI.peer(s).name;
+      peerRow.label.textContent = T('Turned off on ' + UI.peer(s).name);
       peerRow.setHint('');
       skipNote.set(c.enabled && c.lastSkip ? 'Last item not sent: ' + c.lastSkip + '.' : '');
       clearBtn.disabled = !c.history.length;
