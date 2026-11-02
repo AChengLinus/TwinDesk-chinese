@@ -59,7 +59,7 @@ UI.tab({
       ], { cls: 'keep-on' }),
       UI.card('Made by', [
         UI.row('Inuka Asith', 'inukaasith.vercel.app', [link('Portfolio', 'portfolio')]),
-        UI.row('Source code', 'github.com/InukaAsith/TwinDesk', [link('GitHub', 'github')]),
+        UI.row('Source code', 'github.com/AChengLinus/TwinDesk-chinese', [link('GitHub', 'github')]),
         UI.row('All releases', 'Downloads for macOS, Windows and Linux', [link('Releases', 'releases')]),
         UI.row('Log files', 'What TwinDesk did and any crash, to attach to a bug report', [link('Open log folder', 'logs')]),
       ], { cls: 'keep-on' }),

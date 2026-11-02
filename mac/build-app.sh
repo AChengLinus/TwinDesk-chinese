@@ -30,6 +30,8 @@ sh scripts/fetch-adb.sh
 rm -rf "$STAGE" && mkdir -p "$STAGE/mac" "$STAGE/shared" "$STAGE/mac-helper/.build/release" "$STAGE/node_modules"
 rsync -a --exclude node_modules --exclude dist --exclude dev --exclude test --exclude dmg --exclude build-app.sh --exclude build-dmg.sh --exclude scripts/signing-identity.sh --exclude entitlements.plist ./ "$STAGE/mac/"
 cp "$ROOT"/shared/*.js "$ROOT"/shared/*.css "$ROOT"/shared/*.html "$STAGE/shared/"
+# 中文词典在子目录里（shared/lang/zh.*.js），上面的一行只拷文件，要单独拷一次
+cp -R "$ROOT"/shared/lang "$STAGE/shared/lang"
 cp "$ROOT"/mac-helper/.build/release/macshare-helper "$ROOT"/mac-helper/.build/release/macshare-helper-multi "$ROOT"/mac-helper/.build/release/macshare-dockstub "$ROOT"/mac-helper/.build/release/macshare-calls "$STAGE/mac-helper/.build/release/"
 cp -R node_modules/ws "$STAGE/node_modules/"
 mkdir -p "$STAGE/mac/node_modules" && cp -R node_modules/ws "$STAGE/mac/node_modules/"

@@ -10,9 +10,9 @@ const fs = require('fs');
 
 const LINKS = {
   portfolio: 'https://inukaasith.vercel.app',
-  github: 'https://github.com/InukaAsith/TwinDesk',
-  releases: 'https://github.com/InukaAsith/TwinDesk/releases',
-  licence: 'https://github.com/InukaAsith/TwinDesk/blob/main/LICENSE',
+  github: 'https://github.com/AChengLinus/TwinDesk-chinese',
+  releases: 'https://github.com/AChengLinus/TwinDesk-chinese/releases',
+  licence: 'https://github.com/AChengLinus/TwinDesk-chinese/blob/main/LICENSE',
 };
 
 const NAME = { darwin: 'TwinDesk for macOS', win32: 'TwinDesk for Windows', linux: 'TwinDesk for Linux' };

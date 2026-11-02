@@ -53,7 +53,7 @@ const POLICY_XML = `<?xml version="1.0" encoding="UTF-8"?>
  "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
 <policyconfig>
   <vendor>TwinDesk</vendor>
-  <vendor_url>https://github.com/InukaAsith/TwinDesk</vendor_url>
+  <vendor_url>https://github.com/AChengLinus/TwinDesk-chinese</vendor_url>
   <action id="org.twindesk.linux.connector">
     <description>Switch a spare display output on for TwinDesk's Extend</description>
     <message>TwinDesk wants to switch a spare display output on or off</message>

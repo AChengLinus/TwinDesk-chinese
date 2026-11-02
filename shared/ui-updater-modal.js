@@ -215,7 +215,7 @@
     };
     linkBtn.onclick = () => {
       const u = lastUpdates;
-      const url = (u && u.releaseUrl) || 'https://github.com/InukaAsith/TwinDesk/releases';
+      const url = (u && u.releaseUrl) || 'https://github.com/AChengLinus/TwinDesk-chinese/releases';
       if (window.macshare && window.macshare.openLink) {
         window.macshare.openLink('releases');
       } else {

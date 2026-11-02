@@ -20,10 +20,10 @@
 | **macOS 13 或更高** | ✅ 完整汉化：主窗口、各页面、菜单栏、通知、手机/电脑画面窗口 |
 | **Linux / Android** | ⛔️ 尚未接入词典层，仍是英文 |
 
-本仓库基于上游 TwinDesk **2.5.0-beta.1**；中文界面覆盖 **Windows 10 / 11**（含 x64 与 ARM64）和 **macOS 13 Ventura 或更高**。上游官方安装包是英文的；要中文界面请用本仓库源码构建，见[中文界面](#chinese-ui)。
+本仓库基于上游 TwinDesk **2.5.0-beta.1**；中文界面覆盖 **Windows 10 / 11**（含 x64 与 ARM64）和 **macOS 13 Ventura 或更高**。Windows 中文安装包已在本仓库发布；macOS 要中文界面请用本仓库源码构建，见[中文界面](#chinese-ui)。
 
 <p align="center">
-  <a href="#download"><b>⬇️ 下载 2.4</b></a> ·
+  <a href="#download"><b>⬇️ 下载 2.5</b></a> ·
   <a href="https://twin-desk.vercel.app"><b>官网</b></a> ·
   <a href="#-new-in-23"><b>新功能</b></a> ·
   <a href="#-get-started"><b>快速开始</b></a> ·
@@ -109,7 +109,7 @@ X11 与 Wayland · 通过 Samba 共享文件夹 · 逐页介绍手机应用 · [
 - **切换**：设置 › 通用 › 语言（`中文` / `English`）。换完整个窗口立刻跟着换，Windows 的托盘菜单、macOS 的菜单栏与通知也一起换。
 - **怎么实现的**：`UI.el` / `UI.row` / `UI.card` / `UI.note` 等渲染原语会自动过一层 `T()`，绝大多数文案只加词条、不改代码；名字和数字拼出来的句子用 `I.pattern`。详见[加词条](#加词条)。
 - **当前进度**：**Windows 10/11 与 macOS 13+ 已接入词典层**，界面、托盘/菜单栏、通知与 HUD 全部中文（1100+ 条词条、300+ 条动态句式）。Linux 主窗口与 Android App 尚未接入，仍是英文。
-- **安装包**：上游官方安装包是英文的；要中文界面，请用本仓库源码构建（Windows 见 `windows/`，macOS 见 `mac/`，安装包脚本在 `build/`）。
+- **安装包**：Windows 中文安装包由本仓库自己构建、在 [Releases](https://github.com/AChengLinus/TwinDesk-chinese/releases/latest) 发布（见[下载](#download)）；macOS 的中文版要用本仓库源码构建（`mac/` 下有 `build-app.sh`）；Linux 与 Android 的中文界面还没做，直接用上游英文包。
 
 <a name="download"></a>
 
@@ -119,7 +119,7 @@ X11 与 Wayland · 通过 Samba 共享文件夹 · 逐页介绍手机应用 · [
 <tr>
 <td width="25%" align="center" valign="top">
 
-**🍎 macOS**<br><sub>13 Ventura 或更高版本</sub>
+**🍎 macOS**<br><sub>13 Ventura 或更高版本 · 上游英文包</sub>
 
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0-arm64.dmg"><img src="https://img.shields.io/badge/Apple_Silicon-.dmg-000000?style=for-the-badge" alt="macOS, Apple Silicon"></a><br>
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0-x64_Intel.dmg"><img src="https://img.shields.io/badge/Intel-.dmg-555555?style=for-the-badge" alt="macOS, Intel"></a>
@@ -127,15 +127,15 @@ X11 与 Wayland · 通过 Samba 共享文件夹 · 逐页介绍手机应用 · [
 </td>
 <td width="25%" align="center" valign="top">
 
-**🪟 Windows**<br><sub>10 与 11</sub>
+**🪟 Windows**<br><sub>10 与 11 · 中文界面</sub>
 
-<a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-Setup-2.4.0.exe"><img src="https://img.shields.io/badge/x64-Installer-0078d4?style=for-the-badge" alt="Windows, x64"></a><br>
-<a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-Setup-2.4.0-arm64.exe"><img src="https://img.shields.io/badge/ARM64-Installer-005a9e?style=for-the-badge" alt="Windows on ARM"></a>
+<a href="https://github.com/AChengLinus/TwinDesk-chinese/releases/latest/download/TwinDesk-Setup-2.5.0-beta.1-zh.exe"><img src="https://img.shields.io/badge/x64-中文_Installer-d73a4a?style=for-the-badge" alt="Windows, x64, 简体中文"></a><br>
+<a href="https://github.com/AChengLinus/TwinDesk-chinese/releases/latest/download/TwinDesk-Setup-2.5.0-beta.1-arm64-zh.exe"><img src="https://img.shields.io/badge/ARM64-中文_Installer-c0392b?style=for-the-badge" alt="Windows on ARM, 简体中文"></a>
 
 </td>
 <td width="25%" align="center" valign="top">
 
-**🐧 Linux**<br><sub>X11 与 Wayland，x86_64</sub>
+**🐧 Linux**<br><sub>X11 与 Wayland，x86_64 · 上游英文包</sub>
 
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0-amd64.deb"><img src="https://img.shields.io/badge/Debian_·_Ubuntu-.deb-d70a53?style=for-the-badge" alt="Linux, .deb"></a><br>
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0-x86_64.AppImage"><img src="https://img.shields.io/badge/Any_distro-AppImage-f0a30a?style=for-the-badge" alt="Linux, AppImage"></a><br>
@@ -145,7 +145,7 @@ X11 与 Wayland · 通过 Samba 共享文件夹 · 逐页介绍手机应用 · [
 </td>
 <td width="25%" align="center" valign="top">
 
-**🤖 Android**<br><sub>10 或更高版本，手机与平板</sub>
+**🤖 Android**<br><sub>10 或更高版本，手机与平板 · 上游英文包</sub>
 
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0.apk"><img src="https://img.shields.io/badge/Phone_app-.apk-3ddc84?style=for-the-badge" alt="Android app"></a><br>
 <a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.4.0/TwinDesk-2.4.0-full.apk"><img src="https://img.shields.io/badge/Full_app-.apk-1b8a4c?style=for-the-badge" alt="Android full app"></a><br>
@@ -154,6 +154,9 @@ X11 与 Wayland · 通过 Samba 共享文件夹 · 逐页介绍手机应用 · [
 </td>
 </tr>
 </table>
+
+<p align="center"><sub>Windows 的两个安装包由本仓库构建（基于上游 2.5.0-beta.1，界面中文，可在设置里切回 English）。<br>
+SHA256（<code>TwinDesk-Setup-2.5.0-beta.1-zh.exe</code>）：<code>b570e89a048e3a7bc2fd8612afbefd7530b99f53d989d0fb5b4431d47147c163</code></sub></p>
 
 <p align="center">🍺 macOS 上的 <b>Homebrew</b>：<code>brew install --cask inukaasith/twindesk/twindesk</code><br>
 <sub>用 <code>brew upgrade --cask twindesk</code> 更新：如果 TwinDesk 之前正在运行，它会自行重新打开，这样一台只通过它操控的 Mac 就能拿回自己的鼠标。这个 <a href="https://github.com/InukaAsith/homebrew-twindesk">tap</a> 会跟随每一次发布。</sub></p>
