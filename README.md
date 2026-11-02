@@ -795,6 +795,8 @@ Windows 代码签名 `.pfx` 证书，并将 `WIN_CSC_KEY_PASSWORD` 设为其密�
 - **渲染进程**：`windows/ui-kit.js` 的 `UI.el` / `UI.row` / `UI.card` / `UI.note` 会自动对 `text`、`label`、`hint`、子字符串以及 `title` / `aria-label` / `placeholder` / `alt` 调 `T()`，所以**改文案通常只要加词条**。
 - **主进程**（托盘、通知、HUD、状态行、显示器名）：`const I18n = require('../shared/i18n.js')` 之后写 `I18n.T('…')`。这些文件里常有 `const T = P.T`（协议消息类型），**不要用裸 `T`**。
 
+<a name="加词条"></a>
+
 ## 加词条
 
 ```js
