@@ -1,15 +1,15 @@
-# Contributing to TwinDesk
+# 为 TwinDesk 做贡献
 
-> [!IMPORTANT]
-> **TwinDesk is in a feature freeze.** We are not adding new features until all current bugs and performance problems are fixed.
-> Bug reports, performance reports and fixes for them are very welcome. Feature requests and feature PRs will be closed or left for after the freeze.
+> [!重要]
+> **TwinDesk 目前处于功能冻结状态。** 在所有现有错误和性能问题修复之前，我们不会添加新功能。
+> 我们非常欢迎提交错误报告、性能报告以及相应的修复方案。功能请求和功能 PR 将在冻结期结束后关闭或留待冻结期后处理。.
 
-## Reporting a bug
+## 报告错误
 
-Please include your OS and version, the TwinDesk version, which devices were connected and the steps to reproduce. Logs and screenshots help a lot.
+请提供您的操作系统及其版本、TwinDesk 版本、连接的设备以​​及重现步骤。日志和屏幕截图将非常有帮助。
 
-To find the logs, choose **Open Log Folder** in TwinDesk's menu bar or tray menu, or **Open log folder** under About. Attach `TwinDesk.log`, and `crash.log` if there is one, from each computer involved.
+要查找日志，请在 TwinDesk 的菜单栏或系统托盘菜单中选择“打开日志文件夹”，或在“关于”菜单下选择“打开日志文件夹”。请将每台相关计算机上的 `TwinDesk.log`, and `crash.log` 如果有，则从每台相关计算机中获取。
 
-## Pull requests
+## 拉取请求
 
-During the freeze, only bug fixes and performance fixes will be merged. Keep each PR to one fix and say which issue it fixes.
+在冻结期间，只会合并错误修复和性能优化。每个 PR 只包含一个修复，并注明它修复的是哪个问题。
