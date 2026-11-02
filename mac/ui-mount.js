@@ -34,13 +34,13 @@ UI.tab({
       const adb = ph.adb || {};
       const adbOff = !!ph.connected && !ph.connected.usb && !d.mounted && (adb.wifi === false || (ph.bridge && ph.bridge.state === 'waitingWifi'));
       adbNote.hidden = !d.on || !adbOff;
-      adbText.textContent = adb.devOptions === false
+      adbText.textContent = T(adb.devOptions === false
         ? 'Mount works through ADB, and Developer options are off on the phone. Switch on Developer options and Wireless debugging (Connection), or plug the phone in with USB debugging on. Phone Files works without it.'
-        : 'Mount works through ADB, and wireless debugging is off on the phone. Switch it on (Connection), or plug the phone in with USB debugging on. Phone Files works without it.';
+        : 'Mount works through ADB, and wireless debugging is off on the phone. Switch it on (Connection), or plug the phone in with USB debugging on. Phone Files works without it.');
       onSw.set(!!d.on);
       driveRow.hidden = !d.on;
       mountBtn.hidden = !!d.mounted;
-      mountBtn.textContent = d.busy === 'mounting' ? 'Mounting…' : 'Mount';
+      mountBtn.textContent = d.busy === 'mounting' ? T('Mounting…') : T('Mount');
       mountBtn.disabled = !!d.busy;
       showBtn.hidden = unmountBtn.hidden = !d.mounted;
       unmountBtn.disabled = !!d.busy;

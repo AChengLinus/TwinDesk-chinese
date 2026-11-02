@@ -90,6 +90,7 @@ if (typeof module === 'object' && module && module.exports) {
   require('./lang/zh.devices.js');
   require('./lang/zh.settings.js');
   require('./lang/zh.pages.js');
+  require('./lang/zh.mac.js');
 } else if (typeof window !== 'undefined') {
   window.I18n = I18n;
   window.T = I18n.T;

@@ -53,6 +53,12 @@ UI.tab({
     const shareRow = UI.row('TwinDesk in the Share menu', 'Share › TwinDesk sends files to the other computer',
       [UI.button('Extensions…', () => api.openSettings('extensions'), 'small')]);
 
+    // 界面语言（设置 › 通用 › 语言）：中文 / English，换完立刻重载窗口（主进程先用 sendSync 存好）
+    const langSeg = UI.segmented(
+      [{ value: 'zh', label: '中文' }, { value: 'en', label: 'English' }],
+      (v) => { api.setUiLang(v); location.reload(); });
+    const langRow = UI.row('Language', 'Every TwinDesk window and the menu bar', [langSeg.el]);
+
     const media = UI.mediaControlsRow(); // a phone's media controls on the Phone page (shared/ui-nowplaying.js)
     // Appearance: the phone's wallpaper (settings.phone.wallpaper, was on the Phone page).
     const wallSw = UI.switch((v) => api.setPhone({ wallpaper: v }), { label: 'Show the phone’s wallpaper' });
@@ -68,6 +74,7 @@ UI.tab({
     });
 
     body.append(
+      UI.card('App', [langRow]),
       UI.card('Startup', [
         UI.row('Open at login', '', [loginSw]),
         UI.row('Keep the display awake', 'While connected', [awakeSw]),
@@ -88,6 +95,7 @@ UI.tab({
 
     return (s) => {
       media.update(s);
+      langSeg.set(s.ui && s.ui.lang === 'en' ? 'en' : 'zh');
       wallSw.set(!s.phone || !s.phone.settings || s.phone.settings.wallpaper !== false);
       const ov = (s.ui && s.ui.overview) || {};
       for (const k of Object.keys(partSw)) partSw[k].set(ov[k] !== false);
@@ -100,7 +108,7 @@ UI.tab({
         // as allowed then, with its own switch in System Settings still off (that's fine).
         const viaAx = p.kind === 'inputMonitoring' && ok && s.permissions.accessibility === true;
         pill.hidden = unknown && !!p.state; // macOS doesn't tell: Open shows it
-        pill.textContent = unknown ? 'Unknown' : viaAx ? 'Allowed by Accessibility' : ok ? 'Allowed' : 'Not allowed';
+        pill.textContent = unknown ? T('Unknown') : viaAx ? T('Allowed by Accessibility') : ok ? T('Allowed') : T('Not allowed');
       }
       if (s.app) {
         loginSw.set(s.app.openAtLogin);
@@ -124,7 +132,7 @@ UI.tab({
         blePcRow.setHint(s.net.blePc !== true ? 'Only computers on this network connect'
           : RADIO[s.net.radio] || 'PCs nearby connect over Bluetooth. Files and screens move to a direct Wi-Fi link for a while');
       }
-      helperVal.textContent = s.helper && s.helper.running ? 'Running' : 'Not running';
+      helperVal.textContent = s.helper && s.helper.running ? T('Running') : T('Not running');
       deviceName.textContent = s.macName || '';
     };
   },

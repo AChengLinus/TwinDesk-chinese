@@ -39,8 +39,8 @@ UI.tab({
     const refresh = UI.button('Refresh', () => { // the list empties and fills again with whoever answers
       api.refreshDiscovery();
       refresh.disabled = true;
-      refresh.textContent = 'Looking…';
-      setTimeout(() => { refresh.disabled = false; refresh.textContent = 'Refresh'; }, 1500);
+      refresh.textContent = T('Looking…');
+      setTimeout(() => { refresh.disabled = false; refresh.textContent = T('Refresh'); }, 1500);
     }, 'small');
 
     // ---- hero ----
@@ -160,7 +160,7 @@ UI.tab({
       const g = s.guest || { status: {}, hosts: [] };
 
       // this Mac
-      addrVal.textContent = s.addresses.length ? s.addresses[0] : 'No network';
+      addrVal.textContent = s.addresses.length ? s.addresses[0] : T('No network');
       copyBtn.hidden = !s.addresses.length;
       const cn = s.connect || {};
       const gp = g.pairing;
@@ -171,14 +171,14 @@ UI.tab({
       // permissions
       const lost = s.permissions && s.ui && s.ui.setupDone ? PERMS.filter(([, , miss]) => miss(s.permissions)).map(([, label]) => label) : [];
       permCard.hidden = !lost.length;
-      permRow.label.textContent = `${lost.join(', ')} ${lost.length > 1 ? 'aren’t' : 'isn’t'} allowed`;
+      permRow.label.textContent = T(`${lost.join(', ')} ${lost.length > 1 ? 'aren’t' : 'isn’t'} allowed`);
       permRow.setHint('TwinDesk needs it to share this Mac with the other computer. After an update, allow it again.');
 
       // nearby
       const d = s.discovery || { on: true, localNetwork: true };
       const blocked = !d.on || !d.localNetwork;
       discRow.hidden = !blocked;
-      discRow.label.textContent = 'Can’t look for computers on this network.';
+      discRow.label.textContent = T('Can’t look for computers on this network.');
       discRow.setHint(!d.localNetwork ? 'Allow Local Network for TwinDesk, or connect by address.' : d.error);
       discFix.hidden = d.localNetwork;
       const pairedIds = new Set([...s.paired.map((x) => x.id), ...g.hosts.map((x) => x.id)]);
@@ -220,25 +220,25 @@ UI.tab({
       linkLine.className = `hero-link ${c ? 'up' : ''}`;
       const connecting = ['connecting', 'reconnecting'].includes(g.status.state);
       linkText.textContent = c ? `${c.rttMs != null ? `${c.rttMs} ms · ` : ''}${UI.via(s)}`
-        : s.pairing || gp ? 'Pairing…' : connecting ? 'Connecting…' : 'Not connected';
+        : s.pairing || gp ? T('Pairing…') : connecting ? T('Connecting…') : T('Not connected');
       const inp = s.input || { where: 'home' };
       const bad = s.serverError || (g.status.state === 'identity_changed' && g.status.message);
       status.textContent = bad
         || (c ? UI.fill(WHERE[inp.where] || 'Connected')
-          : pairedIds.size ? 'Open TwinDesk on the other computer to connect.'
-            : 'Pick a computer above, or connect by address.');
+          : pairedIds.size ? T('Open TwinDesk on the other computer to connect.')
+            : T('Pick a computer above, or connect by address.'));
       // Disconnected (here or by the other side), taken over, or the Mac we connect to is in use.
       const gStopped = !c && g.hosts.length && g.status.state === 'stopped';
       const gBusy = !c && g.hosts.length && !gStopped && g.status.busy;
-      if (!bad && (gStopped || gBusy)) status.textContent = `${gStopped ? g.status.message || 'Disconnected' : gBusy}.`;
+      if (!bad && (gStopped || gBusy)) status.textContent = gStopped ? `${T(g.status.message || 'Disconnected')}.` : gBusy;
       discBtn.hidden = !c;
       againBtn.hidden = !(gStopped || gBusy);
-      againBtn.textContent = gBusy || (gStopped && g.status.message) ? 'Take over' : 'Connect';
+      againBtn.textContent = gBusy || (gStopped && g.status.message) ? T('Take over') : T('Connect');
       sessionBtns.hidden = discBtn.hidden && againBtn.hidden;
       status.classList.toggle('bad', !!bad);
       const n = s.net || {};
       wifiOn = (n.why || []).includes('user') || !!n.linked; // made for the screen or files too
-      wifiBtn.textContent = wifiOn ? 'Back to Bluetooth' : 'Connect with Wi-Fi Direct';
+      wifiBtn.textContent = wifiOn ? T('Back to Bluetooth') : T('Connect with Wi-Fi Direct');
       wifiBtn.hidden = !c || !(wifiOn || c.transport === 'ble');
       hotspotBtn.hidden = !c || wifiOn || n.state === 'hotspot' || c.transport !== 'ble' || !UI.isPhone(s);
 

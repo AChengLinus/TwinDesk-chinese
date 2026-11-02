@@ -87,7 +87,7 @@ UI.tab({
       // Send files
       canSend = !!s.client;
       zone.classList.toggle('off', !canSend);
-      zoneText.textContent = canSend ? 'Drop files or folders here' : 'Connect to send files';
+      zoneText.textContent = canSend ? T('Drop files or folders here') : T('Connect to send files');
       sendBtn.disabled = !canSend;
       const out = f.sending.reduce((a, r) => [a[0] + r.sent, a[1] + r.size], [0, 0]);
       sendBar.hidden = !f.sending.length;

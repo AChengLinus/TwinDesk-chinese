@@ -74,7 +74,7 @@ UI.tab({
     return (s) => {
       const a = s.about || { app: {}, pc: {} };
       nameEl.textContent = a.app.name || 'TwinDesk';
-      verEl.textContent = 'Version ' + (a.app.version || s.version || '');
+      verEl.textContent = T('Version ' + (a.app.version || s.version || ''));
       thanksRow.setHint(a.app.thanks || '');
       thanksRow.hidden = !a.app.thanks;
       pc.set({
@@ -93,10 +93,10 @@ UI.tab({
         updGet.hidden = !u.available;
         updNotes.hidden = !u.available;
         updUnskip.hidden = !u.available || !u.skipped;
-        updStatus.textContent = u.checking ? 'Checking…'
+        updStatus.textContent = u.checking ? T('Checking…')
           : u.available
-            ? (u.skipped ? u.latest + ' is available (skipped)' : u.latest + ' is available')
-            : u.checkedAt ? 'Up to date' : '';
+            ? (u.skipped ? T(u.latest + ' is available (skipped)') : T(u.latest + ' is available'))
+            : u.checkedAt ? T('Up to date') : '';
         updRow.setHint(u.error ? 'Couldn’t check: ' + u.error
           : u.available ? 'You have ' + u.current + '. ' + (u.download ? 'Download ' + u.download.name : 'Opens the release page')
             : u.noReleases ? 'Version ' + u.current + '. No releases published yet'

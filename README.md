@@ -12,6 +12,16 @@
   免费开源。无需账号、无需云端、无需共用网络。
 </p>
 
+**📦 这是中文版（`TwinDesk-chinese`）**：界面默认简体中文，可随时切回 English。
+
+| 版本 | 中文界面 |
+| --- | --- |
+| **Windows 10 / 11** | ✅ 完整汉化：界面、托盘菜单、通知、HUD、各页面 |
+| **macOS 13 或更高** | ✅ 完整汉化：主窗口、各页面、菜单栏、通知、手机/电脑画面窗口 |
+| **Linux / Android** | ⛔️ 尚未接入词典层，仍是英文 |
+
+上游官方安装包是英文的；要中文界面请用本仓库源码构建，见[中文界面](#chinese-ui)。
+
 <p align="center">
   <a href="#download"><b>⬇️ 下载 2.4</b></a> ·
   <a href="https://twin-desk.vercel.app"><b>官网</b></a> ·
@@ -96,10 +106,10 @@ X11 与 Wayland · 通过 Samba 共享文件夹 · 逐页介绍手机应用 · [
 
 这个仓库是 TwinDesk 的**中文汉化分支**：界面文案抽进了词典层（`shared/i18n.js`），默认中文，可随时切回英文。
 
-- **切换**：设置 › 通用 › 语言（中文 / English）。换完整个窗口和托盘菜单立即跟着换。
+- **切换**：设置 › 通用 › 语言（`中文` / `English`）。换完整个窗口立刻跟着换，Windows 的托盘菜单、macOS 的菜单栏与通知也一起换。
 - **怎么实现的**：`UI.el` / `UI.row` / `UI.card` / `UI.note` 等渲染原语会自动过一层 `T()`，绝大多数文案只加词条、不改代码；名字和数字拼出来的句子用 `I.pattern`。详见[加词条](#加词条)。
-- **当前进度**：Windows 版的界面、托盘菜单、通知与 HUD 已整体汉化（1000+ 条词条、270+ 条动态句式），摄像头、远程、ReZume 等页面已逐条覆盖。**macOS 与 Linux 的窗口页面、Android App 尚未接入词典层，仍是英文**——这些平台的主窗口用的是各自目录下的 `app.html` / `control.html`，还需要把 i18n 脚本和词条接上去。
-- **安装包**：上游官方安装包是英文的；要中文界面，请用本仓库源码构建（Windows 见 `windows/`，安装包脚本在 `build/`）。
+- **当前进度**：**Windows 10/11 与 macOS 13+ 已接入词典层**，界面、托盘/菜单栏、通知与 HUD 全部中文（1100+ 条词条、300+ 条动态句式）。Linux 主窗口与 Android App 尚未接入，仍是英文。
+- **安装包**：上游官方安装包是英文的；要中文界面，请用本仓库源码构建（Windows 见 `windows/`，macOS 见 `mac/`，安装包脚本在 `build/`）。
 
 <a name="download"></a>
 
@@ -790,9 +800,11 @@ Windows 代码签名 `.pfx` 证书，并将 `WIN_CSC_KEY_PASSWORD` 设为其密�
 | `shared/lang/zh.devices.js` | 手机、平板、ADB、镜像 |
 | `shared/lang/zh.settings.js` | 通用设置、关于、更新、多设备 |
 | `shared/lang/zh.pages.js` | 一对一（非 Mesh）界面的页面 |
-| `shared/i18n-dom.js` | 词典装好之后，填 `app.html` 里 `data-t` / `data-ta` 的静态文案 |
+| `shared/lang/zh.mac.js` | macOS 主窗口与各页面（`mac/control.html` + `mac/ui-*.js`）、菜单栏、通知、画面窗口 |
+| `shared/i18n-dom.js` | 词典装好之后，填 `app.html` / `control.html` 里 `data-t` / `data-ta` 的静态文案 |
 
-- **渲染进程**：`windows/ui-kit.js` 的 `UI.el` / `UI.row` / `UI.card` / `UI.note` 会自动对 `text`、`label`、`hint`、子字符串以及 `title` / `aria-label` / `placeholder` / `alt` 调 `T()`，所以**改文案通常只要加词条**。
+- **渲染进程（Windows）**：`windows/ui-kit.js` 的 `UI.el` / `UI.row` / `UI.card` / `UI.note` 会自动对 `text`、`label`、`hint`、子字符串以及 `title` / `aria-label` / `placeholder` / `alt` 调 `T()`，所以**改文案通常只要加词条**。
+- **渲染进程（macOS）**：渲染原语在 `mac/control.js` 的 `UI` 对象里（Mac 没有 `ui-kit.js`），`UI.el` / `UI.fill` 同样先查词典、再填 `{name}` / `{me}`。
 - **主进程**（托盘、通知、HUD、状态行、显示器名）：`const I18n = require('../shared/i18n.js')` 之后写 `I18n.T('…')`。这些文件里常有 `const T = P.T`（协议消息类型），**不要用裸 `T`**。
 
 <a name="加词条"></a>
@@ -818,9 +830,10 @@ I.pattern(/^Connected to (.+)$/, (m) => '已连接到 ' + I.T(m[1]));
 
 ## 仍然是英文的地方
 
-- **macOS / Linux 的主窗口（`mac/control.html`、`linux/app.html`）和 Android App** 还没接入词典层，整个界面仍是英文。
+- **Linux 的主窗口（`linux/app.html`）和 Android App** 还没接入词典层，整个界面仍是英文。
 - 设备名、`TwinDesk`、`ADB`、`Wi-Fi` / `Wi-Fi Direct`、快捷键名（`Scroll Lock`、`F11`）、作者与链接。
-- Mac 上的 `Dock`、`Menu bar` 按专有名词保留英文（Windows 上对应的 `Taskbar` / `Tray` 译作「任务栏」「托盘」）。
+- Mac 上的 `Dock`、`Menu bar` 按专有名词保留英文（Windows 上对应的 `Taskbar` / `Tray` 译作「任务栏」「托盘」）；`TwinDesk Camera`、`OBS Virtual Camera` 是系统里真实的摄像头名称，也不翻。
+- 日志、错误堆栈、`adb` 命令、状态码（如 `no viewer`）保持英文，它们不进界面。
 - 手机端 App 和另一台电脑发回来的提示属于数据，不是本机文案。
 
 <a name="thanks"></a>

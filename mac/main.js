@@ -39,7 +39,8 @@ let adbQr = null; // wireless debugging's pairing QR code while shown (shared/ad
 const qrKnows = (nonce) => !!qrPair && typeof nonce === 'string' && nonce === qrPair.nonce && Date.now() < qrPair.until;
 
 const path = require('path');
-const { app, BrowserWindow, Tray, Menu, nativeImage, systemPreferences, Notification, dialog, globalShortcut } = require('electron');
+const { app, BrowserWindow, Tray, Menu, nativeImage, systemPreferences, Notification, dialog, globalShortcut, ipcMain } = require('electron');
+const I18n = require('../shared/i18n.js'); // 中文界面：主进程里的菜单栏、通知文案
 
 app.commandLine.appendSwitch('disable-features', 'WebRtcHideLocalIpsWithMdns');
 // The hidden capture window plays system audio into WebRTC without any user gesture.
@@ -426,8 +427,9 @@ function rezumeItems() {
   const name = (peer.current && peer.current.name) || 'the other device';
   const cut = (t) => (t.length > 48 ? t.slice(0, 47) + '…' : t);
   const items = [];
-  if (h.incoming) items.push({ label: `Continue ${cut(h.incoming.title || h.incoming.name || h.incoming.appName)} from ${name}`, click: () => svc.rz.take() });
-  if (h.last && h.send) items.push({ label: `Send ${cut(h.last.title)} to ${name}`, click: () => svc.rz.push() });
+  // 菜单栏不查表 m.rezume（shared/traymenu.js），所以在这里译好
+  if (h.incoming) items.push({ label: I18n.T(`Continue ${cut(h.incoming.title || h.incoming.name || h.incoming.appName)} from ${name}`), click: () => svc.rz.take() });
+  if (h.last && h.send) items.push({ label: I18n.T(`Send ${cut(h.last.title)} to ${name}`), click: () => svc.rz.push() });
   return items;
 }
 
@@ -469,7 +471,7 @@ function updateTray() {
   tray.setToolTip(c ? `TwinDesk: ${c.name}` : 'TwinDesk');
   tray.setContextMenu(Menu.buildFromTemplate(trayMenu.template({
     connected: !!c,
-    status: c ? `Connected to ${c.name}${c.transport === 'ble' ? ' · Bluetooth' : ''}` : 'Not connected',
+    status: c ? I18n.T(`Connected to ${c.name}${c.transport === 'ble' ? ' · Bluetooth' : ''}`) : I18n.T('Not connected'),
     home: where === 'driving' || where === 'driven' ? () => svc.kvm.home() : null,
     shared: { checked: k.linked !== false && !(svc && svc.kvm.paused), set: (on) => actions.setKvm({ shared: on }) },
     lock: c ? { label: `Lock Cursor on ${where === 'driving' ? name : id.macName} (${CL.keysLabel(settings.keys.lockKeys, 'mac')})`, checked: svc && svc.kvm.locked, set: (on) => svc.kvm.setLocked(on) } : null,
@@ -506,6 +508,17 @@ app.whenReady().then(() => {
   if (app.dock && !app.isPackaged) app.dock.setIcon(path.join(__dirname, '..', 'shared', 'icon', 'teindesk-dark-mac.png'));
   store.init(app.getPath('userData'));
   settings = store.loadSettings();
+  I18n.setLang(settings.ui.lang); // 界面语言（General › App）：主进程这一侧的菜单栏、通知跟着它
+  // 渲染进程在加载 UI 模块之前同步问一次语言（preload-control.js 的 sendSync），晚了会闪一下英文。
+  ipcMain.on('uiLang', (e) => { e.returnValue = I18n.lang; });
+  // 屏幕下方的提示（浮动条、共享开关卡片）：整句先查词典，再把 {name}/{me} 换成名字。
+  // Windows 那边由 fillNames 做同样的事；Mac 的文字都在主进程拼，所以放在这里。
+  const hudText = (s) => {
+    const t = I18n.T(String(s == null ? '' : s));
+    if (!t.includes('{')) return t;
+    const names = { name: (peer && peer.current && peer.current.name) || 'the other computer', me: id.macName, Name: id.macName };
+    return t.replace(/\{(\w+)\}/g, (m, k) => (k in names ? names[k] : m));
+  };
   id = identity.load(settings);
   Object.assign(state, { macName: id.macName, macId: id.macId, fp: id.fp, version: app.getVersion(), about: aboutInfo(app) });
   console.log(`[main] ${id.macName} (${id.macId}) fp ${id.fp}`);
@@ -789,15 +802,17 @@ app.whenReady().then(() => {
     onShowModal: showUpdateWindow,
     notify: (title, body, onClick) => {
       if (!Notification.isSupported()) return;
-      const n = new Notification({ title, body });
+      const n = new Notification({ title: I18n.T(title), body: I18n.T(body) });
       n.on('click', onClick);
       n.show();
     },
   });
   updates.start();
-  actions = setupIpc({ state, settings, pushState, server: peer, pairing, discovery, link, ...svc, hub: loadHub, login, refreshPermissions, updates });
+  actions = setupIpc({ state, settings, pushState, server: peer, pairing, discovery, link, ...svc, hub: loadHub, login, refreshPermissions, updates,
+    onLang: () => { trayKey = ''; updateTray(); }, // 换了界面语言：菜单栏文案重画一遍
+  });
   tray = new Tray(nativeImage.createFromPath(path.join(__dirname, 'assets', 'trayTemplate.png'))); // "Template": macOS tints it
-  hud = new Hud(() => settings);
+  hud = new Hud(() => settings, hudText);
   svc.kvm.on('where', (mode) => {
     const name = peer.current ? peer.current.name : 'the other computer';
     if (mode === 'driving') hud.show('away', settings.kvm.mouse ? `Using ${name}` : `Typing on ${name}`);

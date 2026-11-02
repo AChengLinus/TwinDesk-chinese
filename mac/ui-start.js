@@ -215,39 +215,39 @@
     $('banner').hidden = !bannerMode;
     if (!bannerMode) return;
     if (inv) {
-      $('pair-title').replaceChildren('Press Pair on ', el('strong', { text: inv.name }));
+      $('pair-title').textContent = T(`Press Pair on ${inv.name}`);
       $('pair-code').hidden = $('pair-code-label').hidden = true;
       $('pair-allow').hidden = true;
-      $('pair-deny').textContent = 'Cancel';
-      $('pair-hint').textContent = `TwinDesk on ${inv.name} asks to pair with this Mac. Press Pair there, then compare the codes.`;
+      $('pair-deny').textContent = T('Cancel');
+      $('pair-hint').textContent = T(`TwinDesk on ${inv.name} asks to pair with this Mac. Press Pair there, then compare the codes.`);
       return;
     }
     const code = (p || g).code;
     $('pair-code').textContent = code ? `${code.slice(0, 3)} ${code.slice(3)}` : '…';
     $('pair-code').hidden = $('pair-code-label').hidden = !!(p && p.wired); // on the USB cable: nothing to compare
     if (p) {
-      $('pair-title').replaceChildren(el('strong', { text: p.name }), ' wants to pair');
-      $('pair-allow').textContent = 'Allow';
-      $('pair-deny').textContent = 'Deny';
+      $('pair-title').textContent = T(`${p.name} wants to pair`);
+      $('pair-allow').textContent = T('Allow');
+      $('pair-deny').textContent = T('Deny');
       $('pair-allow').hidden = false;
       $('pair-allow').disabled = !p.code || p.allowed;
       const other = p.name;
-      let hint = `Check that ${other} shows the same code.`;
-      if (p.wired) hint = p.allowed ? 'Pairing…' : p.qr ? `${other} scanned the QR code. Click Allow to pair.` : `${other} is on the USB cable. Click Allow to pair.`;
-      else if (!p.code) hint = 'Waiting for the code…';
-      else if (p.allowed && !p.confirmed) hint = `Allowed. Waiting for “Codes match” on ${other}…`;
-      else if (p.confirmed && !p.allowed) hint = `${other[0].toUpperCase()}${other.slice(1)} confirmed the code. Click Allow if it matches.`;
+      let hint = T(`Check that ${other} shows the same code.`);
+      if (p.wired) hint = p.allowed ? T('Pairing…') : p.qr ? T(`${other} scanned the QR code. Click Allow to pair.`) : T(`${other} is on the USB cable. Click Allow to pair.`);
+      else if (!p.code) hint = T('Waiting for the code…');
+      else if (p.allowed && !p.confirmed) hint = T(`Allowed. Waiting for “Codes match” on ${other}…`);
+      else if (p.confirmed && !p.allowed) hint = T(`${other[0].toUpperCase()}${other.slice(1)} confirmed the code. Click Allow if it matches.`);
       $('pair-hint').textContent = hint;
       return;
     }
-    $('pair-title').replaceChildren('Pairing with ', el('strong', { text: g.name }));
-    $('pair-allow').textContent = 'Codes match';
-    $('pair-deny').textContent = g.phase === 'failed' ? 'OK' : 'Cancel';
+    $('pair-title').textContent = T(`Pairing with ${g.name}`);
+    $('pair-allow').textContent = T('Codes match');
+    $('pair-deny').textContent = T(g.phase === 'failed' ? 'Got it' : 'Cancel');
     $('pair-allow').hidden = g.phase === 'failed';
     $('pair-allow').disabled = g.phase !== 'code';
     $('pair-hint').textContent = g.phase === 'failed' ? g.error
-      : g.phase === 'code' ? `Check that ${g.name} shows the same code.`
-        : g.phase === 'waiting' ? `Waiting for Allow on ${g.name}…` : 'Connecting…';
+      : g.phase === 'code' ? T(`Check that ${g.name} shows the same code.`)
+        : g.phase === 'waiting' ? T(`Waiting for Allow on ${g.name}…`) : T('Connecting…');
   }
 
   // Wi-Fi for a session through Bluetooth (netlink.js): what's happening, and for a phone's screen
@@ -263,11 +263,11 @@
     const form = n.state === 'hotspot';
     $('net-form').hidden = !form;
     $('net-join').hidden = !form;
-    $('net-cancel').textContent = n.state === 'failed' ? 'OK' : 'Cancel';
+    $('net-cancel').textContent = T(n.state === 'failed' ? 'Got it' : 'Cancel');
     if (form && netShown !== 'hotspot') { // fill in once, not while typing
       $('net-ssid').value = n.hotspotSsid || '';
       $('net-pass').value = '';
-      $('net-pass').placeholder = n.hotspotSaved ? 'Password (saved)' : 'Password';
+      $('net-pass').placeholder = n.hotspotSaved ? T('Password (saved)') : T('Password');
       setTimeout(() => (n.hotspotSsid ? $('net-pass') : $('net-ssid')).focus(), 0);
     }
     netShown = n.state;
@@ -278,11 +278,11 @@
       hotspot: `Switch on ${name}’s hotspot`,
       failed: 'Couldn’t move to Wi-Fi',
     };
-    $('net-title').textContent = TITLES[n.state];
+    $('net-title').textContent = T(TITLES[n.state]);
     $('net-hint').textContent = n.state === 'hotspot'
-      ? `${name} isn’t on this Mac’s network. Its screen needs Wi-Fi: switch its hotspot on, then type its name and password here.`
-      : n.state === 'failed' ? `${n.error}. Still connected over Bluetooth.`
-        : n.kind === 'direct' ? `${name} isn’t on this network: a direct Wi-Fi link${n.why.includes('user') || n.peerWhy.includes('user') ? '' : ` for ${n.why.includes('files') || n.peerWhy.includes('files') ? 'the files' : 'the screen'}`}. This Mac is off its own Wi-Fi meanwhile.` : '';
+      ? T(`${name} isn’t on this Mac’s network. Its screen needs Wi-Fi: switch its hotspot on, then type its name and password here.`)
+      : n.state === 'failed' ? `${T(n.error)}。${T('Still connected over Bluetooth.')}`
+        : n.kind === 'direct' ? T(`${name} isn’t on this network: a direct Wi-Fi link${n.why.includes('user') || n.peerWhy.includes('user') ? '' : ` for ${n.why.includes('files') || n.peerWhy.includes('files') ? 'the files' : 'the screen'}`}. This Mac is off its own Wi-Fi meanwhile.`) : '';
   }
   $('net-join').onclick = () => api.netJoinHotspot({ ssid: $('net-ssid').value, pass: $('net-pass').value });
   $('net-pass').onkeydown = $('net-ssid').onkeydown = (e) => { if (e.key === 'Enter') $('net-join').click(); };

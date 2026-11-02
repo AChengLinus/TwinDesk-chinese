@@ -86,7 +86,7 @@ const DEFAULT_SETTINGS = {
   },
   // setupSkipped: the missing items when Setup was skipped; setupDone: Setup has been through once
   // (everything allowed, or skipped), so it never takes over the window again (General shows the rest).
-  ui: { tab: 'overview', setupSkipped: '', setupDone: false },
+  ui: { tab: 'overview', setupSkipped: '', setupDone: false, lang: 'zh' }, // lang: 界面语言（General › App）：'zh' 中文，'en' English
   app: { openAtLogin: false, keepAwake: true, hud: true }, // hud = popup when switching computers
   updates: { auto: true, notified: '', skipped: '' }, // check GitHub for new releases; notified = last version announced, skipped = version ignored
   audio: { send: false, receive: false, muteLocal: false, volume: 1, phoneMedia: false }, // Independent, both ways; phoneMedia: a phone's media controls on Overview

@@ -34,16 +34,27 @@
 <body>
   <video id="video" autoplay playsinline disablepictureinpicture></video>
   <canvas id="fg"></canvas>
-  <div id="overlay">Connecting to the PC…</div>
+  <div id="overlay" data-t="Connecting to the PC…">Connecting to the PC…</div>
   <div id="bar" class="hidden">
-    <button id="b-extend" title="Use this window as an extra screen of the other computer">Extend</button>
-    <button id="b-mirror" title="Show the other computer’s main screen">Mirror</button>
+    <button id="b-extend" data-t="Extend" data-ta="title|Use this window as an extra screen of the other computer">Extend</button>
+    <button id="b-mirror" data-t="Mirror" data-ta="title|Show the other computer’s main screen">Mirror</button>
     <span class="sep"></span>
-    <button id="b-fg" title="Frame generation: fills in late or dropped frames">Frame generation</button>
-    <button id="b-full" title="Full screen (Ctrl ⌘ F)">Full screen</button>
+    <button id="b-fg" data-t="Frame generation" data-ta="title|Frame generation: fills in late or dropped frames">Frame generation</button>
+    <button id="b-full" data-t="Full screen" data-ta="title|Full screen (Ctrl ⌘ F)">Full screen</button>
     <span class="sep"></span>
-    <button id="b-stop" title="Stop sharing on the other computer">Stop</button>
+    <button id="b-stop" data-t="Stop" data-ta="title|Stop sharing on the other computer">Stop</button>
   </div>
+  <!-- 中文界面：词典和 shared/lang/*.js 装好之后，i18n-dom.js 把 data-t / data-ta 的文案换掉 -->
+  <script src="../shared/i18n.js"></script>
+  <script src="../shared/lang/zh.core.js"></script>
+  <script src="../shared/lang/zh.media.js"></script>
+  <script src="../shared/lang/zh.comms.js"></script>
+  <script src="../shared/lang/zh.io.js"></script>
+  <script src="../shared/lang/zh.devices.js"></script>
+  <script src="../shared/lang/zh.settings.js"></script>
+  <script src="../shared/lang/zh.pages.js"></script>
+  <script src="../shared/lang/zh.mac.js"></script>
+  <script src="../shared/i18n-dom.js"></script>
   <script src="../shared/protocol.js"></script>
   <script src="../shared/framegen.js"></script>
   <script src="pcview-renderer.js"></script>

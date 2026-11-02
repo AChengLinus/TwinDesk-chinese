@@ -127,7 +127,7 @@ UI.tab({
       h1.textContent = c.name;
       desc.textContent = [info.maker && info.model ? `${info.maker} ${info.model}` : info.model, info.release && `Android ${info.release}`].filter(Boolean).join(' · ');
       name.textContent = c.name;
-      sub.textContent = [c.usb ? 'USB cable' : '', UI.state.client && UI.state.client.transport === 'ble' ? 'Bluetooth' : '', c.rttMs != null ? `${c.rttMs} ms` : 'Connected', info.battery != null ? `Battery ${info.battery}%${info.charging ? ', charging' : ''}` : ''].filter(Boolean).join(' · ');
+      sub.textContent = [c.usb ? T('USB cable') : '', UI.state.client && UI.state.client.transport === 'ble' ? T('Bluetooth') : '', c.rttMs != null ? `${c.rttMs} ms` : T('Connected'), info.battery != null ? T(`Battery ${info.battery}%${info.charging ? ', charging' : ''}`) : ''].filter(Boolean).join(' · ');
       if (UI.phoneWall) dev.style.setProperty('--phone-wall', UI.phoneWall);
       else if (info.colors && info.colors.length) dev.style.setProperty('--phone-wall', `linear-gradient(160deg, ${info.colors.join(', ')}${info.colors.length === 1 ? `, ${info.colors[0]}` : ''})`);
       else dev.style.removeProperty('--phone-wall');
@@ -136,16 +136,16 @@ UI.tab({
       showBtn.disabled = !ready;
       const n = s.net || {};
       wifiOn = (n.why || []).includes('user') || !!n.linked; // made for the screen or files too
-      wifiBtn.textContent = wifiOn ? 'Back to Bluetooth' : 'Connect with Wi-Fi Direct';
+      wifiBtn.textContent = wifiOn ? T('Back to Bluetooth') : T('Connect with Wi-Fi Direct');
       wifiBtn.hidden = !(wifiOn || !!(s.client && s.client.transport === 'ble'));
       hotspotBtn.hidden = wifiOn || n.state === 'hotspot' || !(s.client && s.client.transport === 'ble');
       const off = br.state === 'waitingWifi';
       howBtn.hidden = !off;
-      howBtn.textContent = howOpen ? 'Hide' : 'Show me how';
+      howBtn.textContent = howOpen ? T('Hide') : T('Show me how');
       how.hidden = !off || !howOpen;
       const [cls, label] = STATES[br.state] || STATES.off;
       adbPill.className = `pill ${ready && br.inputBlocked ? 'bad' : cls}`;
-      adbPill.textContent = ready && br.inputBlocked ? 'Touch blocked' : label;
+      adbPill.textContent = ready && br.inputBlocked ? T('Touch blocked') : label;
       adbRow.setHint(off ? (/direct Wi-Fi/.test(br.message) ? br.message : 'Wireless debugging is off on the phone. The screen and ADB control need it; Accessibility doesn’t.') : ready && br.inputBlocked ? 'The screen works, but Xiaomi refuses touch, mouse and keyboard from here. On the phone: Settings › Developer options › USB debugging (Security settings): on (it asks for a Mi account).'
         : ready ? 'The phone’s screen, touch, mouse and keyboard, and its clipboard in the background' : br.message);
       pairRow.hidden = br.state !== 'needsPair' && !br.canPair;

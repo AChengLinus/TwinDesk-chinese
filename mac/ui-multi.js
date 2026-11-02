@@ -16,7 +16,7 @@ UI.tab({
     // Mesh mode is in beta: the popup says so (shared/mesh-intro.js) before it restarts.
     const turnOn = UI.button('Turn on', () => MeshIntro.confirm(() => {
       turnOn.disabled = true;
-      turnOn.textContent = 'Restarting…';
+      turnOn.textContent = T('Restarting…');
       api.setMulti(true);
     }), 'small primary');
 

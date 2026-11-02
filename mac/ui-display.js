@@ -27,6 +27,7 @@ UI.tab({
       off: 'Off', starting: 'Starting…', 'waiting for answer': 'Waiting for {name}…', new: 'Connecting…',
       connecting: 'Connecting…', live: 'Live', 'no viewer': 'Ready — starts when {name} opens it', 'waiting for Wi-Fi': 'Waiting for Wi-Fi', 'nothing connected': 'Waiting for {name}', 'no display to share': 'No display to share', disconnected: 'Reconnecting…', failed: 'Retrying…', closed: 'Closed',
     };
+    const LIMIT = { bandwidth: '带宽', cpu: 'CPU', other: '其他' }; // why the encoder is capped (WebRTC’s qualityLimitationReason)
 
     const helperNote = UI.note('bad', 'Something went wrong in the background. Restart TwinDesk.');
 
@@ -136,15 +137,15 @@ UI.tab({
       const st = s.stream || { status: 'off' };
       const live = st.status === 'live';
       const p = UI.peer(s);
-      statVals.status.textContent = !sh.on ? 'Off' : !c ? `Waiting for ${p.name}` : UI.fill(STATUS[st.status] || st.status);
+      statVals.status.textContent = !sh.on ? T('Off') : !c ? T(`Waiting for ${p.name}`) : UI.fill(STATUS[st.status] || st.status);
       const shown = sh.displays.find((d) => d.id === sh.targetId);
-      statVals.display.textContent = shown ? `${shown.virtual ? 'TwinDesk virtual display' : shown.label} · ${shown.pixelWidth} × ${shown.pixelHeight}` : '';
+      statVals.display.textContent = shown ? `${shown.virtual ? T('TwinDesk virtual display') : shown.label} · ${shown.pixelWidth} × ${shown.pixelHeight}` : '';
       statVals.picture.textContent = live ? `${st.width} × ${st.height} · ${st.fps} fps` : '';
       statVals.rate.textContent = live ? `${st.mbps} Mbps${st.targetMbps ? ` of ${st.targetMbps}` : ''}` : '';
       statVals.rtt.textContent = c && c.rttMs != null ? `${c.rttMs} ms` : '';
       statVals.codec.textContent = live && st.codec ? st.codec : '';
       statVals.encoder.textContent = live && st.encoder ? st.encoder : '';
-      statVals.encode.textContent = live && st.encodeMs != null ? `${st.encodeMs} ms${st.limit && st.limit !== 'none' ? ` · limited by ${st.limit}` : ''}` : '';
+      statVals.encode.textContent = live && st.encodeMs != null ? T(`${st.encodeMs} ms`) + (st.limit && st.limit !== 'none' ? ` · ${T('limited by')} ${LIMIT[st.limit] || st.limit}` : '') : '';
       for (const k of ['codec', 'encoder', 'encode', 'rtt', 'display']) stats[k].hidden = !statVals[k].textContent;
     };
   },

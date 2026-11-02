@@ -120,7 +120,7 @@ async function onOffer(m) {
   const my = (pc = new RTCPeerConnection({ iceServers: [] }));
   const queue = (pending = []);
   const ms = new MediaStream();
-  setOverlay('Connecting…');
+  setOverlay(T('Connecting…'));
 
   my.ontrack = (e) => {
     receivers.push(e.receiver);
@@ -134,8 +134,8 @@ async function onOffer(m) {
     if (my !== pc) return;
     const st = my.connectionState;
     report(st === 'connected' ? 'live' : st);
-    if (st === 'failed') setOverlay('Reconnecting…');
-    else if (st === 'disconnected') setOverlay('Reconnecting…');
+    if (st === 'failed') setOverlay(T('Reconnecting…'));
+    else if (st === 'disconnected') setOverlay(T('Reconnecting…'));
   };
 
   try {
@@ -155,7 +155,7 @@ async function onOffer(m) {
     statsTimer = setInterval(() => stats(my).catch(() => {}), 1000);
   } catch (e) {
     if (my === pc) {
-      setOverlay('Could not show the screen: ' + e.message);
+      setOverlay(T('Could not show the screen: ' + e.message));
       report('failed');
     }
   }
@@ -283,7 +283,7 @@ api.on((m) => {
       releaseButtons();
       closePc();
       session = null;
-      setOverlay(m.why || '');
+      setOverlay(T(m.why || ''));
       break;
     case 'input':
       if (!m.on) releaseButtons();

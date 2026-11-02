@@ -28,8 +28,19 @@
   </header>
   <main id="stage">
     <canvas id="screen" tabindex="0"></canvas>
-    <div id="status">Connecting to the phone…</div>
+    <div id="status" data-t="Connecting to the phone…">Connecting to the phone…</div>
   </main>
+  <!-- 中文界面：词典和 shared/lang/*.js 装好之后，i18n-dom.js 把 data-t / data-ta 的文案换掉 -->
+  <script src="../shared/i18n.js"></script>
+  <script src="../shared/lang/zh.core.js"></script>
+  <script src="../shared/lang/zh.media.js"></script>
+  <script src="../shared/lang/zh.comms.js"></script>
+  <script src="../shared/lang/zh.io.js"></script>
+  <script src="../shared/lang/zh.devices.js"></script>
+  <script src="../shared/lang/zh.settings.js"></script>
+  <script src="../shared/lang/zh.pages.js"></script>
+  <script src="../shared/lang/zh.mac.js"></script>
+  <script src="../shared/i18n-dom.js"></script>
   <script src="../shared/vcam-feed.js"></script>
   <script src="phoneview-renderer.js"></script>
 </body>

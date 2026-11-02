@@ -76,7 +76,7 @@ UI.tab({
       inputSw.set(r.input);
       const p = UI.peer(s);
       const pc = p.name;
-      showBtn.textContent = r.open ? 'Show' : 'Open';
+      showBtn.textContent = r.open ? T('Show') : T('Open');
       const canStart = r.remote && r.remote.remote;
       winRow.setHint(!s.client ? `Waiting for ${pc}`
         : r.session ? `Showing ${pc}` : canStart ? `Open starts it on ${pc}` : `Choose what to share in TwinDesk on ${pc}`);
@@ -88,8 +88,8 @@ UI.tab({
       vals.rtt.textContent = s.client && s.client.rttMs != null ? `${s.client.rttMs} ms` : '';
       vals.codec.textContent = isLive && st.codec ? st.codec : '';
       vals.decoder.textContent = isLive && st.decoder ? st.decoder : '';
-      vals.delay.textContent = isLive && st.bufferMs != null ? `${st.bufferMs} ms buffer · ${st.decodeMs} ms decode` : '';
-      vals.smooth.textContent = isLive ? `${st.dropped || 0} dropped · ${st.freezes || 0} freezes${st.framegen ? ' · frame generation on' : ''}` : '';
+      vals.delay.textContent = isLive && st.bufferMs != null ? T(`${st.bufferMs} ms buffer · ${st.decodeMs} ms decode`) : '';
+      vals.smooth.textContent = isLive ? T(`${st.dropped || 0} dropped · ${st.freezes || 0} freezes${st.framegen ? ' · frame generation on' : ''}`) : '';
       for (const k of ['picture', 'rate', 'rtt', 'codec', 'decoder', 'delay', 'smooth']) live[k].hidden = !vals[k].textContent;
     };
   },

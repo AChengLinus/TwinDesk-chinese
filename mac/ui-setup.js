@@ -46,7 +46,7 @@ UI.setup = (() => {
         const miss = m.includes(r.it.kind);
         r.pill.hidden = miss;
         // Accessibility covers the keyboard tap, so macOS reads Input Monitoring as allowed with its switch off.
-        if (r.it.kind === 'inputMonitoring') r.pill.textContent = s.permissions && s.permissions.accessibility ? 'Allowed by Accessibility' : 'Allowed';
+        if (r.it.kind === 'inputMonitoring') r.pill.textContent = s.permissions && s.permissions.accessibility ? T('Allowed by Accessibility') : T('Allowed');
         r.btn.hidden = !miss;
         // Local Network only matters when it's actually blocked.
         r.row.hidden = r.it.kind === 'localNetwork' && !miss;

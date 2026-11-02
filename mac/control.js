@@ -38,6 +38,9 @@ const ICONS = {
   multi: 'M2 5h9v6.5H2z M5 14h3 M6.5 11.5V14 M13 4h5v12h-5z M15 13.5h1', // a computer and a phone: Multi-device
 };
 
+// 这些属性装的是给人看的文字，也要查表（shared/i18n.js）；class / role / aria-controls 之类不动。
+const T_ATTRS = new Set(['title', 'aria-label', 'placeholder', 'alt']);
+
 const UI = {
   api: window.macshare,
   P: window.MacShareProtocol,
@@ -48,11 +51,15 @@ const UI = {
     const e = document.createElement(tag);
     for (const [k, v] of Object.entries(props)) {
       if (k === 'class') e.className = v;
-      else if (k === 'text') e.textContent = v;
-      else if (k === 'attrs') for (const [a, av] of Object.entries(v)) e.setAttribute(a, av);
+      else if (k === 'text') e.textContent = T(v);
+      else if (k === 'attrs') for (const [a, av] of Object.entries(v)) e.setAttribute(a, T_ATTRS.has(a) ? T(av) : av);
+      else if (T_ATTRS.has(k)) e[k] = T(v);
       else e[k] = v;
     }
-    for (const c of [].concat(children)) if (c != null && c !== false) e.append(c);
+    for (const c of [].concat(children)) {
+      if (c == null || c === false) continue;
+      e.append(typeof c === 'string' ? T(c) : c);
+    }
     return e;
   },
 
@@ -223,11 +230,14 @@ const UI = {
     return row;
   },
 
-  // A template with {me}, {name}, {Name}, … filled from the current state.
+  // A template with {me}, {name}, {Name}, … filled from the current state. 整句先查中文词条
+  // （词条里照样写 {name}），再填名字，这样中文的语序可以跟英文不一样。
   fill(t) {
-    if (!t || !String(t).includes('{')) return t || '';
+    if (!t) return '';
+    const s = T(String(t));
+    if (!s.includes('{')) return s;
     const p = UI.peer(UI.state);
-    return String(t).replace(/\{(\w+)\}/g, (m, k) => (k in p ? p[k] : m));
+    return s.replace(/\{(\w+)\}/g, (m, k) => (k in p ? p[k] : m));
   },
 
   // A direction card for the symmetric layout. dir: 'm2w' | 'w2m'

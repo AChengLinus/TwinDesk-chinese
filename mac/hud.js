@@ -11,8 +11,9 @@ const W = 360, H = 64, SHOW_MS = 1400;
 const BIG_W = 460, BIG_H = 230, BIG_MS = 2200; // the sharing on/off card
 
 class Hud {
-  constructor(getSettings) {
+  constructor(getSettings, tr) {
     this.getSettings = getSettings;
+    this.tr = tr || ((s) => s); // the caller translates: the main process has the dictionary and the names
     this.win = null;
     this.ready = null;
     this.timer = null;
@@ -44,7 +45,7 @@ class Hud {
     const [w, h] = big ? [BIG_W, BIG_H] : [W, H];
     const y = big ? d.y + (d.height - h) / 2 - d.height * 0.08 : d.y + d.height - h - 72;
     this.win.setBounds({ x: Math.round(d.x + (d.width - w) / 2), y: Math.round(y), width: w, height: h });
-    this.win.webContents.send('hud', { kind, text, sub });
+    this.win.webContents.send('hud', { kind, text: this.tr(text), sub: sub ? this.tr(sub) : '' });
     this.win.showInactive();
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {

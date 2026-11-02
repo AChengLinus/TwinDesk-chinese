@@ -15,7 +15,23 @@
   const vcam = kind === 'camera' && window.CamOut ? window.CamOut() : null;
   let turn = 0;
   document.body.classList.add(kind);
-  document.getElementById('title').textContent = q.get('title') || 'Phone';
+  document.getElementById('title').textContent = q.get('title') || T('Phone');
+  // 图标按钮的提示和读屏名字（一个元素只能带一条 data-ta，所以在这里查表）
+  const LABELS = {
+    'b-back': ['Back (Esc)', 'Back'], 'b-home': ['Home', 'Home'], 'b-recents': ['Recent apps', 'Recent apps'],
+    'b-notifs': ['Notifications', 'Notifications'], 'b-rotate': ['Rotate', 'Rotate'],
+    'b-power': ['Phone screen off: it keeps showing here, and saves the battery (right click: the power key)', 'Phone screen off'],
+    'b-enter-send': ['Return sends in WhatsApp, Instagram and Telegram (⇧Return: a new line)', 'Return sends messages'],
+    'b-swipe': ['Arrow keys swipe the screen (feeds, Reels, Shorts)', 'Arrow keys swipe'],
+    'b-torch': ['Flashlight / Torch', 'Torch'], 'b-flip': ['Switch Camera', 'Switch Camera'],
+    'b-zoomin': ['Zoom In', 'Zoom In'], 'b-zoomout': ['Zoom Out', 'Zoom Out'],
+  };
+  for (const [id, [hint, aria]] of Object.entries(LABELS)) {
+    const b = document.getElementById(id);
+    if (!b) continue;
+    b.title = T(hint);
+    b.setAttribute('aria-label', T(aria));
+  }
   const canvas = document.getElementById('screen');
   const ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
   const status = document.getElementById('status');
@@ -37,7 +53,7 @@
   }
 
   const setStatus = (t) => {
-    status.textContent = t || '';
+    status.textContent = T(t || '');
     status.hidden = !t;
   };
 
@@ -106,14 +122,14 @@
   api.on('status', (s) => {
     if (s.via) {
       const el = document.getElementById('via');
-      el.textContent = s.via === 'usb' ? 'USB' : 'Wi-Fi';
+      el.textContent = s.via === 'usb' ? T('USB') : T('Wi-Fi');
       el.className = s.via;
-      el.title = s.via === 'usb' ? 'Through the USB cable' : 'Through wireless debugging';
+      el.title = s.via === 'usb' ? T('Through the USB cable') : T('Through wireless debugging');
       el.hidden = false;
     }
-    if (s.error) setStatus(s.error);
-    else if (s.closed) setStatus(`The phone stopped sharing (${s.closed}).`);
-    else if (s.ready && !size) setStatus('Waiting for the picture…');
+    if (s.error) setStatus(T(s.error));
+    else if (s.closed) setStatus(T(`The phone stopped sharing (${s.closed}).`));
+    else if (s.ready && !size) setStatus(T('Waiting for the picture…'));
   });
 
   // An app's virtual display has at least 2 pixels per point, like the Mac's: at 100% scaling a

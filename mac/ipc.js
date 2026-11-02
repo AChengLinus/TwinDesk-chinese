@@ -3,6 +3,7 @@
 'use strict';
 
 const { ipcMain, shell, app, screen, dialog, clipboard, Menu, systemPreferences } = require('electron');
+const I18n = require('../shared/i18n.js'); // 中文界面：换语言后主进程的菜单栏、通知也要跟着换
 const P = require('../shared/protocol.js');
 const CL = require('../shared/cursorlock.js');
 const { LINKS } = require('../shared/about.js');
@@ -339,7 +340,7 @@ function setupIpc(ctx) {
       if (list.length && ctx.server.current) ctx.fileSend.sendBatch(list, 'send');
     },
     async chooseSendFiles() {
-      const r = await dialog.showOpenDialog({ properties: ['openFile', 'openDirectory', 'multiSelections'], buttonLabel: 'Send' });
+      const r = await dialog.showOpenDialog({ properties: ['openFile', 'openDirectory', 'multiSelections'], buttonLabel: I18n.T('Send') });
       if (!r.canceled) actions.sendFiles(r.filePaths);
     },
     setNotifs(partial) {
@@ -356,7 +357,7 @@ function setupIpc(ctx) {
       if (bundle.endsWith('.app')) shell.showItemInFolder(bundle);
     },
     async pickDropFolder() {
-      const r = await dialog.showOpenDialog({ properties: ['openDirectory', 'createDirectory'], buttonLabel: 'Use This Folder' });
+      const r = await dialog.showOpenDialog({ properties: ['openDirectory', 'createDirectory'], buttonLabel: I18n.T('Use This Folder') });
       if (r.canceled || !r.filePaths[0]) return;
       settings.files.folder = r.filePaths[0];
       save();
@@ -379,7 +380,7 @@ function setupIpc(ctx) {
       else ctx.smb.stopSharing();
     },
     async chooseShareFolder() {
-      const r = await dialog.showOpenDialog({ properties: ['openDirectory', 'createDirectory'], buttonLabel: 'Share This Folder' });
+      const r = await dialog.showOpenDialog({ properties: ['openDirectory', 'createDirectory'], buttonLabel: I18n.T('Share This Folder') });
       if (r.canceled || !r.filePaths[0]) return;
       if (settings.smb.sharing) await ctx.smb.stopSharing();
       settings.smb.folder = r.filePaths[0];
@@ -597,6 +598,13 @@ function setupIpc(ctx) {
       if (!TABS.includes(tab)) return;
       settings.ui.tab = tab;
       store.saveSettings(settings); // no state push needed; the window already shows it
+    },
+    // General › App › Language：整窗都过词典，先换主进程的语言，页面自己 reload 一次。
+    setUiLang(lang) {
+      I18n.setLang(lang === 'en' ? 'en' : 'zh');
+      settings.ui.lang = I18n.lang;
+      store.saveSettings(settings);
+      if (ctx.onLang) ctx.onLang();
     },
     pairRespond(allow) {
       ctx.pairing.respond(!!allow);

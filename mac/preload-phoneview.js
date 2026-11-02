@@ -4,6 +4,9 @@
 
 const { contextBridge, ipcRenderer, webUtils } = require('electron');
 
+// 界面语言（settings.ui.lang）：shared/i18n.js 的浏览器分支读 window.macshare.lang
+contextBridge.exposeInMainWorld('macshare', { lang: ipcRenderer.sendSync('uiLang') === 'en' ? 'en' : 'zh' });
+
 contextBridge.exposeInMainWorld('phoneview', {
   on: (ch, fn) => {
     if (['size', 'video', 'audio', 'netaudio', 'status', 'opts'].includes(ch)) ipcRenderer.on(`phoneview:${ch}`, (_e, m) => fn(m));

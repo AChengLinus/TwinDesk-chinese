@@ -24,6 +24,9 @@ const api = {
   onCamPreview: (fn) => ipcRenderer.on('vcam:preview', (_e, buf) => fn(buf)), // Camera › the picture (a JPEG)
   onGo: (fn) => ipcRenderer.on('go', (_e, tab) => fn(tab)), // show a page (the call window's Calls)
   pathsOf: (files) => [...files].map((f) => webUtils.getPathForFile(f)).filter(Boolean), // dropped files -> paths
+  // 界面语言：同步问一次，词典在页面脚本之前就装好，免得先闪一下英文；换语言也要等主进程存好再 reload。
+  lang: ipcRenderer.sendSync('uiLang') === 'en' ? 'en' : 'zh',
+  setUiLang: (lang) => { ipcRenderer.sendSync('setUiLang', lang); },
 };
 for (const name of ACTIONS) api[name] = (arg) => ipcRenderer.send(name, arg);
 api.qrPair = () => ipcRenderer.invoke('qrPair'); // Connection: pair a phone with a QR code (its link)
