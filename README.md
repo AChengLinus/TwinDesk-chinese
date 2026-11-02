@@ -20,7 +20,7 @@
 | **macOS 13 或更高** | ✅ 完整汉化：主窗口、各页面、菜单栏、通知、手机/电脑画面窗口 |
 | **Linux / Android** | ⛔️ 尚未接入词典层，仍是英文 |
 
-本仓库基于上游 TwinDesk **2.5.0-beta.1**；中文界面覆盖 **Windows 10 / 11**（含 x64 与 ARM64）和 **macOS 13 Ventura 或更高**。Windows 中文安装包已在本仓库发布；macOS 要中文界面请用本仓库源码构建，见[中文界面](#chinese-ui)。
+本仓库基于上游 TwinDesk **2.5.0-beta.1**；中文界面覆盖 **Windows 10 / 11** 与 **macOS 13 Ventura 或更高**。Windows 中文安装包已在本仓库发布；macOS 要中文界面请用本仓库源码构建，见[中文界面](#chinese-ui)。
 
 <p align="center">
   <a href="#download"><b>⬇️ 下载 2.5</b></a> ·
@@ -130,7 +130,7 @@ X11 与 Wayland · 通过 Samba 共享文件夹 · 逐页介绍手机应用 · [
 **🪟 Windows**<br><sub>10 与 11 · 中文界面</sub>
 
 <a href="https://github.com/AChengLinus/TwinDesk-chinese/releases/latest/download/TwinDesk-Setup-2.5.0-beta.1-zh.exe"><img src="https://img.shields.io/badge/x64-中文_Installer-d73a4a?style=for-the-badge" alt="Windows, x64, 简体中文"></a><br>
-<a href="https://github.com/AChengLinus/TwinDesk-chinese/releases/latest/download/TwinDesk-Setup-2.5.0-beta.1-arm64-zh.exe"><img src="https://img.shields.io/badge/ARM64-中文_Installer-c0392b?style=for-the-badge" alt="Windows on ARM, 简体中文"></a>
+<a href="https://github.com/InukaAsith/TwinDesk/releases/download/v2.5.0-beta.1/TwinDesk-Setup-2.5.0-beta.1-arm64.exe"><img src="https://img.shields.io/badge/ARM64-Installer-005a9e?style=for-the-badge" alt="Windows on ARM（上游英文包）"></a><br><sub>中文 ARM64 包正在构建</sub>
 
 </td>
 <td width="25%" align="center" valign="top">
@@ -155,7 +155,7 @@ X11 与 Wayland · 通过 Samba 共享文件夹 · 逐页介绍手机应用 · [
 </tr>
 </table>
 
-<p align="center"><sub>Windows 的两个安装包由本仓库构建（基于上游 2.5.0-beta.1，界面中文，可在设置里切回 English）。<br>
+<p align="center"><sub>Windows x64 安装包由本仓库构建（基于上游 2.5.0-beta.1，界面中文，可在设置里切回 English）；ARM64 中文包还在做，先给上游英文包。<br>
 SHA256（<code>TwinDesk-Setup-2.5.0-beta.1-zh.exe</code>）：<code>b570e89a048e3a7bc2fd8612afbefd7530b99f53d989d0fb5b4431d47147c163</code></sub></p>
 
 <p align="center">🍺 macOS 上的 <b>Homebrew</b>：<code>brew install --cask inukaasith/twindesk/twindesk</code><br>
